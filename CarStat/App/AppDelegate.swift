@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Realm.Configuration.defaultConfiguration = config
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = MainScreenViewController()
+        window?.rootViewController = CSTabBarController()
         window?.makeKeyAndVisible()
         
         return true

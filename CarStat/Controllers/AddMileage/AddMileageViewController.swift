@@ -105,6 +105,7 @@ class AddMileageViewController: UIViewController {
                 
                 self.viewModel.newOdometer.accept(newValue)
             })
+            .disposed(by: cell.disposeBag)
         
         return cell
     }
@@ -112,12 +113,21 @@ class AddMileageViewController: UIViewController {
     private func calendarCell(indexPath: IndexPath) -> CSCollectionViewCell {
         let cell: CSDateInputCell = collectionView.cell(indexPath: indexPath)
         
+        cell.input.rx.date
+            .subscribe(onNext: { [weak self] value in
+                guard let self = self else { return }
+                
+                self.viewModel.newDate.accept(value)
+            })
+            .disposed(by: cell.disposeBag)
+        
         cell.input.rx.date.changed
             .subscribe(onNext: { [weak self] value in
                 guard let self = self else { return }
                 
                 self.viewModel.newDate.accept(value)
             })
+            .disposed(by: cell.disposeBag)
         
         return cell
     }

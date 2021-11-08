@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		54E909FEFCCE431A2DFF7A4E /* Pods_CarStat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB9A309A496810F12E07005 /* Pods_CarStat.framework */; };
+		5B7559652715AD0C000BCA55 /* CSChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7559642715AD0C000BCA55 /* CSChartCell.swift */; };
 		5BBE23D826EF9FDA00028774 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE23D726EF9FDA00028774 /* AppDelegate.swift */; };
 		5BBE23E126EF9FDF00028774 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BBE23E026EF9FDF00028774 /* Assets.xcassets */; };
 		5BBE23E426EF9FDF00028774 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BBE23E226EF9FDF00028774 /* LaunchScreen.storyboard */; };
@@ -19,6 +20,7 @@
 		5BD0CA8D26F4702800433D06 /* CSCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0CA8C26F4702800433D06 /* CSCollectionViewCell.swift */; };
 		5BD0CA9126F473F200433D06 /* UICollectionView + Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0CA9026F473F200433D06 /* UICollectionView + Extention.swift */; };
 		5BD0CA9526F4820100433D06 /* CSButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0CA9426F4820100433D06 /* CSButtonCell.swift */; };
+		5BDD225C271DB3E500C8D413 /* CSTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDD225B271DB3E500C8D413 /* CSTabBarController.swift */; };
 		5BDF42CE26F87CF0001CE585 /* Mileage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDF42CD26F87CF0001CE585 /* Mileage.swift */; };
 		5BDF42D026F87D77001CE585 /* UserMileage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDF42CF26F87D77001CE585 /* UserMileage.swift */; };
 		5BDF42D326F8838C001CE585 /* AddMileageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDF42D226F8838C001CE585 /* AddMileageViewController.swift */; };
@@ -30,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		36D06C7FD74003A403650685 /* Pods-CarStat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarStat.release.xcconfig"; path = "Target Support Files/Pods-CarStat/Pods-CarStat.release.xcconfig"; sourceTree = "<group>"; };
+		5B7559642715AD0C000BCA55 /* CSChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSChartCell.swift; sourceTree = "<group>"; };
 		5BBE23D426EF9FDA00028774 /* CarStat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarStat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BBE23D726EF9FDA00028774 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BBE23E026EF9FDF00028774 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -43,6 +46,7 @@
 		5BD0CA8C26F4702800433D06 /* CSCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSCollectionViewCell.swift; sourceTree = "<group>"; };
 		5BD0CA9026F473F200433D06 /* UICollectionView + Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView + Extention.swift"; sourceTree = "<group>"; };
 		5BD0CA9426F4820100433D06 /* CSButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSButtonCell.swift; sourceTree = "<group>"; };
+		5BDD225B271DB3E500C8D413 /* CSTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSTabBarController.swift; sourceTree = "<group>"; };
 		5BDF42CD26F87CF0001CE585 /* Mileage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mileage.swift; sourceTree = "<group>"; };
 		5BDF42CF26F87D77001CE585 /* UserMileage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMileage.swift; sourceTree = "<group>"; };
 		5BDF42D226F8838C001CE585 /* AddMileageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMileageViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +107,7 @@
 			children = (
 				5BDF42D126F88363001CE585 /* AddMileage */,
 				5BBE23F026EFA86B00028774 /* MainScreen */,
+				5BDD225B271DB3E500C8D413 /* CSTabBarController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -201,6 +206,7 @@
 				5BDF42D726F8A83C001CE585 /* CSTextCell.swift */,
 				5BDF42D926F8BBC5001CE585 /* CSInputCell.swift */,
 				5BDF42DB26F8C27B001CE585 /* CSDateInputCell.swift */,
+				5B7559642715AD0C000BCA55 /* CSChartCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -372,6 +378,8 @@
 				5BDF42D626F883BD001CE585 /* AddMileageViewModel.swift in Sources */,
 				5BDF42CE26F87CF0001CE585 /* Mileage.swift in Sources */,
 				5BDF42D026F87D77001CE585 /* UserMileage.swift in Sources */,
+				5B7559652715AD0C000BCA55 /* CSChartCell.swift in Sources */,
+				5BDD225C271DB3E500C8D413 /* CSTabBarController.swift in Sources */,
 				5BBE23F226EFA88900028774 /* MainScreenViewController.swift in Sources */,
 				5BD0CA9526F4820100433D06 /* CSButtonCell.swift in Sources */,
 				5BBE240526F0DBED00028774 /* MainScreenViewModel.swift in Sources */,

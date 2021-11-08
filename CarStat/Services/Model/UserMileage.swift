@@ -10,5 +10,7 @@ import RealmSwift
 
 class UserMileage: Object {
     @objc dynamic var date = Date()
-    @objc dynamic var odometer = Int()
+    @objc dynamic var odometer = 0
+    @objc dynamic var price = 0.0
+    @objc dynamic var liters = 0.0
 }

@@ -38,7 +38,6 @@ extension CSDateInputCell {
         
         // TITLE
         input = UIDatePicker()
-//        input.calendar.date(from: DateComponents())
         input.datePickerMode = .date
         contentView.addSubview(input)
         input.snp.makeConstraints {

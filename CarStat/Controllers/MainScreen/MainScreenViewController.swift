@@ -79,6 +79,11 @@ class MainScreenViewController: UIViewController {
                 let vc = AddMileageViewController()
                 if let last = self.viewModel.mileage.value.last {
                     vc.viewModel = AddMileageViewModel(lastMileage: last)
+                } else {
+                    let new = UserMileage()
+                    new.date = Date()
+                    new.odometer = 0
+                    vc.viewModel = AddMileageViewModel(lastMileage: new)
                 }
 
                 self.present(vc, animated: true, completion: nil)

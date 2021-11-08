@@ -20,6 +20,7 @@ extension CSCollectionView {
         register(cellType: CSTextCell.self)
         register(cellType: CSInputCell.self)
         register(cellType: CSDateInputCell.self)
+        register(cellType: CSChartCell.self)
     }
 }
 
