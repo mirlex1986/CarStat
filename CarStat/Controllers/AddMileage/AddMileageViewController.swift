@@ -21,7 +21,7 @@ class AddMileageViewController: UIViewController {
     typealias Item = AddMileageViewModel.ItemModel
     typealias Section = AddMileageViewModel.SectionModel
     
-    var viewModel: AddMileageViewModel!
+    var viewModel = AddMileageViewModel()
     var dataSource: RxCollectionViewSectionedAnimatedDataSource<Section>!
     
     override func viewDidLoad() {

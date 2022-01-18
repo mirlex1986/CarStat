@@ -53,11 +53,11 @@ final class CSTabBarController: UITabBarController {
         
         switch rootViewController {
         case is MainScreenViewController:
-            title = "Главная"
+            title = "Main"
             icon = UIImage(systemName: "star.circle.fill")
-        case is AddMileageViewController:
-            title = "Каталог"
-            icon = UIImage(systemName: "plus.rectangle.on.rectangle")
+//        case is AddMileageViewController:
+//            title = "Fuel"
+//            icon = UIImage(systemName: "plus.rectangle.on.rectangle")
         default:
             break
         }

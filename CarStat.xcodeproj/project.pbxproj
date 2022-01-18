@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		54E909FEFCCE431A2DFF7A4E /* Pods_CarStat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB9A309A496810F12E07005 /* Pods_CarStat.framework */; };
 		5B7559652715AD0C000BCA55 /* CSChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7559642715AD0C000BCA55 /* CSChartCell.swift */; };
+		5BABCB582770AFAB00139A31 /* Pods_CarStat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BABCB572770AFAB00139A31 /* Pods_CarStat.framework */; };
 		5BBE23D826EF9FDA00028774 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE23D726EF9FDA00028774 /* AppDelegate.swift */; };
 		5BBE23E126EF9FDF00028774 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BBE23E026EF9FDF00028774 /* Assets.xcassets */; };
 		5BBE23E426EF9FDF00028774 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BBE23E226EF9FDF00028774 /* LaunchScreen.storyboard */; };
@@ -33,6 +34,7 @@
 /* Begin PBXFileReference section */
 		36D06C7FD74003A403650685 /* Pods-CarStat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarStat.release.xcconfig"; path = "Target Support Files/Pods-CarStat/Pods-CarStat.release.xcconfig"; sourceTree = "<group>"; };
 		5B7559642715AD0C000BCA55 /* CSChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSChartCell.swift; sourceTree = "<group>"; };
+		5BABCB572770AFAB00139A31 /* Pods_CarStat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_CarStat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BBE23D426EF9FDA00028774 /* CarStat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarStat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BBE23D726EF9FDA00028774 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BBE23E026EF9FDF00028774 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				54E909FEFCCE431A2DFF7A4E /* Pods_CarStat.framework in Frameworks */,
+				5BABCB582770AFAB00139A31 /* Pods_CarStat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +251,7 @@
 		86CFC7A4E51D0E2058864FA4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5BABCB572770AFAB00139A31 /* Pods_CarStat.framework */,
 				EAB9A309A496810F12E07005 /* Pods_CarStat.framework */,
 			);
 			name = Frameworks;

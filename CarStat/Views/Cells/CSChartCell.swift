@@ -28,7 +28,8 @@ class CSChartCell: RxCollectionViewCell {
         disposeBag = DisposeBag()
     }
     
-    func configure() {
+    func configure(mileages: [UserMileage]) {
+        var dataEntries: [ChartDataEntry] = []
         
     }
 }
@@ -52,6 +53,6 @@ extension CSChartCell {
 }
 
 extension CSChartCell {
-    static var cellSize: CGSize { CGSize(width: UIScreen.main.bounds.width - 32, height: 60) }
+    static var cellSize: CGSize { CGSize(width: UIScreen.main.bounds.width - 32, height: 260) }
 }
 

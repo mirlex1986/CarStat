@@ -30,6 +30,11 @@ final class AddMileageViewModel {
         configureSections()
     }
     
+    init() {        
+        subscribe()
+        configureSections()
+    }
+    
     // MARK: - Functions
     private func subscribe() {
         newMileage

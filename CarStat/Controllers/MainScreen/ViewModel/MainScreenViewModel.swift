@@ -39,9 +39,6 @@ final class MainScreenViewModel {
         var items: [ItemModel] = []
         let mileage = mileage.value.reversed()
         
-        items.append(.button)
-        items.append(.text(text: self.calculateMileage()))
-        
         mileage.forEach { data in
             items.append(.refueling(mileage: data))
         }
@@ -69,7 +66,7 @@ extension MainScreenViewModel {
             .disposed(by: disposeBag)
     }
     
-    private func calculateMileage() -> String {
+    func calculateMileage() -> String {
         let mileages = mileage.value
         guard let first = mileages.first, let last = mileages.last else { return "" }
         
@@ -88,7 +85,7 @@ extension MainScreenViewModel {
         }
         let diffMiles = last.odometer - first.odometer
         
-        return "Пробег \(diffMiles)km за \(totalDaysDescription)"
+        return "Пробег \(diffMiles) км за \(totalDaysDescription)"
     }
 }
 
@@ -101,17 +98,20 @@ extension MainScreenViewModel {
     
     enum ItemModel {
         case button
-        case text(text: String)
+        case text(text: String, alignment: NSTextAlignment)
+        case chart(mileages: [UserMileage])
         case refueling(mileage: UserMileage)
         
         var id: String {
             switch self {
             case .button:
                 return "button"
-            case .text(let text):
+            case .text(let text, _):
                 return "text \(text)"
             case .refueling(let mileage):
                 return "refueling \(mileage.date) \(mileage.odometer)"
+            case .chart(let mileages):
+                return "mileage \(mileages)"
             }
         }
     }

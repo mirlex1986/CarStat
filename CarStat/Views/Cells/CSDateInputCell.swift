@@ -50,6 +50,10 @@ extension CSDateInputCell {
 
 extension CSDateInputCell {
     static func cellSize() -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.width - 32, height: 180)
+        if #available(iOS 14, *) {
+            return CGSize(width: UIScreen.main.bounds.width - 32, height: 50)
+        } else {
+            return CGSize(width: UIScreen.main.bounds.width - 32, height: 180)
+        }
     }
 }
