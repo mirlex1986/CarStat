@@ -38,6 +38,7 @@ extension CSDateInputCell {
         
         // TITLE
         input = UIDatePicker()
+        input.locale = .autoupdatingCurrent
         input.datePickerMode = .date
         contentView.addSubview(input)
         input.snp.makeConstraints {

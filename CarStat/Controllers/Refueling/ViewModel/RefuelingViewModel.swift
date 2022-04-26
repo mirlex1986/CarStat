@@ -11,7 +11,7 @@ import RxCocoa
 import RxDataSources
 import RxRealm
 
-final class MainScreenViewModel {
+final class RefuelingViewModel {
     // MARK: - Properties
     let mileage = BehaviorRelay<[UserMileage]>.init(value: [])
     
@@ -37,9 +37,11 @@ final class MainScreenViewModel {
     
     func configureSections() {
         var items: [ItemModel] = []
-        let mileage = mileage.value.reversed()
+        let mileage = mileage.value.sorted { $0.date > $1.date }
+
+        let sorted = mileage.sorted { $0.odometer > $1.odometer }
         
-        mileage.forEach { data in
+        sorted.forEach { data in
             items.append(.refueling(mileage: data))
         }
         
@@ -48,7 +50,7 @@ final class MainScreenViewModel {
 }
 
 // MARK: - Functions
-extension MainScreenViewModel {
+extension RefuelingViewModel {
     func fetchData() {
         let mileage = StorageManager.shared.fetchData()
         
@@ -84,14 +86,17 @@ extension MainScreenViewModel {
             }
         }
         let diffMiles = last.odometer - first.odometer
-        
+        if let diffInDays = diffInDays, diffInDays > 0 {
+            let day = Double(diffMiles) / Double(diffInDays)
+            return "Пробег \(diffMiles) км за \(totalDaysDescription) \n Средний пробег за день: \(day)"
+        }
         return "Пробег \(diffMiles) км за \(totalDaysDescription)"
     }
 }
 
 
 // MARK: - Data source
-extension MainScreenViewModel {
+extension RefuelingViewModel {
     enum SectionModel {
         case mainSection(items: [ItemModel])
     }
@@ -117,21 +122,21 @@ extension MainScreenViewModel {
     }
 }
 
-extension MainScreenViewModel.SectionModel: AnimatableSectionModelType {
-    typealias Item = MainScreenViewModel.ItemModel
+extension RefuelingViewModel.SectionModel: AnimatableSectionModelType {
+    typealias Item = RefuelingViewModel.ItemModel
     
     var identity: String {
         return "main_section"
     }
     
-    var items: [MainScreenViewModel.ItemModel] {
+    var items: [RefuelingViewModel.ItemModel] {
         switch self {
         case .mainSection(let items):
             return items.map { $0 }
         }
     }
     
-    init(original: MainScreenViewModel.SectionModel, items: [MainScreenViewModel.ItemModel]) {
+    init(original: RefuelingViewModel.SectionModel, items: [RefuelingViewModel.ItemModel]) {
         switch original {
         case .mainSection:
             self = .mainSection(items: items)
@@ -139,8 +144,8 @@ extension MainScreenViewModel.SectionModel: AnimatableSectionModelType {
     }
 }
 
-extension MainScreenViewModel.ItemModel: RxDataSources.IdentifiableType, Equatable {
-    static func == (lhs: MainScreenViewModel.ItemModel, rhs: MainScreenViewModel.ItemModel) -> Bool {
+extension RefuelingViewModel.ItemModel: RxDataSources.IdentifiableType, Equatable {
+    static func == (lhs: RefuelingViewModel.ItemModel, rhs: RefuelingViewModel.ItemModel) -> Bool {
         lhs.identity == rhs.identity
     }
     

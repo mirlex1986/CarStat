@@ -19,6 +19,9 @@ final class AddMileageViewModel {
     var newMileage = PublishRelay<UserMileage?>()
     var newDate = BehaviorRelay<Date?>.init(value: nil)
     var newOdometer = BehaviorRelay<Int?>.init(value: nil)
+    var newFuelPrice = BehaviorRelay<Double?>.init(value: nil)
+    var newLiters = BehaviorRelay<Double?>.init(value: nil)
+    var newTotaalPrice = BehaviorRelay<Double?>.init(value: nil)
     
     let disposeBag = DisposeBag()
     let sections = BehaviorRelay<[SectionModel]>.init(value: [])
@@ -44,13 +47,28 @@ final class AddMileageViewModel {
                 StorageManager.shared.save(mileage: data)
             })
             .disposed(by: disposeBag)
+        
+        Observable.combineLatest(newFuelPrice.asObservable(), newLiters.asObservable(), newTotaalPrice.asObservable())
+            .subscribe(onNext: { [weak self] _, _, _ in
+                guard let self = self else { return }
+                
+                self.configureSections()
+            })
+            .disposed(by: disposeBag)
     }
     
     func configureSections() {
         var items: [ItemModel] = []
         
-        items.append(.input)
+        items.append(.label(text: "Одометр"))
+        items.append(.input(type: .odometer))
         items.append(.date)
+        items.append(.label(text: "Цена"))
+        items.append(.input(type: .fuelPrice))
+        items.append(.label(text: "Количество"))
+        items.append(.input(type: .fuelCount))
+        items.append(.label(text: "Общая стоимость"))
+        items.append(.input(type: .fuelTotalPrice))
         items.append(.button)
         
         sections.accept([.mainSection(items: items)])
@@ -65,15 +83,18 @@ extension AddMileageViewModel {
     
     enum ItemModel {
         case button
-        case input
+        case input(type: InputType)
+        case label(text: String)
         case date
         
         var id: String {
             switch self {
             case .button:
                 return "button"
-            case .input:
-                return "input"
+            case .input(let type):
+                return "input \(type)"
+            case .label(let text):
+                return "label \(text)"
             case .date:
                 return "date"
             }

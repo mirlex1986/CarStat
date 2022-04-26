@@ -38,8 +38,8 @@ final class CSTabBarController: UITabBarController {
     }
     
     private func setupTabBarControllers() {
-        let items = [createNavController(for: MainScreenViewController()),
-                     createNavController(for: AddMileageViewController())]
+        let items = [createNavController(for: HomeViewController()),
+                     createNavController(for: RefuelingViewController())]
     
         viewControllers = items
     }
@@ -52,12 +52,12 @@ final class CSTabBarController: UITabBarController {
         var title: String?
         
         switch rootViewController {
-        case is MainScreenViewController:
-            title = "Main"
-            icon = UIImage(systemName: "star.circle.fill")
-//        case is AddMileageViewController:
-//            title = "Fuel"
-//            icon = UIImage(systemName: "plus.rectangle.on.rectangle")
+        case is HomeViewController:
+            title = "Главная"
+            icon = UIImage(systemName: "flame")
+        case is RefuelingViewController:
+            title = "Статистика"
+            icon = UIImage(systemName: "chart.bar")
         default:
             break
         }

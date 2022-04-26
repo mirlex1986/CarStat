@@ -1,8 +1,8 @@
 //
-//  MainScreenViewController.swift
+//  HomeViewController.swift
 //  CarStat
 //
-//  Created by Aleksey Mironov on 13.09.2021.
+//  Created by Aleksey Mironov on 29.01.2022.
 //
 
 import UIKit
@@ -11,18 +11,16 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-class MainScreenViewController: UIViewController {
+class HomeViewController: CSViewController {
     // MARK: - UI
     private var navBar: UINavigationBar!
-    private var collectionView: UICollectionView!
-    private var label: UILabel!
-    private var button: UIButton!
+    private var collectionView: CSCollectionView!
     
     // MARK: - Properties
-    typealias Item = MainScreenViewModel.ItemModel
-    typealias Section = MainScreenViewModel.SectionModel
+    typealias Item = HomeViewModel.ItemModel
+    typealias Section = HomeViewModel.SectionModel
     
-    var viewModel = MainScreenViewModel()
+    var viewModel = HomeViewModel()
     var dataSource: RxCollectionViewSectionedAnimatedDataSource<Section>!
     
     override func viewDidLoad() {
@@ -46,23 +44,6 @@ class MainScreenViewController: UIViewController {
         viewModel.sections.asObservable()
             .bind(to: collectionView.rx.items(dataSource: dataSource))
             .disposed(by: viewModel.disposeBag)
-        
-        viewModel.mileage
-            .subscribe(onNext: { [weak self] _ in
-                guard let self = self else { return }
-                
-                self.label.text = self.viewModel.calculateMileage()
-            })
-            .disposed(by: viewModel.disposeBag)
-        
-        button.rx.tap
-            .subscribe(onNext: { [weak self] _ in
-                guard let self = self else { return }
-                
-                self.addMileage()
-            })
-            .disposed(by: viewModel.disposeBag)
-        
     }
     
     private func generateDataSource() -> RxCollectionViewSectionedAnimatedDataSource<Section> {
@@ -73,14 +54,12 @@ class MainScreenViewController: UIViewController {
             configureCell: { dataSource, collectionView, indexPath, _ in
                 let item: Item = dataSource[indexPath]
                 switch item {
+                case .empty:
+                    return self.emptyCell(self.collectionView, indexPath: indexPath)
                 case .button:
                     return self.buttonCell(indexPath: indexPath)
                 case .text(let text, let alignment):
-                    return self.textCell(indexPath: indexPath, text: text, alignment: alignment)
-                case .refueling(let mileage):
-                    return self.refuelingCell(indexPath: indexPath, mileage: mileage)
-                case .chart(let mileages):
-                    return self.chartCell(indexPath: indexPath, mileages: mileages)
+                    return self.textCell(self.collectionView, indexPath: indexPath, text: text, alignment: alignment)
                 }
             },
             configureSupplementaryView: { _, _, _, _ in
@@ -120,36 +99,27 @@ class MainScreenViewController: UIViewController {
         return cell
     }
     
-    private func textCell(indexPath: IndexPath, text: String, alignment: NSTextAlignment) -> CSCollectionViewCell {
-        let cell: CSTextCell = collectionView.cell(indexPath: indexPath)
-        cell.configure(text: text, textAlignment: alignment)
-        
-        return cell
-    }
-    
-    private func refuelingCell(indexPath: IndexPath, mileage: UserMileage) -> CSCollectionViewCell {
-        let cell: RefuelingInfoCell = collectionView.cell(indexPath: indexPath)
-        cell.configure(mileage: mileage)
-        
-        return cell
-    }
+//    private func textCell(indexPath: IndexPath, text: String, alignment: NSTextAlignment) -> CSCollectionViewCell {
+//        let cell: CSTextCell = collectionView.cell(indexPath: indexPath)
+//        cell.configure(text: text, textAlignment: alignment)
+//
+//        return cell
+//    }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
-extension MainScreenViewController: UICollectionViewDelegateFlowLayout {
+extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let item = dataSource[indexPath]
         switch item {
+        case .empty(let height, _):
+            return CSEmptyCell.cellSize(height: height)
         case .button:
             return CSButtonCell.cellSize
-        case .refueling:
-            return RefuelingInfoCell.cellSize
-        case .text:
-            return CSTextCell.cellSize()
-        case .chart:
-            return CSChartCell.cellSize
+        case .text(let text, _):
+            return CSTextCell.cellSize(text: text)
         }
     }
     
@@ -161,15 +131,13 @@ extension MainScreenViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension MainScreenViewController {
-    func makeUI() {
+extension HomeViewController {
+    override func makeUI() {
         view.backgroundColor = .white
         
         // NAVBAR
         navBar = UINavigationBar()
-        let navItem = UINavigationItem(title: "История")
-        let addButton: UIBarButtonItem = UIBarButtonItem(title: "+", style: .plain, target: self, action: #selector(addMileage))
-        navItem.rightBarButtonItem = addButton
+        let navItem = UINavigationItem(title: "Статистика")
         navBar.setItems([navItem], animated: true)
         navBar.isTranslucent = false
         view.addSubview(navBar)
@@ -178,35 +146,17 @@ extension MainScreenViewController {
             $0.left.right.equalToSuperview()
         }
         
-        label = UILabel()
-        label.textAlignment = .center
-        view.addSubview(label)
-        label.snp.makeConstraints {
-            $0.top.equalTo(navBar.snp.bottom).offset(20)
-            $0.left.right.equalToSuperview()
-        }
-        
-        button = UIButton()
-        button.backgroundColor = .darkGray
-        button.setTitle("Добавить показания одометра", for: .normal)
-        button.layer.cornerRadius = 5
-        view.addSubview(button)
-        button.snp.makeConstraints {
-            $0.top.equalTo(label.snp.bottom).offset(20)
-            $0.left.right.equalToSuperview().inset(30)
-        }
-        
         // COLLECTION VIEW
         collectionView = makeCollectionView()
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints {
-            $0.top.equalTo(button.snp.bottom).offset(20)
+            $0.top.equalTo(navBar.snp.bottom).offset(20)
             $0.bottom.equalTo(view.safeAreaLayoutGuide)
             $0.left.right.equalToSuperview()
         }
     }
     
-    private func makeCollectionView() -> UICollectionView {
+    private func makeCollectionView() -> CSCollectionView {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 0
@@ -217,19 +167,5 @@ extension MainScreenViewController {
         collectionView.showsVerticalScrollIndicator = false
         
         return collectionView
-    }
-    
-    @objc func addMileage() {
-        let vc = AddMileageViewController()
-        if let last = self.viewModel.mileage.value.last {
-            vc.viewModel = AddMileageViewModel(lastMileage: last)
-        } else {
-            let new = UserMileage()
-            new.date = Date()
-            new.odometer = 0
-            vc.viewModel = AddMileageViewModel(lastMileage: new)
-        }
-        
-        self.present(vc, animated: true, completion: nil)
     }
 }

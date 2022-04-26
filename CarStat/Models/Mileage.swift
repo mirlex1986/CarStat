@@ -10,4 +10,11 @@ import Foundation
 struct Mileage {
     var date: Date
     var odometer: Int
+    var refueling: Refueling
+}
+
+struct Refueling {
+    var price: Double
+    var quantity: Double
+    var totalPrice: Double
 }

@@ -58,8 +58,10 @@ class AddMileageViewController: UIViewController {
                 switch item {
                 case .button:
                     return self.buttonCell(indexPath: indexPath)
-                case .input:
-                    return self.inputCell(indexPath: indexPath)
+                case .input(let type):
+                    return self.inputCell(indexPath: indexPath, type: type)
+                case .label(let text):
+                    return self.labelCell(indexPath: indexPath, text: text)
                 case .date:
                     return self.calendarCell(indexPath: indexPath)
                 }
@@ -75,11 +77,18 @@ class AddMileageViewController: UIViewController {
         
         cell.button.rx.tap
             .subscribe(onNext: { [weak self] _ in
-                guard let self = self, let newDate = self.viewModel.newDate.value, let newOdodmeter = self.viewModel.newOdometer.value else { return }
+                guard let self = self,
+                      let newDate = self.viewModel.newDate.value,
+                      let newOdodmeter = self.viewModel.newOdometer.value else { return }
                 
                 let newValue = UserMileage()
                 newValue.date = newDate
                 newValue.odometer = newOdodmeter
+                let newRef = LocalRefueling()
+                newRef.price = self.viewModel.newFuelPrice.value ?? 0.0
+                newRef.quantity = self.viewModel.newLiters.value ?? 0.0
+                newRef.totalPrice = self.viewModel.newTotaalPrice.value ?? 0.0
+                newValue.refueling = newRef
                 
                 self.viewModel.newMileage.accept(newValue)
                 
@@ -90,13 +99,33 @@ class AddMileageViewController: UIViewController {
         return cell
     }
     
-    private func inputCell(indexPath: IndexPath) -> CSCollectionViewCell {
+    private func labelCell(indexPath: IndexPath, text: String) -> CSCollectionViewCell {
+        let cell: CSTextCell = collectionView.cell(indexPath: indexPath)
+        cell.configure(text: text)
+       
+        return cell
+    }
+    
+    private func inputCell(indexPath: IndexPath, type: InputType) -> CSCollectionViewCell {
         let cell: CSInputCell = collectionView.cell(indexPath: indexPath)
         
-        cell.input.keyboardType = .numberPad
-        
-        if let message = self.viewModel.lastMileage.value {
-            cell.configure(text: "\(message.odometer)")
+        switch type {
+        case .odometer:
+            if let message = self.viewModel.lastMileage.value {
+                cell.configure(text: "\(message.odometer)", inputType: type)
+            }
+        case .fuelPrice:
+            if let message = self.viewModel.lastMileage.value {
+                cell.configure(text: "\(message.data.refueling.price)", inputType: type)
+            }
+        case .fuelCount:
+            if let message = self.viewModel.lastMileage.value {
+                cell.configure(text: "\(message.data.refueling.quantity)", inputType: type)
+            }
+        case .fuelTotalPrice:
+            if let message = self.viewModel.lastMileage.value {
+                cell.configure(text: "\(message.data.refueling.totalPrice)", inputType: type)
+            }
         }
         
         cell.input.rx.text.changed
@@ -144,6 +173,8 @@ extension AddMileageViewController: UICollectionViewDelegateFlowLayout {
             return CSButtonCell.cellSize
         case .input:
             return CSInputCell.cellSize()
+        case .label(let text):
+            return CSTextCell.cellSize(text: text)
         case .date:
             return CSDateInputCell.cellSize()
         }

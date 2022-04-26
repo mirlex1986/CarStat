@@ -13,6 +13,7 @@ import Charts
 
 class CSChartCell: RxCollectionViewCell {
     private var mainView: UIView!
+    private var segment: UISegmentedControl!
     private var chart: BarChartView!
     
     // MARK: - Lifecycle

@@ -8,15 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		54E909FEFCCE431A2DFF7A4E /* Pods_CarStat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB9A309A496810F12E07005 /* Pods_CarStat.framework */; };
+		5B51EFC327A5462200CB42F5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B51EFC227A5462200CB42F5 /* HomeViewController.swift */; };
+		5B51EFC627A5465D00CB42F5 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B51EFC527A5465D00CB42F5 /* HomeViewModel.swift */; };
 		5B7559652715AD0C000BCA55 /* CSChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7559642715AD0C000BCA55 /* CSChartCell.swift */; };
 		5BABCB582770AFAB00139A31 /* Pods_CarStat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BABCB572770AFAB00139A31 /* Pods_CarStat.framework */; };
 		5BBE23D826EF9FDA00028774 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE23D726EF9FDA00028774 /* AppDelegate.swift */; };
 		5BBE23E126EF9FDF00028774 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BBE23E026EF9FDF00028774 /* Assets.xcassets */; };
 		5BBE23E426EF9FDF00028774 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BBE23E226EF9FDF00028774 /* LaunchScreen.storyboard */; };
 		5BBE23ED26EFA50900028774 /* CSCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE23EC26EFA50900028774 /* CSCollectionView.swift */; };
-		5BBE23F226EFA88900028774 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE23F126EFA88900028774 /* MainScreenViewController.swift */; };
+		5BBE23F226EFA88900028774 /* RefuelingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE23F126EFA88900028774 /* RefuelingViewController.swift */; };
 		5BBE23F726F0CD1600028774 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE23F626F0CD1600028774 /* StorageManager.swift */; };
-		5BBE240526F0DBED00028774 /* MainScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE240426F0DBED00028774 /* MainScreenViewModel.swift */; };
+		5BBE240526F0DBED00028774 /* RefuelingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE240426F0DBED00028774 /* RefuelingViewModel.swift */; };
 		5BD0CA8B26F46FE100433D06 /* RefuelingInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0CA8A26F46FE100433D06 /* RefuelingInfoCell.swift */; };
 		5BD0CA8D26F4702800433D06 /* CSCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0CA8C26F4702800433D06 /* CSCollectionViewCell.swift */; };
 		5BD0CA9126F473F200433D06 /* UICollectionView + Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0CA9026F473F200433D06 /* UICollectionView + Extention.swift */; };
@@ -29,10 +31,17 @@
 		5BDF42D826F8A83C001CE585 /* CSTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDF42D726F8A83C001CE585 /* CSTextCell.swift */; };
 		5BDF42DA26F8BBC5001CE585 /* CSInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDF42D926F8BBC5001CE585 /* CSInputCell.swift */; };
 		5BDF42DC26F8C27B001CE585 /* CSDateInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDF42DB26F8C27B001CE585 /* CSDateInputCell.swift */; };
+		5BF574E1281834F5001F7B4A /* CSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF574E0281834F5001F7B4A /* CSViewController.swift */; };
+		5BF574E328183556001F7B4A /* CSNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF574E228183556001F7B4A /* CSNavigationBar.swift */; };
+		5BF574E5281837F5001F7B4A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF574E4281837F5001F7B4A /* Constants.swift */; };
+		5BF574E7281839BE001F7B4A /* UILabel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF574E6281839BE001F7B4A /* UILabel + Extensions.swift */; };
+		5BF574E928183D12001F7B4A /* CSEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF574E828183D12001F7B4A /* CSEmptyCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		36D06C7FD74003A403650685 /* Pods-CarStat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarStat.release.xcconfig"; path = "Target Support Files/Pods-CarStat/Pods-CarStat.release.xcconfig"; sourceTree = "<group>"; };
+		5B51EFC227A5462200CB42F5 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		5B51EFC527A5465D00CB42F5 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		5B7559642715AD0C000BCA55 /* CSChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSChartCell.swift; sourceTree = "<group>"; };
 		5BABCB572770AFAB00139A31 /* Pods_CarStat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_CarStat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BBE23D426EF9FDA00028774 /* CarStat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarStat.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -41,9 +50,9 @@
 		5BBE23E326EF9FDF00028774 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5BBE23E526EF9FDF00028774 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5BBE23EC26EFA50900028774 /* CSCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSCollectionView.swift; sourceTree = "<group>"; };
-		5BBE23F126EFA88900028774 /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
+		5BBE23F126EFA88900028774 /* RefuelingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefuelingViewController.swift; sourceTree = "<group>"; };
 		5BBE23F626F0CD1600028774 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
-		5BBE240426F0DBED00028774 /* MainScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewModel.swift; sourceTree = "<group>"; };
+		5BBE240426F0DBED00028774 /* RefuelingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefuelingViewModel.swift; sourceTree = "<group>"; };
 		5BD0CA8A26F46FE100433D06 /* RefuelingInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefuelingInfoCell.swift; sourceTree = "<group>"; };
 		5BD0CA8C26F4702800433D06 /* CSCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSCollectionViewCell.swift; sourceTree = "<group>"; };
 		5BD0CA9026F473F200433D06 /* UICollectionView + Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView + Extention.swift"; sourceTree = "<group>"; };
@@ -56,6 +65,11 @@
 		5BDF42D726F8A83C001CE585 /* CSTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSTextCell.swift; sourceTree = "<group>"; };
 		5BDF42D926F8BBC5001CE585 /* CSInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSInputCell.swift; sourceTree = "<group>"; };
 		5BDF42DB26F8C27B001CE585 /* CSDateInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSDateInputCell.swift; sourceTree = "<group>"; };
+		5BF574E0281834F5001F7B4A /* CSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSViewController.swift; sourceTree = "<group>"; };
+		5BF574E228183556001F7B4A /* CSNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSNavigationBar.swift; sourceTree = "<group>"; };
+		5BF574E4281837F5001F7B4A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		5BF574E6281839BE001F7B4A /* UILabel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + Extensions.swift"; sourceTree = "<group>"; };
+		5BF574E828183D12001F7B4A /* CSEmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSEmptyCell.swift; sourceTree = "<group>"; };
 		EAB9A309A496810F12E07005 /* Pods_CarStat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CarStat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F64ECE125FCF3FA582240B43 /* Pods-CarStat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarStat.debug.xcconfig"; path = "Target Support Files/Pods-CarStat/Pods-CarStat.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -73,6 +87,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B51EFC127A545F000CB42F5 /* HomeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5BF574DE2818342C001F7B4A /* Cells */,
+				5B51EFC427A5464900CB42F5 /* ViewModel */,
+				5B51EFC227A5462200CB42F5 /* HomeViewController.swift */,
+			);
+			path = HomeViewController;
+			sourceTree = "<group>";
+		};
+		5B51EFC427A5464900CB42F5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5B51EFC527A5465D00CB42F5 /* HomeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		5BBE23CB26EF9FDA00028774 = {
 			isa = PBXGroup;
 			children = (
@@ -108,9 +140,12 @@
 		5BBE23EB26EFA43C00028774 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5B51EFC127A545F000CB42F5 /* HomeViewController */,
 				5BDF42D126F88363001CE585 /* AddMileage */,
-				5BBE23F026EFA86B00028774 /* MainScreen */,
+				5BBE23F026EFA86B00028774 /* Refueling */,
 				5BDD225B271DB3E500C8D413 /* CSTabBarController.swift */,
+				5BF574E228183556001F7B4A /* CSNavigationBar.swift */,
+				5BF574E0281834F5001F7B4A /* CSViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -133,14 +168,14 @@
 			path = App;
 			sourceTree = "<group>";
 		};
-		5BBE23F026EFA86B00028774 /* MainScreen */ = {
+		5BBE23F026EFA86B00028774 /* Refueling */ = {
 			isa = PBXGroup;
 			children = (
 				5BD0CA8926F46F0100433D06 /* Cell */,
 				5BBE240326F0DBD500028774 /* ViewModel */,
-				5BBE23F126EFA88900028774 /* MainScreenViewController.swift */,
+				5BBE23F126EFA88900028774 /* RefuelingViewController.swift */,
 			);
-			path = MainScreen;
+			path = Refueling;
 			sourceTree = "<group>";
 		};
 		5BBE23F526F0CCA300028774 /* Services */ = {
@@ -163,7 +198,7 @@
 		5BBE240326F0DBD500028774 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				5BBE240426F0DBED00028774 /* MainScreenViewModel.swift */,
+				5BBE240426F0DBED00028774 /* RefuelingViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -180,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				5BD0CA8F26F473D000433D06 /* Extentions */,
+				5BF574E4281837F5001F7B4A /* Constants.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -188,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				5BD0CA9026F473F200433D06 /* UICollectionView + Extention.swift */,
+				5BF574E6281839BE001F7B4A /* UILabel + Extensions.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -210,6 +247,7 @@
 				5BDF42D926F8BBC5001CE585 /* CSInputCell.swift */,
 				5BDF42DB26F8C27B001CE585 /* CSDateInputCell.swift */,
 				5B7559642715AD0C000BCA55 /* CSChartCell.swift */,
+				5BF574E828183D12001F7B4A /* CSEmptyCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -237,6 +275,21 @@
 				5BDF42D526F883BD001CE585 /* AddMileageViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5BF574DE2818342C001F7B4A /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				5BF574DF28183440001F7B4A /* CategoriesCell */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		5BF574DF28183440001F7B4A /* CategoriesCell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CategoriesCell;
 			sourceTree = "<group>";
 		};
 		673C2CD7F0E5ECA4AD536E04 /* Pods */ = {
@@ -371,23 +424,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BDF42D826F8A83C001CE585 /* CSTextCell.swift in Sources */,
+				5BF574E928183D12001F7B4A /* CSEmptyCell.swift in Sources */,
 				5BDF42D326F8838C001CE585 /* AddMileageViewController.swift in Sources */,
 				5BDF42DA26F8BBC5001CE585 /* CSInputCell.swift in Sources */,
 				5BBE23D826EF9FDA00028774 /* AppDelegate.swift in Sources */,
+				5B51EFC327A5462200CB42F5 /* HomeViewController.swift in Sources */,
 				5BDF42DC26F8C27B001CE585 /* CSDateInputCell.swift in Sources */,
+				5BF574E5281837F5001F7B4A /* Constants.swift in Sources */,
 				5BD0CA8B26F46FE100433D06 /* RefuelingInfoCell.swift in Sources */,
 				5BBE23F726F0CD1600028774 /* StorageManager.swift in Sources */,
+				5BF574E1281834F5001F7B4A /* CSViewController.swift in Sources */,
 				5BD0CA8D26F4702800433D06 /* CSCollectionViewCell.swift in Sources */,
 				5BD0CA9126F473F200433D06 /* UICollectionView + Extention.swift in Sources */,
+				5BF574E328183556001F7B4A /* CSNavigationBar.swift in Sources */,
 				5BDF42D626F883BD001CE585 /* AddMileageViewModel.swift in Sources */,
+				5BF574E7281839BE001F7B4A /* UILabel + Extensions.swift in Sources */,
 				5BDF42CE26F87CF0001CE585 /* Mileage.swift in Sources */,
 				5BDF42D026F87D77001CE585 /* UserMileage.swift in Sources */,
 				5B7559652715AD0C000BCA55 /* CSChartCell.swift in Sources */,
 				5BDD225C271DB3E500C8D413 /* CSTabBarController.swift in Sources */,
-				5BBE23F226EFA88900028774 /* MainScreenViewController.swift in Sources */,
+				5BBE23F226EFA88900028774 /* RefuelingViewController.swift in Sources */,
 				5BD0CA9526F4820100433D06 /* CSButtonCell.swift in Sources */,
-				5BBE240526F0DBED00028774 /* MainScreenViewModel.swift in Sources */,
+				5BBE240526F0DBED00028774 /* RefuelingViewModel.swift in Sources */,
 				5BBE23ED26EFA50900028774 /* CSCollectionView.swift in Sources */,
+				5B51EFC627A5465D00CB42F5 /* HomeViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
