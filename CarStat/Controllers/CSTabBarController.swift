@@ -73,7 +73,6 @@ final class CSTabBarController: UITabBarController {
         navController.tabBarItem.title = title
         navController.tabBarItem.image = icon?.withRenderingMode(.alwaysTemplate)
         
-        
         return navController
     }
 }
