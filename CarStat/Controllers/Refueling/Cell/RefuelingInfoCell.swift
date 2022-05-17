@@ -44,7 +44,7 @@ class RefuelingInfoCell: RxCollectionViewCell {
 
         if let totalPrice = mileage.data.refueling?.totalPrice, !totalPrice.isZero {
             refuelingTotalPrice.text = "\(totalPrice) ₽"
-            image.image = UIImage(named: "fuel")?.withRenderingMode(.alwaysTemplate)
+            image.image = Images.fuel.withRenderingMode(.alwaysTemplate)
             
             odometerLabel.snp.remakeConstraints {
                 $0.top.equalTo(refuelingTotalPrice.snp.bottom).offset(4)
@@ -83,7 +83,7 @@ extension RefuelingInfoCell {
         }
         
         image = UIImageView()
-        image.image = UIImage(named: "odometer")?.withRenderingMode(.alwaysTemplate)
+        image.image = Images.odometer.withRenderingMode(.alwaysTemplate)
         image.tintColor = .lightBlue
         cellView.addSubview(image)
         image.snp.makeConstraints {

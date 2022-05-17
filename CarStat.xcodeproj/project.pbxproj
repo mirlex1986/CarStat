@@ -10,6 +10,7 @@
 		54E909FEFCCE431A2DFF7A4E /* Pods_CarStat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB9A309A496810F12E07005 /* Pods_CarStat.framework */; };
 		5B2AE63A2833AE010043249E /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2AE6392833AE010043249E /* ServicesViewController.swift */; };
 		5B2AE63C2833AE0B0043249E /* ServicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2AE63B2833AE0B0043249E /* ServicesViewModel.swift */; };
+		5B2AE63E28343F480043249E /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2AE63D28343F480043249E /* Images.swift */; };
 		5B51EFC327A5462200CB42F5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B51EFC227A5462200CB42F5 /* HomeViewController.swift */; };
 		5B51EFC627A5465D00CB42F5 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B51EFC527A5465D00CB42F5 /* HomeViewModel.swift */; };
 		5B7559652715AD0C000BCA55 /* CSChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7559642715AD0C000BCA55 /* CSChartCell.swift */; };
@@ -57,6 +58,7 @@
 		36D06C7FD74003A403650685 /* Pods-CarStat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarStat.release.xcconfig"; path = "Target Support Files/Pods-CarStat/Pods-CarStat.release.xcconfig"; sourceTree = "<group>"; };
 		5B2AE6392833AE010043249E /* ServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesViewController.swift; sourceTree = "<group>"; };
 		5B2AE63B2833AE0B0043249E /* ServicesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesViewModel.swift; sourceTree = "<group>"; };
+		5B2AE63D28343F480043249E /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		5B51EFC227A5462200CB42F5 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		5B51EFC527A5465D00CB42F5 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		5B7559642715AD0C000BCA55 /* CSChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSChartCell.swift; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 			children = (
 				5BD0CA8F26F473D000433D06 /* Extentions */,
 				5BF574E4281837F5001F7B4A /* Constants.swift */,
+				5B2AE63D28343F480043249E /* Images.swift */,
 				5B89FC232832526C00D42378 /* Colors.swift */,
 				5BF574F4281AB606001F7B4A /* Formatters.swift */,
 			);
@@ -502,6 +505,7 @@
 				5BDF42D826F8A83C001CE585 /* CSTextCell.swift in Sources */,
 				5BF574E928183D12001F7B4A /* CSEmptyCell.swift in Sources */,
 				5B2AE63A2833AE010043249E /* ServicesViewController.swift in Sources */,
+				5B2AE63E28343F480043249E /* Images.swift in Sources */,
 				5B2AE63C2833AE0B0043249E /* ServicesViewModel.swift in Sources */,
 				5B89FC19282E425800D42378 /* RefuelingCell.swift in Sources */,
 				5BDF42D326F8838C001CE585 /* AddMileageViewController.swift in Sources */,
