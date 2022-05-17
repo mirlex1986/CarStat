@@ -11,7 +11,8 @@ import RxCocoa
 
 enum TabBarItem: Int {
     case home
-    case catalog
+    case gas
+    case service
 }
 
 // MARK: - Main
