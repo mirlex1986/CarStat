@@ -43,6 +43,7 @@ final class RefuelingViewModel {
             if i < mileage.value.count - 1 {
                 previos = mileage.value[i + 1].odometer
             }
+            
             items.append(.refueling(mileage: mile, previos: previos))
         }
         
@@ -68,11 +69,6 @@ extension RefuelingViewModel {
                 self.mileage.accept(someObjects)
             })
             .disposed(by: disposeBag)
-    }
-    
-    func calculateMileage() -> String {
-        
-        return "Пробег "
     }
 }
 

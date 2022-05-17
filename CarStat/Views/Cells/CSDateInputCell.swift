@@ -40,7 +40,7 @@ extension CSDateInputCell {
         input = UIDatePicker()
         input.locale = .autoupdatingCurrent
         input.datePickerMode = .date
-        input.calendar = .current
+        input.maximumDate = Date()
         contentView.addSubview(input)
         input.snp.makeConstraints {
             $0.left.equalToSuperview()

@@ -177,14 +177,7 @@ class AddMileageViewController: CSViewController {
                 guard let self = self else { return }
                 
                 self.viewModel.newDate.accept(Formatters.dateApi.string(from: value))
-            })
-            .disposed(by: cell.disposeBag)
-        
-        cell.input.rx.date.changed
-            .subscribe(onNext: { [weak self] value in
-                guard let self = self else { return }
-                
-                self.viewModel.newDate.accept(Formatters.dateApi.string(from: value))
+                self.dismiss(animated: false)
             })
             .disposed(by: cell.disposeBag)
         

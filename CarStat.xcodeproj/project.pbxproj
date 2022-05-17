@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,7 +17,6 @@
 		5B89FC19282E425800D42378 /* RefuelingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B89FC18282E425800D42378 /* RefuelingCell.swift */; };
 		5B89FC1B282E4DC800D42378 /* MileageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B89FC1A282E4DC800D42378 /* MileageCell.swift */; };
 		5B89FC1D282E9A7A00D42378 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B89FC1C282E9A7A00D42378 /* GoogleService-Info.plist */; };
-		5B89FC20282E9B0F00D42378 /* FirebaseAppDistribution-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 5B89FC1F282E9B0F00D42378 /* FirebaseAppDistribution-Beta */; };
 		5B89FC2228323A1E00D42378 /* UIView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B89FC2128323A1E00D42378 /* UIView + Extensions.swift */; };
 		5B89FC242832526C00D42378 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B89FC232832526C00D42378 /* Colors.swift */; };
 		5BABCB582770AFAB00139A31 /* Pods_CarStat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BABCB572770AFAB00139A31 /* Pods_CarStat.framework */; };
@@ -112,7 +111,6 @@
 			files = (
 				54E909FEFCCE431A2DFF7A4E /* Pods_CarStat.framework in Frameworks */,
 				5BABCB582770AFAB00139A31 /* Pods_CarStat.framework in Frameworks */,
-				5B89FC20282E9B0F00D42378 /* FirebaseAppDistribution-Beta in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,7 +398,6 @@
 			);
 			name = CarStat;
 			packageProductDependencies = (
-				5B89FC1F282E9B0F00D42378 /* FirebaseAppDistribution-Beta */,
 			);
 			productName = CarStat;
 			productReference = 5BBE23D426EF9FDA00028774 /* CarStat.app */;
@@ -430,7 +427,6 @@
 			);
 			mainGroup = 5BBE23CB26EF9FDA00028774;
 			packageReferences = (
-				5B89FC1E282E9B0F00D42378 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 5BBE23D526EF9FDA00028774 /* Products */;
 			projectDirPath = "";
@@ -741,25 +737,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		5B89FC1E282E9B0F00D42378 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		5B89FC1F282E9B0F00D42378 /* FirebaseAppDistribution-Beta */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5B89FC1E282E9B0F00D42378 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = "FirebaseAppDistribution-Beta";
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5BBE23CC26EF9FDA00028774 /* Project object */;
 }

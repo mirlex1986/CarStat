@@ -7,7 +7,6 @@
 
 import UIKit
 import RealmSwift
-import FirebaseCore
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -25,8 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = CSTabBarController()
         window?.makeKeyAndVisible()
-        
-        FirebaseApp.configure()
         
         return true
     }

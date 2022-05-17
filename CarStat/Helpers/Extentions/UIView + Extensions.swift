@@ -26,7 +26,5 @@ extension UIView {
         self.layer.shadowOffset = .zero
         self.layer.shadowRadius = 5
         self.layer.shadowColor = color.cgColor
-//        self.layer.masksToBounds = false
-        setBorder()
     }
 }

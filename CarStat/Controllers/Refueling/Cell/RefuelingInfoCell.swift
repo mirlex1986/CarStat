@@ -18,9 +18,6 @@ class RefuelingInfoCell: RxCollectionViewCell {
     private var dateLabel: UILabel!
     private var mileageLabel: UILabel!
     private var odometerLabel: UILabel!
-    private var refuelingInfoStack: UIStackView!
-    private var fuelPrice: UILabel!
-    private var fuelCount: UILabel!
     private var refuelingTotalPrice: UILabel!
     
     // MARK: - Lifecycle
@@ -111,33 +108,6 @@ extension RefuelingInfoCell {
             $0.left.equalTo(image.snp.right).offset(8)
         }
         
-        refuelingInfoStack = UIStackView()
-        refuelingInfoStack.axis = .vertical
-        refuelingInfoStack.isHidden = true
-        cellView.addSubview(refuelingInfoStack)
-        refuelingInfoStack.snp.makeConstraints {
-            $0.top.bottom.right.equalToSuperview()
-            $0.left.equalTo(dateLabel.snp.right).offset(8)
-        }
-        
-        fuelPrice = UILabel()
-        fuelPrice.textAlignment = .right
-        fuelPrice.font = UIFont.systemFont(ofSize: 14)
-        refuelingInfoStack.addSubview(fuelPrice)
-        fuelPrice.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(2)
-            $0.right.equalToSuperview().inset(14)
-        }
-        
-        fuelCount = UILabel()
-        fuelCount.textAlignment = .right
-        fuelCount.font = UIFont.systemFont(ofSize: 14)
-        refuelingInfoStack.addSubview(fuelCount)
-        fuelCount.snp.makeConstraints {
-            $0.top.equalTo(fuelPrice.snp.bottom)
-            $0.right.equalToSuperview().inset(14)
-        }
-        
         refuelingTotalPrice = UILabel()
         refuelingTotalPrice.textAlignment = .right
         refuelingTotalPrice.font = UIFont.systemFont(ofSize: 14)
@@ -153,7 +123,6 @@ extension RefuelingInfoCell {
         cellView.addSubview(odometerLabel)
         odometerLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-//            $0.top.equalTo(refuelingTotalPrice.snp.bottom).offset(4)
             $0.right.equalToSuperview().inset(16)
         }
     }
@@ -161,11 +130,4 @@ extension RefuelingInfoCell {
 
 extension RefuelingInfoCell {
     static var cellSize: CGSize { CGSize(width: UIScreen.main.bounds.width - 32, height: 52) }
-    
-    static func cellSize(refueling: UserMileage) -> CGSize {
-        if let price = refueling.refueling?.price, price.isZero {
-            return CGSize(width: Device.deviceWidth - 32, height: 55)
-        }
-        return CGSize(width: Device.deviceWidth - 32, height: 60)
-    }
 }

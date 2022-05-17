@@ -58,9 +58,13 @@ class RefuelingCell: RxCollectionViewCell {
         
         if let first = refs.first?.odometer, let last = refs.last?.odometer {
             let rounded = tempLiters / Double(first - last) * 100
-            self.averageLabel.makeAttributedStringForAverageData(for: ["Средний расход: ",
+            averageLabel.makeAttributedStringForAverageData(for: ["Средний расход: ",
                                                                        " л/100км"],
                                                                  and: "\(round(rounded * 100) / 100.0)")
+        }
+        
+        if refs.isEmpty {
+            averageLabel.makeAttributedStringForAverageData(for: ["Нет данных о заправках", ""], and: "")
         }
         
         let total = round(tempMileage * 100) / 100.0

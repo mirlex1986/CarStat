@@ -50,7 +50,7 @@ class MileageCell: RxCollectionViewCell {
                let last = data.last?.date, let lastDate = Formatters.dateApi.date(from: last) {
                 let diff = Calendar.current.dateComponents([.day], from: lastDate, to: firstDate)
 
-                totalDaysValueLabel.text = "\(diff.day ?? 1) дней"
+                totalDaysValueLabel.text = "\(diff.day ?? 1) д"
                 if let days = diff.day, days != 0 {
                     self.averageLabel.makeAttributedStringForAverageData(for: ["Средний пробег: ",
                                                                                " км/день"],

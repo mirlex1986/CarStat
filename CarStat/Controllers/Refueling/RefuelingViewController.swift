@@ -48,14 +48,6 @@ class RefuelingViewController: CSViewController {
             .bind(to: collectionView.rx.items(dataSource: dataSource))
             .disposed(by: viewModel.disposeBag)
         
-        viewModel.mileage
-            .subscribe(onNext: { [weak self] _ in
-                guard let self = self else { return }
-
-                self.label.text = "\(self.viewModel.calculateMileage()) \n "
-            })
-            .disposed(by: viewModel.disposeBag)
-        
         collectionView.rx.contentOffset
             .subscribe(onNext: { [weak self] offset in
                 guard let self = self else { return }
