@@ -10,10 +10,11 @@ import SnapKit
 import RxSwift
 import RxCocoa
 import RxDataSources
+import RealmSwift
 
-class AddMileageViewController: UIViewController {
+class AddMileageViewController: CSViewController {
     // MARK: - UI
-    private var navBar: UINavigationBar!
+    private var navBar: CSNavigationBar!
     private var collectionView: UICollectionView!
     private var label: UILabel!
     
@@ -46,6 +47,14 @@ class AddMileageViewController: UIViewController {
         viewModel.sections.asObservable()
             .bind(to: collectionView.rx.items(dataSource: dataSource))
             .disposed(by: viewModel.disposeBag)
+        
+        navBar.leftButton.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                
+                self.navigationController?.popViewController(animated: true)
+            })
+            .disposed(by: viewModel.disposeBag)
     }
     
     private func generateDataSource() -> RxCollectionViewSectionedAnimatedDataSource<Section> {
@@ -58,12 +67,12 @@ class AddMileageViewController: UIViewController {
                 switch item {
                 case .button:
                     return self.buttonCell(indexPath: indexPath)
-                case .input(let type):
-                    return self.inputCell(indexPath: indexPath, type: type)
+                case .input(let text, let type):
+                    return self.inputCell(indexPath: indexPath, text: text, type: type)
                 case .label(let text):
                     return self.labelCell(indexPath: indexPath, text: text)
-                case .date:
-                    return self.calendarCell(indexPath: indexPath)
+                case .date(let date):
+                    return self.calendarCell(indexPath: indexPath, date: date)
                 }
             },
             configureSupplementaryView: { _, _, _, _ in
@@ -73,7 +82,7 @@ class AddMileageViewController: UIViewController {
     // MARK: - Cells
     private func buttonCell(indexPath: IndexPath) -> CSCollectionViewCell {
         let cell: CSButtonCell = collectionView.cell(indexPath: indexPath)
-        cell.configure(text: "Добавить")
+        cell.configure(text: self.viewModel.lastMileage.value == nil ? "Добавить" : "Изменить")
         
         cell.button.rx.tap
             .subscribe(onNext: { [weak self] _ in
@@ -82,6 +91,12 @@ class AddMileageViewController: UIViewController {
                       let newOdodmeter = self.viewModel.newOdometer.value else { return }
                 
                 let newValue = UserMileage()
+                let lastPrimaryKey = StorageManager.shared.fetchData()
+                if self.viewModel.lastMileage.value == nil {
+                    newValue.primaryKey = lastPrimaryKey.count + 1
+                } else {
+                    newValue.primaryKey = self.viewModel.lastMileage.value?.primaryKey ?? 0
+                }
                 newValue.date = newDate
                 newValue.odometer = newOdodmeter
                 let newRef = LocalRefueling()
@@ -92,7 +107,7 @@ class AddMileageViewController: UIViewController {
                 
                 self.viewModel.newMileage.accept(newValue)
                 
-                self.dismiss(animated: true, completion: nil)
+                self.navigationController?.popViewController(animated: true)
             })
             .disposed(by: cell.disposeBag)
         
@@ -106,47 +121,62 @@ class AddMileageViewController: UIViewController {
         return cell
     }
     
-    private func inputCell(indexPath: IndexPath, type: InputType) -> CSCollectionViewCell {
+    private func inputCell(indexPath: IndexPath, text: String?, type: InputType) -> CSCollectionViewCell {
         let cell: CSInputCell = collectionView.cell(indexPath: indexPath)
-        
-        switch type {
-        case .odometer:
-            if let message = self.viewModel.lastMileage.value {
-                cell.configure(text: "\(message.odometer)", inputType: type)
-            }
-        case .fuelPrice:
-            if let message = self.viewModel.lastMileage.value {
-                cell.configure(text: "\(message.data.refueling.price)", inputType: type)
-            }
-        case .fuelCount:
-            if let message = self.viewModel.lastMileage.value {
-                cell.configure(text: "\(message.data.refueling.quantity)", inputType: type)
-            }
-        case .fuelTotalPrice:
-            if let message = self.viewModel.lastMileage.value {
-                cell.configure(text: "\(message.data.refueling.totalPrice)", inputType: type)
-            }
-        }
+        cell.configure(text: text, inputType: type)
         
         cell.input.rx.text.changed
             .subscribe(onNext: { [weak self] value in
-                guard let self = self, let value = value, let newValue = Int(value) else { return }
+                guard let self = self, let value = value else { return }
                 
-                self.viewModel.newOdometer.accept(newValue)
+                switch type {
+                case .odometer:
+                    self.viewModel.newOdometer.accept(Int(value))
+                case .fuelPrice:
+                    self.viewModel.newFuelPrice.accept(Double(value.replacingOccurrences(of: ",", with: ".")))
+                case .fuelCount:
+                    
+                    self.viewModel.newLiters.accept(Double(value.replacingOccurrences(of: ",", with: ".")))
+                    if let price = self.viewModel.newFuelPrice.value, let liters = self.viewModel.newLiters.value {
+                        
+                        let total = round(liters * price * 100) / 100.0
+                        self.viewModel.newTotaalPrice.accept(total)
+                    }
+                case .fuelTotalPrice:
+                    if let doubleValue = Double(value.replacingOccurrences(of: ",", with: ".")) {
+                        self.viewModel.newTotaalPrice.accept(doubleValue)
+                    }
+                default: break
+                }
+            
             })
             .disposed(by: cell.disposeBag)
+        
+        switch type {
+        case .fuelTotalPrice:
+            self.viewModel.newTotaalPrice
+                .subscribe(onNext: {
+                    guard let data = $0 else { return }
+                    
+                    cell.configure(text: "\(data)", inputType: type)
+                })
+                .disposed(by: viewModel.disposeBag)
+        default: break
+        }
+        
         
         return cell
     }
     
-    private func calendarCell(indexPath: IndexPath) -> CSCollectionViewCell {
+    private func calendarCell(indexPath: IndexPath, date: Date) -> CSCollectionViewCell {
         let cell: CSDateInputCell = collectionView.cell(indexPath: indexPath)
+        cell.configure(date: date)
         
         cell.input.rx.date
             .subscribe(onNext: { [weak self] value in
                 guard let self = self else { return }
                 
-                self.viewModel.newDate.accept(value)
+                self.viewModel.newDate.accept(Formatters.dateApi.string(from: value))
             })
             .disposed(by: cell.disposeBag)
         
@@ -154,7 +184,7 @@ class AddMileageViewController: UIViewController {
             .subscribe(onNext: { [weak self] value in
                 guard let self = self else { return }
                 
-                self.viewModel.newDate.accept(value)
+                self.viewModel.newDate.accept(Formatters.dateApi.string(from: value))
             })
             .disposed(by: cell.disposeBag)
         
@@ -189,12 +219,13 @@ extension AddMileageViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension AddMileageViewController {
-    func makeUI() {
+    override func makeUI() {
         view.backgroundColor = .white
         
         // NAVBAR
-        navBar = UINavigationBar()
-        navBar.setItems([UINavigationItem(title: "Add")], animated: true)
+        navBar = CSNavigationBar()
+        navBar.configure(title: "Добавить")
+        navBar.configureBackButton(isHidden: false)
         view.addSubview(navBar)
         navBar.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide)

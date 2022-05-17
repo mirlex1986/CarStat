@@ -3,14 +3,22 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		54E909FEFCCE431A2DFF7A4E /* Pods_CarStat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB9A309A496810F12E07005 /* Pods_CarStat.framework */; };
+		5B2AE63A2833AE010043249E /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2AE6392833AE010043249E /* ServicesViewController.swift */; };
+		5B2AE63C2833AE0B0043249E /* ServicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2AE63B2833AE0B0043249E /* ServicesViewModel.swift */; };
 		5B51EFC327A5462200CB42F5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B51EFC227A5462200CB42F5 /* HomeViewController.swift */; };
 		5B51EFC627A5465D00CB42F5 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B51EFC527A5465D00CB42F5 /* HomeViewModel.swift */; };
 		5B7559652715AD0C000BCA55 /* CSChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7559642715AD0C000BCA55 /* CSChartCell.swift */; };
+		5B89FC19282E425800D42378 /* RefuelingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B89FC18282E425800D42378 /* RefuelingCell.swift */; };
+		5B89FC1B282E4DC800D42378 /* MileageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B89FC1A282E4DC800D42378 /* MileageCell.swift */; };
+		5B89FC1D282E9A7A00D42378 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B89FC1C282E9A7A00D42378 /* GoogleService-Info.plist */; };
+		5B89FC20282E9B0F00D42378 /* FirebaseAppDistribution-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 5B89FC1F282E9B0F00D42378 /* FirebaseAppDistribution-Beta */; };
+		5B89FC2228323A1E00D42378 /* UIView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B89FC2128323A1E00D42378 /* UIView + Extensions.swift */; };
+		5B89FC242832526C00D42378 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B89FC232832526C00D42378 /* Colors.swift */; };
 		5BABCB582770AFAB00139A31 /* Pods_CarStat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BABCB572770AFAB00139A31 /* Pods_CarStat.framework */; };
 		5BBE23D826EF9FDA00028774 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE23D726EF9FDA00028774 /* AppDelegate.swift */; };
 		5BBE23E126EF9FDF00028774 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BBE23E026EF9FDF00028774 /* Assets.xcassets */; };
@@ -19,6 +27,7 @@
 		5BBE23F226EFA88900028774 /* RefuelingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE23F126EFA88900028774 /* RefuelingViewController.swift */; };
 		5BBE23F726F0CD1600028774 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE23F626F0CD1600028774 /* StorageManager.swift */; };
 		5BBE240526F0DBED00028774 /* RefuelingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE240426F0DBED00028774 /* RefuelingViewModel.swift */; };
+		5BCB033A28328E810055E9F3 /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCB033928328E810055E9F3 /* String + Extension.swift */; };
 		5BD0CA8B26F46FE100433D06 /* RefuelingInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0CA8A26F46FE100433D06 /* RefuelingInfoCell.swift */; };
 		5BD0CA8D26F4702800433D06 /* CSCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0CA8C26F4702800433D06 /* CSCollectionViewCell.swift */; };
 		5BD0CA9126F473F200433D06 /* UICollectionView + Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0CA9026F473F200433D06 /* UICollectionView + Extention.swift */; };
@@ -36,13 +45,26 @@
 		5BF574E5281837F5001F7B4A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF574E4281837F5001F7B4A /* Constants.swift */; };
 		5BF574E7281839BE001F7B4A /* UILabel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF574E6281839BE001F7B4A /* UILabel + Extensions.swift */; };
 		5BF574E928183D12001F7B4A /* CSEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF574E828183D12001F7B4A /* CSEmptyCell.swift */; };
+		5BF574EB28183E29001F7B4A /* CSImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF574EA28183E29001F7B4A /* CSImageCell.swift */; };
+		5BF574ED28191D9D001F7B4A /* UITableView + Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF574EC28191D9D001F7B4A /* UITableView + Extention.swift */; };
+		5BF574EF28191E12001F7B4A /* CSTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF574EE28191E12001F7B4A /* CSTableView.swift */; };
+		5BF574F128191E53001F7B4A /* CSTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF574F028191E53001F7B4A /* CSTableViewCell.swift */; };
+		5BF574F3281AB55B001F7B4A /* Date + Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF574F2281AB55B001F7B4A /* Date + Extention.swift */; };
+		5BF574F5281AB606001F7B4A /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF574F4281AB606001F7B4A /* Formatters.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		36D06C7FD74003A403650685 /* Pods-CarStat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarStat.release.xcconfig"; path = "Target Support Files/Pods-CarStat/Pods-CarStat.release.xcconfig"; sourceTree = "<group>"; };
+		5B2AE6392833AE010043249E /* ServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesViewController.swift; sourceTree = "<group>"; };
+		5B2AE63B2833AE0B0043249E /* ServicesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesViewModel.swift; sourceTree = "<group>"; };
 		5B51EFC227A5462200CB42F5 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		5B51EFC527A5465D00CB42F5 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		5B7559642715AD0C000BCA55 /* CSChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSChartCell.swift; sourceTree = "<group>"; };
+		5B89FC18282E425800D42378 /* RefuelingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefuelingCell.swift; sourceTree = "<group>"; };
+		5B89FC1A282E4DC800D42378 /* MileageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MileageCell.swift; sourceTree = "<group>"; };
+		5B89FC1C282E9A7A00D42378 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5B89FC2128323A1E00D42378 /* UIView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extensions.swift"; sourceTree = "<group>"; };
+		5B89FC232832526C00D42378 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		5BABCB572770AFAB00139A31 /* Pods_CarStat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_CarStat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BBE23D426EF9FDA00028774 /* CarStat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarStat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BBE23D726EF9FDA00028774 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -53,6 +75,7 @@
 		5BBE23F126EFA88900028774 /* RefuelingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefuelingViewController.swift; sourceTree = "<group>"; };
 		5BBE23F626F0CD1600028774 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		5BBE240426F0DBED00028774 /* RefuelingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefuelingViewModel.swift; sourceTree = "<group>"; };
+		5BCB033928328E810055E9F3 /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
 		5BD0CA8A26F46FE100433D06 /* RefuelingInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefuelingInfoCell.swift; sourceTree = "<group>"; };
 		5BD0CA8C26F4702800433D06 /* CSCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSCollectionViewCell.swift; sourceTree = "<group>"; };
 		5BD0CA9026F473F200433D06 /* UICollectionView + Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView + Extention.swift"; sourceTree = "<group>"; };
@@ -70,6 +93,12 @@
 		5BF574E4281837F5001F7B4A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5BF574E6281839BE001F7B4A /* UILabel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + Extensions.swift"; sourceTree = "<group>"; };
 		5BF574E828183D12001F7B4A /* CSEmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSEmptyCell.swift; sourceTree = "<group>"; };
+		5BF574EA28183E29001F7B4A /* CSImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSImageCell.swift; sourceTree = "<group>"; };
+		5BF574EC28191D9D001F7B4A /* UITableView + Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView + Extention.swift"; sourceTree = "<group>"; };
+		5BF574EE28191E12001F7B4A /* CSTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSTableView.swift; sourceTree = "<group>"; };
+		5BF574F028191E53001F7B4A /* CSTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSTableViewCell.swift; sourceTree = "<group>"; };
+		5BF574F2281AB55B001F7B4A /* Date + Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Extention.swift"; sourceTree = "<group>"; };
+		5BF574F4281AB606001F7B4A /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		EAB9A309A496810F12E07005 /* Pods_CarStat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CarStat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F64ECE125FCF3FA582240B43 /* Pods-CarStat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarStat.debug.xcconfig"; path = "Target Support Files/Pods-CarStat/Pods-CarStat.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -81,12 +110,30 @@
 			files = (
 				54E909FEFCCE431A2DFF7A4E /* Pods_CarStat.framework in Frameworks */,
 				5BABCB582770AFAB00139A31 /* Pods_CarStat.framework in Frameworks */,
+				5B89FC20282E9B0F00D42378 /* FirebaseAppDistribution-Beta in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B2AE6372833ADD50043249E /* ServicesViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5B2AE6382833ADED0043249E /* ViewModel */,
+				5B2AE6392833AE010043249E /* ServicesViewController.swift */,
+			);
+			path = ServicesViewController;
+			sourceTree = "<group>";
+		};
+		5B2AE6382833ADED0043249E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5B2AE63B2833AE0B0043249E /* ServicesViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		5B51EFC127A545F000CB42F5 /* HomeViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +187,7 @@
 		5BBE23EB26EFA43C00028774 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5B2AE6372833ADD50043249E /* ServicesViewController */,
 				5B51EFC127A545F000CB42F5 /* HomeViewController */,
 				5BDF42D126F88363001CE585 /* AddMileage */,
 				5BBE23F026EFA86B00028774 /* Refueling */,
@@ -164,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				5BBE23D726EF9FDA00028774 /* AppDelegate.swift */,
+				5B89FC1C282E9A7A00D42378 /* GoogleService-Info.plist */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -181,8 +230,8 @@
 		5BBE23F526F0CCA300028774 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				5BBE23F826F0CDF400028774 /* Model */,
-				5BBE23F626F0CD1600028774 /* StorageManager.swift */,
+				5BF574FD281AF2B8001F7B4A /* DataManager */,
+				5BF574FC281AF2AE001F7B4A /* StorageManager */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -216,6 +265,8 @@
 			children = (
 				5BD0CA8F26F473D000433D06 /* Extentions */,
 				5BF574E4281837F5001F7B4A /* Constants.swift */,
+				5B89FC232832526C00D42378 /* Colors.swift */,
+				5BF574F4281AB606001F7B4A /* Formatters.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -224,7 +275,11 @@
 			isa = PBXGroup;
 			children = (
 				5BD0CA9026F473F200433D06 /* UICollectionView + Extention.swift */,
+				5BF574EC28191D9D001F7B4A /* UITableView + Extention.swift */,
 				5BF574E6281839BE001F7B4A /* UILabel + Extensions.swift */,
+				5BF574F2281AB55B001F7B4A /* Date + Extention.swift */,
+				5B89FC2128323A1E00D42378 /* UIView + Extensions.swift */,
+				5BCB033928328E810055E9F3 /* String + Extension.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -233,6 +288,7 @@
 			isa = PBXGroup;
 			children = (
 				5BBE23EC26EFA50900028774 /* CSCollectionView.swift */,
+				5BF574EE28191E12001F7B4A /* CSTableView.swift */,
 				5BD0CA9326F481D900433D06 /* Cells */,
 			);
 			path = Views;
@@ -242,12 +298,14 @@
 			isa = PBXGroup;
 			children = (
 				5BD0CA8C26F4702800433D06 /* CSCollectionViewCell.swift */,
+				5BF574F028191E53001F7B4A /* CSTableViewCell.swift */,
 				5BD0CA9426F4820100433D06 /* CSButtonCell.swift */,
 				5BDF42D726F8A83C001CE585 /* CSTextCell.swift */,
 				5BDF42D926F8BBC5001CE585 /* CSInputCell.swift */,
 				5BDF42DB26F8C27B001CE585 /* CSDateInputCell.swift */,
 				5B7559642715AD0C000BCA55 /* CSChartCell.swift */,
 				5BF574E828183D12001F7B4A /* CSEmptyCell.swift */,
+				5BF574EA28183E29001F7B4A /* CSImageCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -280,16 +338,26 @@
 		5BF574DE2818342C001F7B4A /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				5BF574DF28183440001F7B4A /* CategoriesCell */,
+				5B89FC18282E425800D42378 /* RefuelingCell.swift */,
+				5B89FC1A282E4DC800D42378 /* MileageCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		5BF574DF28183440001F7B4A /* CategoriesCell */ = {
+		5BF574FC281AF2AE001F7B4A /* StorageManager */ = {
+			isa = PBXGroup;
+			children = (
+				5BBE23F826F0CDF400028774 /* Model */,
+				5BBE23F626F0CD1600028774 /* StorageManager.swift */,
+			);
+			path = StorageManager;
+			sourceTree = "<group>";
+		};
+		5BF574FD281AF2B8001F7B4A /* DataManager */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = CategoriesCell;
+			path = DataManager;
 			sourceTree = "<group>";
 		};
 		673C2CD7F0E5ECA4AD536E04 /* Pods */ = {
@@ -328,6 +396,9 @@
 			dependencies = (
 			);
 			name = CarStat;
+			packageProductDependencies = (
+				5B89FC1F282E9B0F00D42378 /* FirebaseAppDistribution-Beta */,
+			);
 			productName = CarStat;
 			productReference = 5BBE23D426EF9FDA00028774 /* CarStat.app */;
 			productType = "com.apple.product-type.application";
@@ -355,6 +426,9 @@
 				Base,
 			);
 			mainGroup = 5BBE23CB26EF9FDA00028774;
+			packageReferences = (
+				5B89FC1E282E9B0F00D42378 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 5BBE23D526EF9FDA00028774 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -371,6 +445,7 @@
 			files = (
 				5BBE23E426EF9FDF00028774 /* LaunchScreen.storyboard in Resources */,
 				5BBE23E126EF9FDF00028774 /* Assets.xcassets in Resources */,
+				5B89FC1D282E9A7A00D42378 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,8 +498,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BF574F5281AB606001F7B4A /* Formatters.swift in Sources */,
 				5BDF42D826F8A83C001CE585 /* CSTextCell.swift in Sources */,
 				5BF574E928183D12001F7B4A /* CSEmptyCell.swift in Sources */,
+				5B2AE63A2833AE010043249E /* ServicesViewController.swift in Sources */,
+				5B2AE63C2833AE0B0043249E /* ServicesViewModel.swift in Sources */,
+				5B89FC19282E425800D42378 /* RefuelingCell.swift in Sources */,
 				5BDF42D326F8838C001CE585 /* AddMileageViewController.swift in Sources */,
 				5BDF42DA26F8BBC5001CE585 /* CSInputCell.swift in Sources */,
 				5BBE23D826EF9FDA00028774 /* AppDelegate.swift in Sources */,
@@ -434,13 +513,22 @@
 				5BD0CA8B26F46FE100433D06 /* RefuelingInfoCell.swift in Sources */,
 				5BBE23F726F0CD1600028774 /* StorageManager.swift in Sources */,
 				5BF574E1281834F5001F7B4A /* CSViewController.swift in Sources */,
+				5BF574ED28191D9D001F7B4A /* UITableView + Extention.swift in Sources */,
+				5BCB033A28328E810055E9F3 /* String + Extension.swift in Sources */,
+				5BF574EB28183E29001F7B4A /* CSImageCell.swift in Sources */,
+				5BF574EF28191E12001F7B4A /* CSTableView.swift in Sources */,
+				5B89FC2228323A1E00D42378 /* UIView + Extensions.swift in Sources */,
 				5BD0CA8D26F4702800433D06 /* CSCollectionViewCell.swift in Sources */,
 				5BD0CA9126F473F200433D06 /* UICollectionView + Extention.swift in Sources */,
 				5BF574E328183556001F7B4A /* CSNavigationBar.swift in Sources */,
+				5BF574F128191E53001F7B4A /* CSTableViewCell.swift in Sources */,
 				5BDF42D626F883BD001CE585 /* AddMileageViewModel.swift in Sources */,
 				5BF574E7281839BE001F7B4A /* UILabel + Extensions.swift in Sources */,
 				5BDF42CE26F87CF0001CE585 /* Mileage.swift in Sources */,
 				5BDF42D026F87D77001CE585 /* UserMileage.swift in Sources */,
+				5B89FC1B282E4DC800D42378 /* MileageCell.swift in Sources */,
+				5BF574F3281AB55B001F7B4A /* Date + Extention.swift in Sources */,
+				5B89FC242832526C00D42378 /* Colors.swift in Sources */,
 				5B7559652715AD0C000BCA55 /* CSChartCell.swift in Sources */,
 				5BDD225C271DB3E500C8D413 /* CSTabBarController.swift in Sources */,
 				5BBE23F226EFA88900028774 /* RefuelingViewController.swift in Sources */,
@@ -528,6 +616,7 @@
 		};
 		5BBE23E726EF9FDF00028774 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 36D06C7FD74003A403650685 /* Pods-CarStat.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -574,6 +663,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -587,6 +677,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4694MUZBLD;
 				INFOPLIST_FILE = "CarStat/Supporting Files/Info.plist";
@@ -596,6 +687,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ml.alexmir.CarStat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -607,6 +699,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4694MUZBLD;
 				INFOPLIST_FILE = "CarStat/Supporting Files/Info.plist";
@@ -616,6 +709,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ml.alexmir.CarStat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -643,6 +737,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5B89FC1E282E9B0F00D42378 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5B89FC1F282E9B0F00D42378 /* FirebaseAppDistribution-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5B89FC1E282E9B0F00D42378 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseAppDistribution-Beta";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5BBE23CC26EF9FDA00028774 /* Project object */;
 }

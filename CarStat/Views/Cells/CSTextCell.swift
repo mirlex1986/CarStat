@@ -60,7 +60,7 @@ extension CSTextCell {
 
 extension CSTextCell {
     static func cellSize(text: String) -> CGSize {
-        let height = UILabel.calculateHeight(for: text, font: UIFont.systemFont(ofSize: 17), width: deviceWidth)
-        return CGSize(width: deviceWidth - 32, height: height)
+        let height = UILabel.calculateHeight(for: text, font: UIFont.systemFont(ofSize: 17), width: Device.deviceWidth)
+        return CGSize(width: Device.deviceWidth - 32, height: height)
     }
 }

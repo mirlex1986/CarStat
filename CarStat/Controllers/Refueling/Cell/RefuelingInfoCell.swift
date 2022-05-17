@@ -14,7 +14,9 @@ import SwiftUI
 
 class RefuelingInfoCell: RxCollectionViewCell {
     private var cellView: UIView!
+    private var image: UIImageView!
     private var dateLabel: UILabel!
+    private var mileageLabel: UILabel!
     private var odometerLabel: UILabel!
     private var refuelingInfoStack: UIStackView!
     private var fuelPrice: UILabel!
@@ -34,17 +36,34 @@ class RefuelingInfoCell: RxCollectionViewCell {
         disposeBag = DisposeBag()
     }
     
-    func configure(mileage: UserMileage) {
-        let data = DateFormatter()
-        data.dateFormat = "dd MMM yyyy"
-        data.locale = Locale(identifier: "ru_RU")
+    func configure(mileage: UserMileage, previos: Int) {
+        if let date = Formatters.dateApi.date(from: mileage.date) {
+            let dateString = Formatters.dateLongOutput.string(from: date)
+            dateLabel.text = "\(dateString)"
+        }
 
-        dateLabel.text = "Дата: \(data.string(from: mileage.date))"
-        odometerLabel.text = "Пробег \(mileage.odometer) км"
+        if let totalPrice = mileage.data.refueling?.totalPrice, !totalPrice.isZero {
+            refuelingTotalPrice.text = "\(totalPrice) ₽"
+            image.image = UIImage(named: "fuel")?.withRenderingMode(.alwaysTemplate)
+            
+            odometerLabel.snp.remakeConstraints {
+                $0.top.equalTo(refuelingTotalPrice.snp.bottom).offset(4)
+                $0.right.equalToSuperview().inset(16)
+            }
+            
+        }
         
-        fuelPrice.text = "Цена за литр: \(mileage.data.refueling.price) ₽"
-        fuelCount.text = "Количество: \(mileage.data.refueling.quantity) Л"
-        refuelingTotalPrice.text = "Итого: \(mileage.data.refueling.totalPrice) ₽"
+        if (mileage.odometer - previos) > 0 {
+            mileageLabel.isHidden = false
+            mileageLabel.text = "\(mileage.odometer - previos) км"
+            
+            dateLabel.snp.remakeConstraints {
+                $0.top.equalToSuperview().inset(4)
+                $0.left.equalTo(image.snp.right).offset(8)
+            }
+        }
+        odometerLabel.text = "\(mileage.odometer) км"
+        
     }
 }
 
@@ -54,32 +73,47 @@ extension RefuelingInfoCell {
         
         cellView = UIView()
         cellView.backgroundColor = .clear
-        cellView.layer.borderWidth = 0.25
-        cellView.layer.borderColor = CGColor(red: 100/255, green: 100/255, blue: 100/255, alpha: 1)
+        cellView.clipsToBounds = true
+        cellView.setBorder()
+        cellView.setCornerRadius(15)
         contentView.addSubview(cellView)
         cellView.snp.makeConstraints {
             $0.left.right.equalToSuperview()
-            $0.height.equalTo(55)
+            $0.height.equalTo(50)
+        }
+        
+        image = UIImageView()
+        image.image = UIImage(named: "odometer")?.withRenderingMode(.alwaysTemplate)
+        image.tintColor = .lightBlue
+        cellView.addSubview(image)
+        image.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.left.equalToSuperview().offset(8)
+            $0.size.equalTo(30)
         }
         
         dateLabel = UILabel()
         dateLabel.textColor = .black
+        dateLabel.setFontSize(size: 16)
         cellView.addSubview(dateLabel)
         dateLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(5)
-            $0.left.equalToSuperview().inset(16)
+            $0.centerY.equalToSuperview()
+            $0.left.equalTo(image.snp.right).offset(8)
         }
         
-        odometerLabel = UILabel()
-        odometerLabel.textColor = .blue
-        cellView.addSubview(odometerLabel)
-        odometerLabel.snp.makeConstraints {
-            $0.top.equalTo(dateLabel.snp.bottom)
-            $0.left.equalToSuperview().inset(16)
+        mileageLabel = UILabel()
+        mileageLabel.setFontSize(size: 14)
+        mileageLabel.textColor = .lightGray
+        mileageLabel.isHidden = true
+        cellView.addSubview(mileageLabel)
+        mileageLabel.snp.makeConstraints {
+            $0.top.equalTo(dateLabel.snp.bottom).offset(2)
+            $0.left.equalTo(image.snp.right).offset(8)
         }
         
         refuelingInfoStack = UIStackView()
         refuelingInfoStack.axis = .vertical
+        refuelingInfoStack.isHidden = true
         cellView.addSubview(refuelingInfoStack)
         refuelingInfoStack.snp.makeConstraints {
             $0.top.bottom.right.equalToSuperview()
@@ -91,7 +125,7 @@ extension RefuelingInfoCell {
         fuelPrice.font = UIFont.systemFont(ofSize: 14)
         refuelingInfoStack.addSubview(fuelPrice)
         fuelPrice.snp.makeConstraints {
-            $0.top.equalToSuperview()
+            $0.top.equalToSuperview().inset(2)
             $0.right.equalToSuperview().inset(14)
         }
         
@@ -107,14 +141,31 @@ extension RefuelingInfoCell {
         refuelingTotalPrice = UILabel()
         refuelingTotalPrice.textAlignment = .right
         refuelingTotalPrice.font = UIFont.systemFont(ofSize: 14)
-        refuelingInfoStack.addSubview(refuelingTotalPrice)
+        cellView.addSubview(refuelingTotalPrice)
         refuelingTotalPrice.snp.makeConstraints {
-            $0.top.equalTo(fuelCount.snp.bottom)
+            $0.top.equalToSuperview().inset(4)
             $0.right.equalToSuperview().inset(14)
+        }
+        
+        odometerLabel = UILabel()
+        odometerLabel.textColor = .lightGray
+        odometerLabel.setFontSize(size: 14)
+        cellView.addSubview(odometerLabel)
+        odometerLabel.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+//            $0.top.equalTo(refuelingTotalPrice.snp.bottom).offset(4)
+            $0.right.equalToSuperview().inset(16)
         }
     }
 }
 
 extension RefuelingInfoCell {
-    static var cellSize: CGSize { CGSize(width: UIScreen.main.bounds.width, height: 55) }
+    static var cellSize: CGSize { CGSize(width: UIScreen.main.bounds.width - 32, height: 52) }
+    
+    static func cellSize(refueling: UserMileage) -> CGSize {
+        if let price = refueling.refueling?.price, price.isZero {
+            return CGSize(width: Device.deviceWidth - 32, height: 55)
+        }
+        return CGSize(width: Device.deviceWidth - 32, height: 60)
+    }
 }

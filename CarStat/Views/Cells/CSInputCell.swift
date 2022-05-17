@@ -15,6 +15,7 @@ enum InputType {
     case fuelPrice
     case fuelCount
     case fuelTotalPrice
+    case totalSummLitersDisabled
 }
 
 final class CSInputCell: RxCollectionViewCell {
@@ -35,19 +36,34 @@ final class CSInputCell: RxCollectionViewCell {
         disposeBag = DisposeBag()
     }
     
-    func configure(text: String, inputType: InputType) {
-        input.text = text
-        
-        switch inputType {
-        case .odometer:
-            input.keyboardType = .numberPad
-        case .fuelPrice:
-            input.keyboardType = .decimalPad
-        case .fuelCount:
-            input.keyboardType = .decimalPad
-        case .fuelTotalPrice:
-            input.keyboardType = .decimalPad
+    func configure(text: String?, inputType: InputType) {
+        if let text = text, let number = Double(text), !number.isZero {
+            label.textColor = .black
+            input.text = text
         }
+        
+            switch inputType {
+            case .odometer:
+                label.text = "Одометр"
+                input.placeholder = "Одометр"
+                input.keyboardType = .numberPad
+            case .fuelPrice:
+                label.text = "Цена"
+                input.placeholder = "Цена"
+                input.keyboardType = .decimalPad
+            case .fuelCount:
+                label.text = "Количество"
+                input.placeholder = "Количество"
+                input.keyboardType = .decimalPad
+            case .fuelTotalPrice:
+                label.text = "Итоговая стоимость"
+                input.placeholder = "Итоговая стоимость"
+                input.keyboardType = .decimalPad
+            case .totalSummLitersDisabled:
+                label.text = "Топлива залито:"
+                input.text = text
+                input.isEnabled = false
+            }
     }
 }
 
@@ -56,8 +72,7 @@ extension CSInputCell {
         backgroundColor = .clear
         
         label = UILabel()
-//        label.textColor = .clear
-        label.text = "text"
+        label.textColor = .clear
         label.font = UIFont.systemFont(ofSize: 12)
         contentView.addSubview(label)
         label.snp.makeConstraints {
@@ -65,11 +80,11 @@ extension CSInputCell {
         }
         
         input = UITextField()
-        input.borderStyle = .none
-        input.placeholder = ""
+        input.borderStyle = .roundedRect
+        input.delegate = self
         contentView.addSubview(input)
         input.snp.makeConstraints {
-            $0.top.equalTo(label.snp.bottom).inset(4)
+            $0.top.equalTo(label.snp.bottom).offset(4)
             $0.left.equalToSuperview()
             $0.right.equalToSuperview()
         }
@@ -83,10 +98,8 @@ extension CSInputCell {
 }
 
 extension CSInputCell: UITextFieldDelegate {
-    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         label.textColor = .black
-        label.text = "text"
-        return false
+        return true
     }
 }

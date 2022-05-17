@@ -17,7 +17,7 @@ final class AddMileageViewModel {
     // MARK: - Properties
     var lastMileage = BehaviorRelay<UserMileage?>.init(value: nil)
     var newMileage = PublishRelay<UserMileage?>()
-    var newDate = BehaviorRelay<Date?>.init(value: nil)
+    var newDate = BehaviorRelay<String?>.init(value: nil)
     var newOdometer = BehaviorRelay<Int?>.init(value: nil)
     var newFuelPrice = BehaviorRelay<Double?>.init(value: nil)
     var newLiters = BehaviorRelay<Double?>.init(value: nil)
@@ -42,17 +42,26 @@ final class AddMileageViewModel {
     private func subscribe() {
         newMileage
             .subscribe(onNext: { [weak self] data in
-                guard self != nil, let data = data else { return }
+                guard let self = self, let data = data else { return }
                 
-                StorageManager.shared.save(mileage: data)
+                if self.lastMileage.value == nil {
+                    StorageManager.shared.save(mileage: data)
+                } else {
+                    StorageManager.shared.update(mileage: data)
+                }
+
             })
             .disposed(by: disposeBag)
         
-        Observable.combineLatest(newFuelPrice.asObservable(), newLiters.asObservable(), newTotaalPrice.asObservable())
-            .subscribe(onNext: { [weak self] _, _, _ in
-                guard let self = self else { return }
+        lastMileage
+            .subscribe(onNext: { [weak self] value in
+                guard let self = self, let value = value else { return }
                 
-                self.configureSections()
+                self.newOdometer.accept(value.odometer)
+                self.newDate.accept(value.date)
+                self.newFuelPrice.accept(value.refueling?.price)
+                self.newLiters.accept(value.refueling?.quantity)
+                self.newTotaalPrice.accept(value.refueling?.totalPrice)
             })
             .disposed(by: disposeBag)
     }
@@ -60,18 +69,21 @@ final class AddMileageViewModel {
     func configureSections() {
         var items: [ItemModel] = []
         
-        items.append(.label(text: "Одометр"))
-        items.append(.input(type: .odometer))
-        items.append(.date)
-        items.append(.label(text: "Цена"))
-        items.append(.input(type: .fuelPrice))
-        items.append(.label(text: "Количество"))
-        items.append(.input(type: .fuelCount))
-        items.append(.label(text: "Общая стоимость"))
-        items.append(.input(type: .fuelTotalPrice))
+        items.append(.input(text: self.newOdometer.value == nil ? nil : "\(self.newOdometer.value ?? 0)", type: .odometer))
+        items.append(.date(date: Formatters.dateApi.date(from: self.newDate.value ?? "") ?? Date()))
+        items.append(.input(text: self.newFuelPrice.value == nil ? nil : "\(self.newFuelPrice.value ?? 0)", type: .fuelPrice))
+        items.append(.input(text: self.newLiters.value == nil ? nil : "\(self.newLiters.value ?? 0)", type: .fuelCount))
+        items.append(.input(text: self.newTotaalPrice.value == nil ? nil : "\(self.newTotaalPrice.value ?? 0)", type: .fuelTotalPrice))
         items.append(.button)
         
         sections.accept([.mainSection(items: items)])
+    }
+}
+
+extension AddMileageViewModel {
+    enum ButtonType {
+        case add
+        case delete
     }
 }
 
@@ -83,20 +95,20 @@ extension AddMileageViewModel {
     
     enum ItemModel {
         case button
-        case input(type: InputType)
+        case input(text: String?, type: InputType)
         case label(text: String)
-        case date
+        case date(date: Date)
         
         var id: String {
             switch self {
             case .button:
                 return "button"
-            case .input(let type):
-                return "input \(type)"
+            case .input(let text, let type):
+                return "input \(String(describing: text)) \(type)"
             case .label(let text):
                 return "label \(text)"
-            case .date:
-                return "date"
+            case .date(let date):
+                return "date \(date)"
             }
         }
     }

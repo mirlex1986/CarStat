@@ -38,7 +38,15 @@ final class HomeViewModel {
     func configureSections() {
         var items: [ItemModel] = []
         
-        items.append(.text(text: "Hello"))
+        if mileage.value.isEmpty {
+            items.append(.empty(height: Device.deviceHeight / 2 - 100, index: items.count))
+            items.append(.text(text: "Нет данных о тратах"))
+            
+        } else {
+            items.append(.refueling(mileage: mileage.value))
+            items.append(.empty(height: 40, index: items.count))
+            items.append(.mileage(mileage: mileage.value))
+        }
         
         sections.accept([.mainSection(items: items)])
     }
@@ -75,6 +83,8 @@ extension HomeViewModel {
         case empty(height: CGFloat, index: Int)
         case button
         case text(text: String, alignment: NSTextAlignment = .center)
+        case refueling(mileage: [UserMileage])
+        case mileage(mileage: [UserMileage])
         
         var id: String {
             switch self {
@@ -84,6 +94,10 @@ extension HomeViewModel {
                 return "button"
             case .text(let text, _):
                 return "text \(text)"
+            case .refueling(let mileage):
+                return "refueling \(mileage.count)"
+            case .mileage(let mileage):
+                return "mileage \(mileage.count)"
             }
         }
     }

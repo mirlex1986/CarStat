@@ -36,7 +36,7 @@ extension CSButtonCell {
         backgroundColor = .clear
         
         button = UIButton()
-        button.backgroundColor = .darkGray
+        button.backgroundColor = .lightBlue
         button.titleLabel?.textColor = .green
         button.layer.cornerRadius = 5
         contentView.addSubview(button)

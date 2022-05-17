@@ -8,6 +8,13 @@
 import Foundation
 import UIKit
 
-    let deviceHeight = UIScreen.main.bounds.height
-    let deviceWidth = UIScreen.main.bounds.width
+enum Device {
+    static var deviceHeight: CGFloat {
+        return UIScreen.main.bounds.height
+    }
+    
+    static var deviceWidth: CGFloat {
+        return UIScreen.main.bounds.width
+    }
+}
 

@@ -40,6 +40,6 @@ extension CSEmptyCell {
 
 extension CSEmptyCell {
     static func cellSize(height: CGFloat) -> CGSize {
-        return CGSize(width: deviceWidth - 32, height: height)
+        return CGSize(width: Device.deviceWidth - 32, height: height)
     }
 }

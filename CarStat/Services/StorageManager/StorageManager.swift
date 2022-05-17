@@ -26,19 +26,20 @@ class StorageManager {
         }
     }
     
-//    func fetchData() -> [UserMileage] {
-//        var someObjects: [UserMileage] = []
-//        let objects = realm.objects(UserMileage.self)
-//
-//        for object in objects{
-//            someObjects.append(object)
-//        }
-//        return someObjects
-//    }
+    func update(mileage: UserMileage) {
+        do {
+            try realm.write {
+                realm.add(mileage, update: .modified)
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
     
     func fetchData() -> Results<UserMileage> {
         var someObjects: [UserMileage] = []
-        let objects = realm.objects(UserMileage.self)
+        let sortProperties = [SortDescriptor(keyPath: "date", ascending: false), SortDescriptor(keyPath: "odometer", ascending: false)]
+        let objects = realm.objects(UserMileage.self).sorted(by: sortProperties)
         
         for object in objects{
             someObjects.append(object)

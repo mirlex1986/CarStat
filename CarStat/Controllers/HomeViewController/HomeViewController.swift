@@ -13,7 +13,7 @@ import RxDataSources
 
 class HomeViewController: CSViewController {
     // MARK: - UI
-    private var navBar: UINavigationBar!
+    private var navBar: CSNavigationBar!
     private var collectionView: CSCollectionView!
     
     // MARK: - Properties
@@ -60,6 +60,10 @@ class HomeViewController: CSViewController {
                     return self.buttonCell(indexPath: indexPath)
                 case .text(let text, let alignment):
                     return self.textCell(self.collectionView, indexPath: indexPath, text: text, alignment: alignment)
+                case .refueling(let mileage):
+                    return self.refuelingCell(indexPath: indexPath, refueling: mileage)
+                case .mileage(let mileage):
+                    return self.mileageCell(indexPath: indexPath, refueling: mileage)
                 }
             },
             configureSupplementaryView: { _, _, _, _ in
@@ -80,7 +84,7 @@ class HomeViewController: CSViewController {
                     vc.viewModel = AddMileageViewModel(lastMileage: last)
                 } else {
                     let new = UserMileage()
-                    new.date = Date()
+                    new.date = Formatters.dateApi.string(from: Date())
                     new.odometer = 0
                     vc.viewModel = AddMileageViewModel(lastMileage: new)
                 }
@@ -88,6 +92,20 @@ class HomeViewController: CSViewController {
                 self.present(vc, animated: true, completion: nil)
             })
             .disposed(by: cell.disposeBag)
+        
+        return cell
+    }
+    
+    private func refuelingCell(indexPath: IndexPath, refueling: [UserMileage]) -> CSCollectionViewCell {
+        let cell: RefuelingCell = collectionView.cell(indexPath: indexPath)
+        cell.configure(with: refueling)
+        
+        return cell
+    }
+    
+    private func mileageCell(indexPath: IndexPath, refueling: [UserMileage]) -> CSCollectionViewCell {
+        let cell: MileageCell = collectionView.cell(indexPath: indexPath)
+        cell.configure(with: refueling)
         
         return cell
     }
@@ -120,6 +138,10 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
             return CSButtonCell.cellSize
         case .text(let text, _):
             return CSTextCell.cellSize(text: text)
+        case .refueling:
+            return RefuelingCell.cellSize
+        case .mileage:
+            return MileageCell.cellSize
         }
     }
     
@@ -136,10 +158,8 @@ extension HomeViewController {
         view.backgroundColor = .white
         
         // NAVBAR
-        navBar = UINavigationBar()
-        let navItem = UINavigationItem(title: "Статистика")
-        navBar.setItems([navItem], animated: true)
-        navBar.isTranslucent = false
+        navBar = CSNavigationBar()
+        navBar.configure(title: "Общая статистика")
         view.addSubview(navBar)
         navBar.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide)
@@ -150,7 +170,7 @@ extension HomeViewController {
         collectionView = makeCollectionView()
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints {
-            $0.top.equalTo(navBar.snp.bottom).offset(20)
+            $0.top.equalTo(navBar.snp.bottom)
             $0.bottom.equalTo(view.safeAreaLayoutGuide)
             $0.left.right.equalToSuperview()
         }

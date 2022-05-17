@@ -39,7 +39,8 @@ final class CSTabBarController: UITabBarController {
     
     private func setupTabBarControllers() {
         let items = [createNavController(for: HomeViewController()),
-                     createNavController(for: RefuelingViewController())]
+                     createNavController(for: RefuelingViewController()),
+                     createNavController(for: ServicesViewController())]
     
         viewControllers = items
     }
@@ -53,18 +54,24 @@ final class CSTabBarController: UITabBarController {
         
         switch rootViewController {
         case is HomeViewController:
-            title = "Главная"
-            icon = UIImage(systemName: "flame")
-        case is RefuelingViewController:
             title = "Статистика"
             icon = UIImage(systemName: "chart.bar")
+            navController.tabBarItem.selectedImage = UIImage(systemName: "chart.bar.fill")?.withRenderingMode(.alwaysTemplate)
+        case is RefuelingViewController:
+            title = "Топливо"
+            icon = UIImage(systemName: "flame")
+            navController.tabBarItem.selectedImage = UIImage(systemName: "flame.fill")?.withRenderingMode(.alwaysTemplate)
+        case is ServicesViewController:
+            title = "Сервис"
+            icon = UIImage(systemName: "tray.circle")
+            navController.tabBarItem.selectedImage = UIImage(systemName: "tray.circle.fill")?.withRenderingMode(.alwaysTemplate)
         default:
             break
         }
 
         navController.tabBarItem.title = title
         navController.tabBarItem.image = icon?.withRenderingMode(.alwaysTemplate)
-        navController.tabBarItem.selectedImage = icon
+        
         
         return navController
     }
@@ -73,7 +80,7 @@ final class CSTabBarController: UITabBarController {
 extension CSTabBarController {
     private func setupUI() {
         tabBar.barTintColor = .white
-        tabBar.tintColor = .black
+        tabBar.tintColor = .lightBlue.withAlphaComponent(1)
         tabBar.unselectedItemTintColor = UIColor.black.withAlphaComponent(0.4)
         
         tabBar.shadowImage = UIImage()

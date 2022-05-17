@@ -32,6 +32,7 @@ class CSChartCell: RxCollectionViewCell {
     func configure(mileages: [UserMileage]) {
         var dataEntries: [ChartDataEntry] = []
         
+        
     }
 }
 

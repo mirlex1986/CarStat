@@ -49,43 +49,24 @@ extension UILabel {
         label.font = font
         return label.heightThatFitsFor(width: width)
     }
-//
-//    func diagonalStrikeThrough(bounds: CGRect? = nil, offsetPercent: CGFloat = 0.1, withoutCurrency: Bool = true) {
-//        let bounds = bounds ?? self.bounds
-//
-//        let currencyWidth = withoutCurrency
-//            ? UILabel.textWidth(font: UIFont.avenirNext(style: .demiBold, size: 13), text: " ₽") : 0
-//
-//        let linePath = UIBezierPath()
-//        linePath.move(to: CGPoint(x: 0, y: bounds.height * (1 - offsetPercent)))
-//        linePath.addLine(to: CGPoint(x: bounds.width - currencyWidth, y: bounds.height * offsetPercent))
-//
-//        let borderPath = UIBezierPath()
-//        borderPath.move(to: CGPoint(x: 0, y: bounds.height * (1 - offsetPercent)))
-//        borderPath.addLine(to: CGPoint(x: bounds.width - currencyWidth, y: bounds.height * offsetPercent))
-//
-//        let borderLayer = CAShapeLayer()
-//        borderLayer.path = borderPath.cgPath
-//        borderLayer.lineWidth = 1.8
-//        borderLayer.strokeColor = UIColor.white.cgColor
-//        layer.addSublayer(borderLayer)
-//
-//        let lineLayer = CAShapeLayer()
-//        lineLayer.path = linePath.cgPath
-//        lineLayer.lineWidth = 1
-//        lineLayer.strokeColor = textColor.cgColor
-//        layer.addSublayer(lineLayer)
-//    }
-//
-//    static func lgLabel(font: UIFont = .avenirNext(style: .regular, size: 17),
-//                        color: UIColor = .brandMain2,
-//                        tag: Int? = nil) -> UILabel {
-//        let label = UILabel()
-//        label.font = font
-//        label.textColor = color
-//        if let tag = tag {
-//            label.tag = tag
-//        }
-//        return label
-//    }
+    
+    func makeAttributedStringForAverageData(for strings: [String], and underlinedText: String) {
+        let attrs1 = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16),
+                      NSAttributedString.Key.foregroundColor: UIColor.black]
+        let attrs2 = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 17),
+                      NSAttributedString.Key.underlineStyle: 1,
+                      NSAttributedString.Key.foregroundColor: UIColor.black] as [NSAttributedString.Key : Any]
+
+        let attributedString1 = NSMutableAttributedString(string: strings[0], attributes: attrs1)
+        let attributedString2 = NSMutableAttributedString(string: underlinedText, attributes: attrs2)
+        let attributedString3 = NSMutableAttributedString(string: strings[1], attributes: attrs1)
+        attributedString2.append(attributedString3)
+        attributedString1.append(attributedString2)
+        attributedText = attributedString1
+    }
+    
+    func setFontSize(size: CGFloat = 14) {
+        self.font = UIFont.systemFont(ofSize: size)
+    }
+    
 }

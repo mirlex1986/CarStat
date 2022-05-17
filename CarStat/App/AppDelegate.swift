@@ -7,6 +7,7 @@
 
 import UIKit
 import RealmSwift
+import FirebaseCore
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,12 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         let config = Realm.Configuration(
-            // Set the new schema version. This must be greater than the previously used
-            // version (if you've never set a schema version before, the version is 0).
             schemaVersion: 2,
-            
-            // Set the block which will be called automatically when opening a Realm with
-            // a schema version lower than the one set above
             migrationBlock: { migration, oldSchemaVersion in
                 
             })
@@ -29,6 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = CSTabBarController()
         window?.makeKeyAndVisible()
+        
+        FirebaseApp.configure()
         
         return true
     }

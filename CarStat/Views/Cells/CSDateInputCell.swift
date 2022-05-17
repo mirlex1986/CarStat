@@ -27,8 +27,8 @@ final class CSDateInputCell: RxCollectionViewCell {
         disposeBag = DisposeBag()
     }
     
-    func configure(text: String) {
-        
+    func configure(date: Date) {
+        input.date = date
     }
 }
 
@@ -40,6 +40,7 @@ extension CSDateInputCell {
         input = UIDatePicker()
         input.locale = .autoupdatingCurrent
         input.datePickerMode = .date
+        input.calendar = .current
         contentView.addSubview(input)
         input.snp.makeConstraints {
             $0.left.equalToSuperview()

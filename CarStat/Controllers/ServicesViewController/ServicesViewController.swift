@@ -1,9 +1,10 @@
 //
-//  MainScreenViewController.swift
+//  ServicesViewController.swift
 //  CarStat
 //
-//  Created by Aleksey Mironov on 13.09.2021.
+//  Created by Aleksey Mironov on 17.05.2022.
 //
+
 
 import UIKit
 import SnapKit
@@ -11,7 +12,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-class RefuelingViewController: CSViewController {
+class ServicesViewController: CSViewController {
     // MARK: - UI
     private var navBar: CSNavigationBar!
     private var collectionView: UICollectionView!
@@ -20,10 +21,10 @@ class RefuelingViewController: CSViewController {
     private var button: UIButton!
     
     // MARK: - Properties
-    typealias Item = RefuelingViewModel.ItemModel
-    typealias Section = RefuelingViewModel.SectionModel
+    typealias Item = ServicesViewModel.ItemModel
+    typealias Section = ServicesViewModel.SectionModel
     
-    var viewModel = RefuelingViewModel()
+    var viewModel = ServicesViewModel()
     var dataSource: RxCollectionViewSectionedAnimatedDataSource<Section>!
     
     override func viewDidLoad() {
@@ -48,14 +49,6 @@ class RefuelingViewController: CSViewController {
             .bind(to: collectionView.rx.items(dataSource: dataSource))
             .disposed(by: viewModel.disposeBag)
         
-        viewModel.mileage
-            .subscribe(onNext: { [weak self] _ in
-                guard let self = self else { return }
-
-                self.label.text = "\(self.viewModel.calculateMileage()) \n "
-            })
-            .disposed(by: viewModel.disposeBag)
-        
         collectionView.rx.contentOffset
             .subscribe(onNext: { [weak self] offset in
                 guard let self = self else { return }
@@ -70,12 +63,7 @@ class RefuelingViewController: CSViewController {
 
                 let item: Item = self.dataSource[indexPath]
                 switch item {
-                case .refueling:
-                    let vc = AddMileageViewController()
-                    let last = self.viewModel.mileage.value[indexPath.row]
-                    vc.viewModel = AddMileageViewModel(lastMileage: last)
-
-                    self.navigationController?.pushViewController(vc, animated: true)
+ 
                 default:
                     break
                 }
@@ -86,7 +74,7 @@ class RefuelingViewController: CSViewController {
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 
-                self.addMileage()
+                
             })
             .disposed(by: viewModel.disposeBag)
         
@@ -104,10 +92,6 @@ class RefuelingViewController: CSViewController {
                     return self.buttonCell(indexPath: indexPath)
                 case .text(let text, let alignment):
                     return self.textCell(indexPath: indexPath, text: text, alignment: alignment)
-                case .refueling(let mileage, let previos):
-                    return self.refuelingCell(indexPath: indexPath, mileage: mileage, previos: previos)
-                case .chart(let mileages):
-                    return self.chartCell(indexPath: indexPath, mileages: mileages)
                 }
             },
             configureSupplementaryView: { _, _, _, _ in
@@ -119,26 +103,6 @@ class RefuelingViewController: CSViewController {
         let cell: CSButtonCell = collectionView.cell(indexPath: indexPath)
         cell.configure(text: "Добавить показания одометра")
         
-        cell.button.rx.tap
-            .subscribe(onNext: { [weak self] _ in
-                guard let self = self else { return }
-                
-                let vc = AddMileageViewController()
-                let new = UserMileage()
-                new.date = Formatters.dateApi.string(from: Date())
-                vc.viewModel = AddMileageViewModel(lastMileage: new)
-                
-                self.navigationController?.pushViewController(vc, animated: true)
-            })
-            .disposed(by: cell.disposeBag)
-        
-        return cell
-    }
-    
-    private func chartCell(indexPath: IndexPath, mileages: [UserMileage]) -> CSCollectionViewCell {
-        let cell: CSChartCell = collectionView.cell(indexPath: indexPath)
-        cell.configure(mileages: mileages)
-        
         return cell
     }
     
@@ -148,17 +112,10 @@ class RefuelingViewController: CSViewController {
         
         return cell
     }
-    
-    private func refuelingCell(indexPath: IndexPath, mileage: UserMileage, previos: Int = 0) -> CSCollectionViewCell {
-        let cell: RefuelingInfoCell = collectionView.cell(indexPath: indexPath)
-        cell.configure(mileage: mileage, previos: previos)
-        
-        return cell
-    }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
-extension RefuelingViewController: UICollectionViewDelegateFlowLayout {
+extension ServicesViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -166,12 +123,8 @@ extension RefuelingViewController: UICollectionViewDelegateFlowLayout {
         switch item {
         case .button:
             return CSButtonCell.cellSize
-        case .refueling:
-            return RefuelingInfoCell.cellSize
         case .text(let text, _):
             return CSTextCell.cellSize(text: text)
-        case .chart:
-            return CSChartCell.cellSize
         }
     }
     
@@ -183,13 +136,13 @@ extension RefuelingViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension RefuelingViewController {
+extension ServicesViewController {
     override func makeUI() {
         view.backgroundColor = .white
         
         // NAVBAR
         navBar = CSNavigationBar()
-        navBar.configureTitle(text: "Топливо")
+        navBar.configureTitle(text: "Обслуживание")
         view.addSubview(navBar)
         navBar.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide)
