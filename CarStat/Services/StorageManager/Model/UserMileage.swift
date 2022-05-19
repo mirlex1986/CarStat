@@ -13,12 +13,14 @@ class UserMileage: Object {
     public dynamic var primaryKey = 0
     public dynamic var date = ""
     public dynamic var odometer = 0
+    public dynamic var type = ""
     public dynamic var refueling: LocalRefueling?
     public dynamic var service: LocalService?
     
     var data: Mileage {
         let mileage = Mileage(date: Formatters.dateApi.date(from: date) ?? Date(),
                               odometer: odometer,
+                              type: type,
                               refueling: refueling?.refueling,
                               service: service?.service)
         return mileage

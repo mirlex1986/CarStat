@@ -103,7 +103,9 @@ class AddMileageViewController: CSViewController {
                 newRef.price = self.viewModel.newFuelPrice.value ?? 0.0
                 newRef.quantity = self.viewModel.newLiters.value ?? 0.0
                 newRef.totalPrice = self.viewModel.newTotaalPrice.value ?? 0.0
+                newValue.type = newRef.totalPrice > 0 ? RecordType.refueling.rawValue : RecordType.mileage.rawValue
                 newValue.refueling = newRef
+                
                 
                 self.viewModel.newMileage.accept(newValue)
                 

@@ -10,6 +10,7 @@ import Foundation
 struct Mileage {
     var date: Date
     var odometer: Int
+    var type: RecordType.RawValue
     var refueling: Refueling?
     var service: Service?
 }
@@ -26,3 +27,8 @@ struct Service {
     var userComment: String?
 }
 
+enum RecordType: String {
+    case refueling = "Топливо"
+    case mileage = "Пробег"
+    case service = "Ремонт"
+}

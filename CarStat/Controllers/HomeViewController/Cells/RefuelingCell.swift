@@ -54,17 +54,17 @@ class RefuelingCell: RxCollectionViewCell {
                 }
             }
         }
-        let refs = data.filter { $0.refueling?.quantity ?? 0.0 > 0 }
         
-        if let first = refs.first?.odometer, let last = refs.last?.odometer {
+        let refs = data.filter { $0.refueling?.quantity ?? 0.0 > 0 }
+        if refs.isEmpty {
+            averageLabel.makeAttributedStringForAverageData(for: ["Нет данных о заправках", ""], and: "")
+        } else if refs.count == 1 {
+            averageLabel.makeAttributedStringForAverageData(for: ["Мало данных о заправках", ""], and: "")
+        } else if let first = refs.first?.odometer, let last = refs.last?.odometer {
             let rounded = tempLiters / Double(first - last) * 100
             averageLabel.makeAttributedStringForAverageData(for: ["Средний расход: ",
                                                                        " л/100км"],
                                                                  and: "\(round(rounded * 100) / 100.0)")
-        }
-        
-        if refs.isEmpty {
-            averageLabel.makeAttributedStringForAverageData(for: ["Нет данных о заправках", ""], and: "")
         }
         
         let total = round(tempMileage * 100) / 100.0
