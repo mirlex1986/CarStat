@@ -201,13 +201,4 @@ extension ServicesViewController {
         
         return collectionView
     }
-    
-    private func addMileage() {
-        let vc = AddMileageViewController()
-        let new = UserMileage()
-        new.date = Formatters.dateApi.string(from: Date())
-        vc.viewModel = AddMileageViewModel()
-        
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
 }

@@ -63,11 +63,10 @@ class RefuelingViewController: CSViewController {
                 let item: Item = self.dataSource[indexPath]
                 switch item {
                 case .refueling:
-                    let vc = AddMileageViewController()
                     let last = self.viewModel.mileage.value[indexPath.row]
-                    vc.viewModel = AddMileageViewModel(lastMileage: last)
-
-                    self.navigationController?.pushViewController(vc, animated: true)
+                    Router.addRefueling(lastRefueling: last, isEditing: true)
+                        .push(from: self.navigationController, animated: true)
+                    
                 default:
                     break
                 }
@@ -78,7 +77,8 @@ class RefuelingViewController: CSViewController {
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 
-                self.addMileage()
+                Router.addRefueling(lastRefueling: self.viewModel.mileage.value.first, isEditing: false)
+                    .push(from: self.navigationController, animated: false)
             })
             .disposed(by: viewModel.disposeBag)
         
@@ -110,19 +110,6 @@ class RefuelingViewController: CSViewController {
     private func buttonCell(indexPath: IndexPath) -> CSCollectionViewCell {
         let cell: CSButtonCell = collectionView.cell(indexPath: indexPath)
         cell.configure(text: "Добавить показания одометра")
-        
-        cell.button.rx.tap
-            .subscribe(onNext: { [weak self] _ in
-                guard let self = self else { return }
-                
-                let vc = AddMileageViewController()
-                let new = UserMileage()
-                new.date = Formatters.dateApi.string(from: Date())
-                vc.viewModel = AddMileageViewModel(lastMileage: new)
-                
-                self.navigationController?.pushViewController(vc, animated: true)
-            })
-            .disposed(by: cell.disposeBag)
         
         return cell
     }
@@ -239,14 +226,5 @@ extension RefuelingViewController {
         collectionView.backgroundColor = .clear
         
         return collectionView
-    }
-    
-    private func addMileage() {
-        let vc = AddMileageViewController()
-        let new = UserMileage()
-        new.date = Formatters.dateApi.string(from: Date())
-        vc.viewModel = AddMileageViewModel()
-        
-        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
