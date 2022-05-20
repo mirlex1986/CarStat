@@ -16,6 +16,8 @@ import RealmSwift
 final class AddMileageViewModel {
     // MARK: - Properties
     var lastMileage = BehaviorRelay<UserMileage?>.init(value: nil)
+    var isEditing = BehaviorRelay<Bool>(value: false)
+    
     var newMileage = PublishRelay<UserMileage?>()
     var newDate = BehaviorRelay<String?>.init(value: nil)
     var newOdometer = BehaviorRelay<Int?>.init(value: nil)
@@ -26,17 +28,18 @@ final class AddMileageViewModel {
     let disposeBag = DisposeBag()
     let sections = BehaviorRelay<[SectionModel]>.init(value: [])
     
-    init(lastMileage: UserMileage?) {
+    init(lastMileage: UserMileage?, isEditing: Bool = false) {
         self.lastMileage.accept(lastMileage)
+        self.isEditing.accept(isEditing)
         
         subscribe()
         configureSections()
     }
-    
-    init() {        
-        subscribe()
-        configureSections()
-    }
+//    
+//    init() {        
+//        subscribe()
+//        configureSections()
+//    }
     
     // MARK: - Functions
     private func subscribe() {
@@ -44,12 +47,11 @@ final class AddMileageViewModel {
             .subscribe(onNext: { [weak self] data in
                 guard let self = self, let data = data else { return }
                 
-                if self.lastMileage.value == nil {
-                    StorageManager.shared.save(mileage: data)
-                } else {
+                if self.isEditing.value {
                     StorageManager.shared.update(mileage: data)
+                } else {
+                    StorageManager.shared.save(mileage: data)
                 }
-
             })
             .disposed(by: disposeBag)
         
@@ -57,8 +59,14 @@ final class AddMileageViewModel {
             .subscribe(onNext: { [weak self] value in
                 guard let self = self, let value = value else { return }
                 
+                switch self.isEditing.value {
+                case true:
+                    self.newDate.accept(value.date)
+                case false:
+                    self.newDate.accept(Formatters.dateApi.string(from: Date()))
+                }
+                
                 self.newOdometer.accept(value.odometer)
-                self.newDate.accept(value.date)
                 self.newFuelPrice.accept(value.refueling?.price)
                 self.newLiters.accept(value.refueling?.quantity)
                 self.newTotaalPrice.accept(value.refueling?.totalPrice)

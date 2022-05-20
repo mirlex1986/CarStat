@@ -11,12 +11,12 @@
 		5B2AE63A2833AE010043249E /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2AE6392833AE010043249E /* ServicesViewController.swift */; };
 		5B2AE63C2833AE0B0043249E /* ServicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2AE63B2833AE0B0043249E /* ServicesViewModel.swift */; };
 		5B2AE63E28343F480043249E /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2AE63D28343F480043249E /* Images.swift */; };
+		5B2AE647283632030043249E /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2AE646283632030043249E /* Router.swift */; };
 		5B51EFC327A5462200CB42F5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B51EFC227A5462200CB42F5 /* HomeViewController.swift */; };
 		5B51EFC627A5465D00CB42F5 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B51EFC527A5465D00CB42F5 /* HomeViewModel.swift */; };
 		5B7559652715AD0C000BCA55 /* CSChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7559642715AD0C000BCA55 /* CSChartCell.swift */; };
 		5B89FC19282E425800D42378 /* RefuelingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B89FC18282E425800D42378 /* RefuelingCell.swift */; };
 		5B89FC1B282E4DC800D42378 /* MileageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B89FC1A282E4DC800D42378 /* MileageCell.swift */; };
-		5B89FC1D282E9A7A00D42378 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B89FC1C282E9A7A00D42378 /* GoogleService-Info.plist */; };
 		5B89FC2228323A1E00D42378 /* UIView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B89FC2128323A1E00D42378 /* UIView + Extensions.swift */; };
 		5B89FC242832526C00D42378 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B89FC232832526C00D42378 /* Colors.swift */; };
 		5BABCB582770AFAB00139A31 /* Pods_CarStat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BABCB572770AFAB00139A31 /* Pods_CarStat.framework */; };
@@ -58,12 +58,12 @@
 		5B2AE6392833AE010043249E /* ServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesViewController.swift; sourceTree = "<group>"; };
 		5B2AE63B2833AE0B0043249E /* ServicesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesViewModel.swift; sourceTree = "<group>"; };
 		5B2AE63D28343F480043249E /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
+		5B2AE646283632030043249E /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		5B51EFC227A5462200CB42F5 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		5B51EFC527A5465D00CB42F5 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		5B7559642715AD0C000BCA55 /* CSChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSChartCell.swift; sourceTree = "<group>"; };
 		5B89FC18282E425800D42378 /* RefuelingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefuelingCell.swift; sourceTree = "<group>"; };
 		5B89FC1A282E4DC800D42378 /* MileageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MileageCell.swift; sourceTree = "<group>"; };
-		5B89FC1C282E9A7A00D42378 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5B89FC2128323A1E00D42378 /* UIView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extensions.swift"; sourceTree = "<group>"; };
 		5B89FC232832526C00D42378 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		5BABCB572770AFAB00139A31 /* Pods_CarStat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_CarStat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,6 +132,14 @@
 				5B2AE63B2833AE0B0043249E /* ServicesViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5B2AE645283631F70043249E /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				5B2AE646283632030043249E /* Router.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		5B51EFC127A545F000CB42F5 /* HomeViewController */ = {
@@ -212,7 +220,6 @@
 			isa = PBXGroup;
 			children = (
 				5BBE23D726EF9FDA00028774 /* AppDelegate.swift */,
-				5B89FC1C282E9A7A00D42378 /* GoogleService-Info.plist */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -230,6 +237,7 @@
 		5BBE23F526F0CCA300028774 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				5B2AE645283631F70043249E /* Router */,
 				5BF574FD281AF2B8001F7B4A /* DataManager */,
 				5BF574FC281AF2AE001F7B4A /* StorageManager */,
 			);
@@ -444,7 +452,6 @@
 			files = (
 				5BBE23E426EF9FDF00028774 /* LaunchScreen.storyboard in Resources */,
 				5BBE23E126EF9FDF00028774 /* Assets.xcassets in Resources */,
-				5B89FC1D282E9A7A00D42378 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -529,6 +536,7 @@
 				5B89FC1B282E4DC800D42378 /* MileageCell.swift in Sources */,
 				5BF574F3281AB55B001F7B4A /* Date + Extention.swift in Sources */,
 				5B89FC242832526C00D42378 /* Colors.swift in Sources */,
+				5B2AE647283632030043249E /* Router.swift in Sources */,
 				5B7559652715AD0C000BCA55 /* CSChartCell.swift in Sources */,
 				5BDD225C271DB3E500C8D413 /* CSTabBarController.swift in Sources */,
 				5BBE23F226EFA88900028774 /* RefuelingViewController.swift in Sources */,
