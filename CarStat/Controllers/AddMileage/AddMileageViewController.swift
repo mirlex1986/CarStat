@@ -65,8 +65,8 @@ class AddMileageViewController: CSViewController {
             configureCell: { dataSource, collectionView, indexPath, _ in
                 let item: Item = dataSource[indexPath]
                 switch item {
-                case .button:
-                    return self.buttonCell(indexPath: indexPath)
+                case .button(let type):
+                    return self.buttonCell(indexPath: indexPath, type: type)
                 case .input(let text, let type):
                     return self.inputCell(indexPath: indexPath, text: text, type: type)
                 case .label(let text):
@@ -80,34 +80,50 @@ class AddMileageViewController: CSViewController {
             })
     }
     // MARK: - Cells
-    private func buttonCell(indexPath: IndexPath) -> CSCollectionViewCell {
+    private func buttonCell(indexPath: IndexPath, type: AddMileageViewModel.ButtonType) -> CSCollectionViewCell {
         let cell: CSButtonCell = collectionView.cell(indexPath: indexPath)
-        cell.configure(text: self.viewModel.lastMileage.value == nil ? "Добавить" : "Изменить")
+        switch type {
+        case.add:
+            cell.configure(text: !self.viewModel.isEditing.value ? "Добавить" : "Изменить")
+        case .delete:
+            cell.configure(text: "Delete")
+        }
+        
         
         cell.button.rx.tap
             .subscribe(onNext: { [weak self] _ in
-                guard let self = self,
-                      let newDate = self.viewModel.newDate.value,
-                      let newOdodmeter = self.viewModel.newOdometer.value else { return }
+                guard let self = self else { return }
+//                guard let self = self,
+//                      let newDate = self.viewModel.newDate.value,
+//                      let newOdodmeter = self.viewModel.newOdometer.value else { return }
                 
-                let newValue = UserMileage()
-                let lastPrimaryKey = StorageManager.shared.fetchData()
-                if self.viewModel.lastMileage.value == nil {
-                    newValue.primaryKey = lastPrimaryKey.count + 1
-                } else {
-                    newValue.primaryKey = self.viewModel.lastMileage.value?.primaryKey ?? 0
+                switch type {
+                case .add:
+//                    let newValue = UserMileage()
+//                    if !self.viewModel.isEditing.value {
+//                        newValue.primaryKey = UUID().uuidString
+//                    } else {
+//                        newValue.primaryKey = self.viewModel.lastMileage.value?.primaryKey ?? ""
+//                    }
+//                    newValue.date = newDate
+//                    newValue.odometer = newOdodmeter
+//                    let newRef = LocalRefueling()
+//                    newRef.price = self.viewModel.newFuelPrice.value ?? 0.0
+//                    newRef.quantity = self.viewModel.newLiters.value ?? 0.0
+//                    newRef.totalPrice = self.viewModel.newTotaalPrice.value ?? 0.0
+//                    newValue.type = newRef.totalPrice > 0 ? RecordType.refueling.rawValue : RecordType.mileage.rawValue
+//                    newValue.refueling = newRef
+//                    
+//                    self.viewModel.newMileage.accept(newValue)
+                    
+                    self.viewModel.newRecordData()
+                    
+                case .delete:
+                    guard let last = self.viewModel.lastMileage.value else { return }
+                    StorageManager.shared.delete(mileage: last)
                 }
-                newValue.date = newDate
-                newValue.odometer = newOdodmeter
-                let newRef = LocalRefueling()
-                newRef.price = self.viewModel.newFuelPrice.value ?? 0.0
-                newRef.quantity = self.viewModel.newLiters.value ?? 0.0
-                newRef.totalPrice = self.viewModel.newTotaalPrice.value ?? 0.0
-                newValue.type = newRef.totalPrice > 0 ? RecordType.refueling.rawValue : RecordType.mileage.rawValue
-                newValue.refueling = newRef
                 
                 
-                self.viewModel.newMileage.accept(newValue)
                 
                 self.navigationController?.popViewController(animated: true)
             })

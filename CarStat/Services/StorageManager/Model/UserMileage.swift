@@ -10,7 +10,7 @@ import RealmSwift
 
 @objcMembers
 class UserMileage: Object {
-    public dynamic var primaryKey = 0
+    public dynamic var primaryKey = ""
     public dynamic var date = ""
     public dynamic var odometer = 0
     public dynamic var type = ""

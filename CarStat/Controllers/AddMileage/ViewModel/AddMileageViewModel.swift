@@ -35,11 +35,6 @@ final class AddMileageViewModel {
         subscribe()
         configureSections()
     }
-//    
-//    init() {        
-//        subscribe()
-//        configureSections()
-//    }
     
     // MARK: - Functions
     private func subscribe() {
@@ -62,14 +57,18 @@ final class AddMileageViewModel {
                 switch self.isEditing.value {
                 case true:
                     self.newDate.accept(value.date)
+                    self.newOdometer.accept(value.odometer)
+                    self.newFuelPrice.accept(value.refueling?.price)
+                    self.newLiters.accept(value.refueling?.quantity)
+                    self.newTotaalPrice.accept(value.refueling?.totalPrice)
                 case false:
                     self.newDate.accept(Formatters.dateApi.string(from: Date()))
                 }
                 
-                self.newOdometer.accept(value.odometer)
-                self.newFuelPrice.accept(value.refueling?.price)
-                self.newLiters.accept(value.refueling?.quantity)
-                self.newTotaalPrice.accept(value.refueling?.totalPrice)
+//                self.newOdometer.accept(value.odometer)
+//                self.newFuelPrice.accept(value.refueling?.price)
+//                self.newLiters.accept(value.refueling?.quantity)
+//                self.newTotaalPrice.accept(value.refueling?.totalPrice)
             })
             .disposed(by: disposeBag)
     }
@@ -82,7 +81,11 @@ final class AddMileageViewModel {
         items.append(.input(text: self.newFuelPrice.value == nil ? nil : "\(self.newFuelPrice.value ?? 0)", type: .fuelPrice))
         items.append(.input(text: self.newLiters.value == nil ? nil : "\(self.newLiters.value ?? 0)", type: .fuelCount))
         items.append(.input(text: self.newTotaalPrice.value == nil ? nil : "\(self.newTotaalPrice.value ?? 0)", type: .fuelTotalPrice))
-        items.append(.button)
+        items.append(.button(type: .add))
+        
+        if self.isEditing.value {
+            items.append(.button(type: .delete))
+        }
         
         sections.accept([.mainSection(items: items)])
     }
@@ -102,15 +105,15 @@ extension AddMileageViewModel {
     }
     
     enum ItemModel {
-        case button
+        case button(type: ButtonType)
         case input(text: String?, type: InputType)
         case label(text: String)
         case date(date: Date)
         
         var id: String {
             switch self {
-            case .button:
-                return "button"
+            case .button(let type):
+                return "button \(type)"
             case .input(let text, let type):
                 return "input \(String(describing: text)) \(type)"
             case .label(let text):
@@ -151,5 +154,29 @@ extension AddMileageViewModel.ItemModel: RxDataSources.IdentifiableType, Equatab
     
     var identity: String {
         return id
+    }
+}
+
+extension AddMileageViewModel {
+    func newRecordData() {
+        guard let newDate = self.newDate.value,
+              let newOdodmeter = self.newOdometer.value else { return }
+        
+        let newValue = UserMileage()
+        if !self.isEditing.value {
+            newValue.primaryKey = UUID().uuidString
+        } else {
+            newValue.primaryKey = self.lastMileage.value?.primaryKey ?? ""
+        }
+        newValue.date = newDate
+        newValue.odometer = newOdodmeter
+        let newRef = LocalRefueling()
+        newRef.price = self.newFuelPrice.value ?? 0.0
+        newRef.quantity = self.newLiters.value ?? 0.0
+        newRef.totalPrice = self.newTotaalPrice.value ?? 0.0
+        newValue.type = newRef.totalPrice > 0 ? RecordType.refueling.rawValue : RecordType.mileage.rawValue
+        newValue.refueling = newRef
+        
+        self.newMileage.accept(newValue)
     }
 }
