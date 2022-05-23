@@ -40,8 +40,7 @@ final class CSTabBarController: UITabBarController {
     
     private func setupTabBarControllers() {
         let items = [createNavController(for: HomeViewController()),
-                     createNavController(for: RefuelingViewController()),
-                     createNavController(for: ServicesViewController())]
+                     createNavController(for: RefuelingViewController())]
     
         viewControllers = items
     }
@@ -62,10 +61,11 @@ final class CSTabBarController: UITabBarController {
             title = "Топливо"
             icon = UIImage(systemName: "flame")
             navController.tabBarItem.selectedImage = UIImage(systemName: "flame.fill")?.withRenderingMode(.alwaysTemplate)
-        case is ServicesViewController:
-            title = "Сервис"
-            icon = UIImage(systemName: "tray.circle")
-            navController.tabBarItem.selectedImage = UIImage(systemName: "tray.circle.fill")?.withRenderingMode(.alwaysTemplate)
+            //Hide tabBarItem
+//        case is ServicesViewController:
+//            title = "Сервис"
+//            icon = UIImage(systemName: "tray.circle")
+//            navController.tabBarItem.selectedImage = UIImage(systemName: "tray.circle.fill")?.withRenderingMode(.alwaysTemplate)
         default:
             break
         }

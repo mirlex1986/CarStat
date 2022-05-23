@@ -64,11 +64,6 @@ final class AddMileageViewModel {
                 case false:
                     self.newDate.accept(Formatters.dateApi.string(from: Date()))
                 }
-                
-//                self.newOdometer.accept(value.odometer)
-//                self.newFuelPrice.accept(value.refueling?.price)
-//                self.newLiters.accept(value.refueling?.quantity)
-//                self.newTotaalPrice.accept(value.refueling?.totalPrice)
             })
             .disposed(by: disposeBag)
     }

@@ -86,45 +86,23 @@ class AddMileageViewController: CSViewController {
         case.add:
             cell.configure(text: !self.viewModel.isEditing.value ? "Добавить" : "Изменить")
         case .delete:
-            cell.configure(text: "Delete")
+            cell.configure(text: "Удалить")
         }
         
         
         cell.button.rx.tap
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
-//                guard let self = self,
-//                      let newDate = self.viewModel.newDate.value,
-//                      let newOdodmeter = self.viewModel.newOdometer.value else { return }
                 
                 switch type {
                 case .add:
-//                    let newValue = UserMileage()
-//                    if !self.viewModel.isEditing.value {
-//                        newValue.primaryKey = UUID().uuidString
-//                    } else {
-//                        newValue.primaryKey = self.viewModel.lastMileage.value?.primaryKey ?? ""
-//                    }
-//                    newValue.date = newDate
-//                    newValue.odometer = newOdodmeter
-//                    let newRef = LocalRefueling()
-//                    newRef.price = self.viewModel.newFuelPrice.value ?? 0.0
-//                    newRef.quantity = self.viewModel.newLiters.value ?? 0.0
-//                    newRef.totalPrice = self.viewModel.newTotaalPrice.value ?? 0.0
-//                    newValue.type = newRef.totalPrice > 0 ? RecordType.refueling.rawValue : RecordType.mileage.rawValue
-//                    newValue.refueling = newRef
-//                    
-//                    self.viewModel.newMileage.accept(newValue)
-                    
                     self.viewModel.newRecordData()
                     
                 case .delete:
                     guard let last = self.viewModel.lastMileage.value else { return }
                     StorageManager.shared.delete(mileage: last)
                 }
-                
-                
-                
+
                 self.navigationController?.popViewController(animated: true)
             })
             .disposed(by: cell.disposeBag)
@@ -181,7 +159,6 @@ class AddMileageViewController: CSViewController {
                 .disposed(by: viewModel.disposeBag)
         default: break
         }
-        
         
         return cell
     }

@@ -43,8 +43,6 @@ class RefuelingInfoCell: RxCollectionViewCell {
             let dateString = Formatters.dateLongOutput.string(from: date)
             dateLabel.text = "\(dateString)"
         }
-        
-        print("----", mileage.type, mileage.primaryKey)
 
         if let totalPrice = mileage.data.refueling?.totalPrice, !totalPrice.isZero {
             refuelingTotalPrice.text = "\(totalPrice) ₽"
@@ -67,7 +65,7 @@ class RefuelingInfoCell: RxCollectionViewCell {
         }
         odometerLabel.text = "\(mileage.odometer) км"
         
-        image.image = mileage.type == "Топливо" ? Images.fuel.withRenderingMode(.alwaysTemplate) : Images.odometer.withRenderingMode(.alwaysTemplate)
+        image.image = mileage.type == RecordType.refueling.rawValue ? Images.fuel : Images.odometer
     }
 }
 
