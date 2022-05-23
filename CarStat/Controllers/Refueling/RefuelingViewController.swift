@@ -48,6 +48,25 @@ class RefuelingViewController: CSViewController {
             .bind(to: collectionView.rx.items(dataSource: dataSource))
             .disposed(by: viewModel.disposeBag)
         
+        viewModel.mileage
+            .subscribe(onNext: { [weak self] data in
+                guard let self = self else { return }
+                
+                let refs = data.filter { $0.refueling?.quantity ?? 0.0 > 0 }
+                
+                if refs.count > 0 {
+                    var tempMileage = 0.0
+                    
+                    refs.forEach {
+                        if let ref = $0.data.refueling, let rub = ref.totalPrice {
+                            tempMileage += rub
+                        }
+                    }
+                    self.navBar.configureSubtitle(text: "\(refs.count) заправок на \(tempMileage)")
+                }
+            })
+            .disposed(by: viewModel.disposeBag)
+        
         collectionView.rx.contentOffset
             .subscribe(onNext: { [weak self] offset in
                 guard let self = self else { return }

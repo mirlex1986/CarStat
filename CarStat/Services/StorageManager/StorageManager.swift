@@ -36,6 +36,16 @@ class StorageManager {
         }
     }
     
+    func delete(mileage: UserMileage) {
+        do {
+            try realm.write {
+                realm.delete(mileage)
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
     func fetchData() -> Results<UserMileage> {
         var someObjects: [UserMileage] = []
         let sortProperties = [SortDescriptor(keyPath: "date", ascending: false), SortDescriptor(keyPath: "odometer", ascending: false)]

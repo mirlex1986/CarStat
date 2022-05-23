@@ -31,6 +31,11 @@ class RefuelingInfoCell: RxCollectionViewCell {
         super.prepareForReuse()
         
         disposeBag = DisposeBag()
+        image.image = nil
+        dateLabel.text = nil
+        mileageLabel.text = nil
+        odometerLabel.text = nil
+        refuelingTotalPrice.text = ""
     }
     
     func configure(mileage: UserMileage, previos: Int) {
@@ -41,7 +46,6 @@ class RefuelingInfoCell: RxCollectionViewCell {
 
         if let totalPrice = mileage.data.refueling?.totalPrice, !totalPrice.isZero {
             refuelingTotalPrice.text = "\(totalPrice) ₽"
-            image.image = Images.fuel.withRenderingMode(.alwaysTemplate)
             
             odometerLabel.snp.remakeConstraints {
                 $0.top.equalTo(refuelingTotalPrice.snp.bottom).offset(4)
@@ -61,6 +65,7 @@ class RefuelingInfoCell: RxCollectionViewCell {
         }
         odometerLabel.text = "\(mileage.odometer) км"
         
+        image.image = mileage.type == RecordType.refueling.rawValue ? Images.fuel : Images.odometer
     }
 }
 
