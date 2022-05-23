@@ -55,12 +55,12 @@ final class CSTabBarController: UITabBarController {
         switch rootViewController {
         case is HomeViewController:
             title = "Статистика"
-            icon = UIImage(systemName: "chart.bar")
-            navController.tabBarItem.selectedImage = UIImage(systemName: "chart.bar.fill")?.withRenderingMode(.alwaysTemplate)
+            icon = UIImage(systemName: "chart.pie")
+            navController.tabBarItem.selectedImage = UIImage(systemName: "chart.pie.fill")?.withRenderingMode(.alwaysTemplate)
         case is RefuelingViewController:
             title = "Топливо"
-            icon = UIImage(systemName: "flame")
-            navController.tabBarItem.selectedImage = UIImage(systemName: "flame.fill")?.withRenderingMode(.alwaysTemplate)
+            icon = UIImage(systemName: "flame.circle")
+            navController.tabBarItem.selectedImage = UIImage(systemName: "flame.circle.fill")?.withRenderingMode(.alwaysTemplate)
             //Hide tabBarItem
 //        case is ServicesViewController:
 //            title = "Сервис"

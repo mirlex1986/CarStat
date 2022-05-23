@@ -194,7 +194,7 @@ extension CSNavigationBar {
         // LEFT BUTTON
         leftButton = UIButton()
         leftButton.setTitle(nil, for: .normal)
-        leftButton.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
+        leftButton.setImage(Images.backButton, for: .normal)
         leftButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
         leftButton.isHidden = true
         leftContainer.addSubview(leftButton)
@@ -212,7 +212,7 @@ extension CSNavigationBar {
         }
         
         rightButtonImage = UIImageView()
-        rightButtonImage.image = UIImage(systemName: "close")
+        rightButtonImage.image = Images.close
         rightContainer.addSubview(rightButtonImage)
         rightButtonImage.isHidden = true
         rightButtonImage.snp.makeConstraints {

@@ -97,7 +97,7 @@ class RefuelingViewController: CSViewController {
                 guard let self = self else { return }
                 
                 Router.addRefueling(lastRefueling: self.viewModel.mileage.value.first, isEditing: false)
-                    .push(from: self.navigationController, animated: false)
+                    .push(from: self.navigationController, animated: true)
             })
             .disposed(by: viewModel.disposeBag)
         
