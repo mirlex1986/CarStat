@@ -198,7 +198,7 @@ extension RefuelingViewController {
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints {
             $0.top.equalTo(navBar.snp.bottom)
-            $0.bottom.equalTo(separator)//.offset(-16)
+            $0.bottom.equalTo(separator)
             $0.left.right.equalToSuperview()
         }
     }

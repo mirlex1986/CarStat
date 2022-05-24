@@ -61,7 +61,6 @@ class CSDateSwitcher: UIView {
 
 extension CSDateSwitcher {
     private func makeUI() {
-        backgroundColor = .clear
         
         mainView = UIView()
         mainView.backgroundColor = .lightBlue
