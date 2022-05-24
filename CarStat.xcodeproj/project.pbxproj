@@ -12,6 +12,7 @@
 		5B2AE63C2833AE0B0043249E /* ServicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2AE63B2833AE0B0043249E /* ServicesViewModel.swift */; };
 		5B2AE63E28343F480043249E /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2AE63D28343F480043249E /* Images.swift */; };
 		5B2AE647283632030043249E /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2AE646283632030043249E /* Router.swift */; };
+		5B2AE6D2283CDB2B0043249E /* CSDateSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2AE6D1283CDB2B0043249E /* CSDateSwitcher.swift */; };
 		5B51EFC327A5462200CB42F5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B51EFC227A5462200CB42F5 /* HomeViewController.swift */; };
 		5B51EFC627A5465D00CB42F5 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B51EFC527A5465D00CB42F5 /* HomeViewModel.swift */; };
 		5B7559652715AD0C000BCA55 /* CSChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7559642715AD0C000BCA55 /* CSChartCell.swift */; };
@@ -59,6 +60,7 @@
 		5B2AE63B2833AE0B0043249E /* ServicesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesViewModel.swift; sourceTree = "<group>"; };
 		5B2AE63D28343F480043249E /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		5B2AE646283632030043249E /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		5B2AE6D1283CDB2B0043249E /* CSDateSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSDateSwitcher.swift; sourceTree = "<group>"; };
 		5B51EFC227A5462200CB42F5 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		5B51EFC527A5465D00CB42F5 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		5B7559642715AD0C000BCA55 /* CSChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSChartCell.swift; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 			isa = PBXGroup;
 			children = (
 				5BBE23EC26EFA50900028774 /* CSCollectionView.swift */,
+				5B2AE6D1283CDB2B0043249E /* CSDateSwitcher.swift */,
 				5BF574EE28191E12001F7B4A /* CSTableView.swift */,
 				5BD0CA9326F481D900433D06 /* Cells */,
 			);
@@ -541,6 +544,7 @@
 				5BDD225C271DB3E500C8D413 /* CSTabBarController.swift in Sources */,
 				5BBE23F226EFA88900028774 /* RefuelingViewController.swift in Sources */,
 				5BD0CA9526F4820100433D06 /* CSButtonCell.swift in Sources */,
+				5B2AE6D2283CDB2B0043249E /* CSDateSwitcher.swift in Sources */,
 				5BBE240526F0DBED00028774 /* RefuelingViewModel.swift in Sources */,
 				5BBE23ED26EFA50900028774 /* CSCollectionView.swift in Sources */,
 				5B51EFC627A5465D00CB42F5 /* HomeViewModel.swift in Sources */,
