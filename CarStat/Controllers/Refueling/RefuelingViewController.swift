@@ -17,7 +17,7 @@ class RefuelingViewController: CSViewController {
     private var collectionView: UICollectionView!
     private var label: UILabel!
     private var separator: UIView!
-    private var button: UIButton!
+    private var addRecordButton: UIButton!
     
     // MARK: - Properties
     typealias Item = RefuelingViewModel.ItemModel
@@ -92,7 +92,7 @@ class RefuelingViewController: CSViewController {
             })
             .disposed(by: viewModel.disposeBag)
         
-        button.rx.tap
+        addRecordButton.rx.tap
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 
@@ -111,14 +111,10 @@ class RefuelingViewController: CSViewController {
             configureCell: { dataSource, collectionView, indexPath, _ in
                 let item: Item = dataSource[indexPath]
                 switch item {
-                case .button:
-                    return self.buttonCell(indexPath: indexPath)
                 case .text(let text, let alignment):
                     return self.textCell(indexPath: indexPath, text: text, alignment: alignment)
                 case .refueling(let mileage, let previos):
                     return self.refuelingCell(indexPath: indexPath, mileage: mileage, previos: previos)
-                case .chart(let mileages):
-                    return self.chartCell(indexPath: indexPath, mileages: mileages)
                 }
             },
             configureSupplementaryView: { _, _, _, _ in
@@ -126,20 +122,6 @@ class RefuelingViewController: CSViewController {
             })
     }
     // MARK: - Cells
-    private func buttonCell(indexPath: IndexPath) -> CSCollectionViewCell {
-        let cell: CSButtonCell = collectionView.cell(indexPath: indexPath)
-        cell.configure(text: "Добавить показания одометра")
-        
-        return cell
-    }
-    
-    private func chartCell(indexPath: IndexPath, mileages: [UserMileage]) -> CSCollectionViewCell {
-        let cell: CSChartCell = collectionView.cell(indexPath: indexPath)
-        cell.configure(mileages: mileages)
-        
-        return cell
-    }
-    
     private func textCell(indexPath: IndexPath, text: String, alignment: NSTextAlignment) -> CSCollectionViewCell {
         let cell: CSTextCell = collectionView.cell(indexPath: indexPath)
         cell.configure(text: text, textAlignment: alignment)
@@ -162,14 +144,10 @@ extension RefuelingViewController: UICollectionViewDelegateFlowLayout {
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let item = dataSource[indexPath]
         switch item {
-        case .button:
-            return CSButtonCell.cellSize
         case .refueling:
             return RefuelingInfoCell.cellSize
         case .text(let text, _):
             return CSTextCell.cellSize(text: text)
-        case .chart:
-            return CSChartCell.cellSize
         }
     }
     
@@ -194,22 +172,12 @@ extension RefuelingViewController {
             $0.left.right.equalToSuperview()
         }
         
-        label = UILabel()
-        label.textAlignment = .center
-        label.numberOfLines = 0
-        label.isHidden = true
-        view.addSubview(label)
-        label.snp.makeConstraints {
-            $0.top.equalTo(navBar.snp.bottom).offset(20)
-            $0.left.right.equalToSuperview()
-        }
-        
-        button = UIButton()
-        button.backgroundColor = .lightBlue
-        button.setTitle("Добавить", for: .normal)
-        button.layer.cornerRadius = 5
-        view.addSubview(button)
-        button.snp.makeConstraints {
+        addRecordButton = UIButton()
+        addRecordButton.backgroundColor = .lightBlue
+        addRecordButton.setTitle("Добавить", for: .normal)
+        addRecordButton.layer.cornerRadius = 5
+        view.addSubview(addRecordButton)
+        addRecordButton.snp.makeConstraints {
             $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(10)
             $0.left.right.equalToSuperview().inset(30)
             $0.height.equalTo(40)
@@ -222,7 +190,7 @@ extension RefuelingViewController {
         separator.snp.makeConstraints {
             $0.left.right.equalToSuperview()
             $0.height.equalTo(0.5)
-            $0.bottom.equalTo(button.snp.top).offset(-10)
+            $0.bottom.equalTo(addRecordButton.snp.top).offset(-10)
         }
         
         // COLLECTION VIEW

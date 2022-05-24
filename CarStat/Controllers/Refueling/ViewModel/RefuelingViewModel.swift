@@ -80,21 +80,15 @@ extension RefuelingViewModel {
     }
     
     enum ItemModel {
-        case button
         case text(text: String, alignment: NSTextAlignment)
-        case chart(mileages: [UserMileage])
         case refueling(mileage: UserMileage, previos: Int = 0)
         
         var id: String {
             switch self {
-            case .button:
-                return "button"
             case .text(let text, _):
                 return "text \(text)"
             case .refueling(let mileage, let previos):
                 return "refueling \(mileage) \(previos)"
-            case .chart(let mileages):
-                return "mileage \(mileages)"
             }
         }
     }
