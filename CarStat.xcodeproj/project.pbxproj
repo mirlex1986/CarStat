@@ -15,6 +15,10 @@
 		5B2AE6D2283CDB2B0043249E /* CSDateSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2AE6D1283CDB2B0043249E /* CSDateSwitcher.swift */; };
 		5B51EFC327A5462200CB42F5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B51EFC227A5462200CB42F5 /* HomeViewController.swift */; };
 		5B51EFC627A5465D00CB42F5 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B51EFC527A5465D00CB42F5 /* HomeViewModel.swift */; };
+		5B66F8AE2849FEFE009D987D /* BarCodeScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B66F8AD2849FEFE009D987D /* BarCodeScannerViewController.swift */; };
+		5B66F8B02849FF17009D987D /* BarCodeScannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B66F8AF2849FF17009D987D /* BarCodeScannerViewModel.swift */; };
+		5B66F8B2284A065E009D987D /* CSPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B66F8B1284A065E009D987D /* CSPopUpViewController.swift */; };
+		5B66F8B7284A1848009D987D /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B66F8B6284A1848009D987D /* AlertManager.swift */; };
 		5B7559652715AD0C000BCA55 /* CSChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7559642715AD0C000BCA55 /* CSChartCell.swift */; };
 		5B89FC19282E425800D42378 /* RefuelingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B89FC18282E425800D42378 /* RefuelingCell.swift */; };
 		5B89FC1B282E4DC800D42378 /* MileageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B89FC1A282E4DC800D42378 /* MileageCell.swift */; };
@@ -61,6 +65,10 @@
 		5B2AE6D1283CDB2B0043249E /* CSDateSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSDateSwitcher.swift; sourceTree = "<group>"; };
 		5B51EFC227A5462200CB42F5 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		5B51EFC527A5465D00CB42F5 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		5B66F8AD2849FEFE009D987D /* BarCodeScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarCodeScannerViewController.swift; sourceTree = "<group>"; };
+		5B66F8AF2849FF17009D987D /* BarCodeScannerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarCodeScannerViewModel.swift; sourceTree = "<group>"; };
+		5B66F8B1284A065E009D987D /* CSPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSPopUpViewController.swift; sourceTree = "<group>"; };
+		5B66F8B6284A1848009D987D /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		5B7559642715AD0C000BCA55 /* CSChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSChartCell.swift; sourceTree = "<group>"; };
 		5B89FC18282E425800D42378 /* RefuelingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefuelingCell.swift; sourceTree = "<group>"; };
 		5B89FC1A282E4DC800D42378 /* MileageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MileageCell.swift; sourceTree = "<group>"; };
@@ -115,13 +123,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5B2AE6372833ADD50043249E /* ServicesViewController */ = {
+		5B2AE6372833ADD50043249E /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				5B2AE6382833ADED0043249E /* ViewModel */,
 				5B2AE6392833AE010043249E /* ServicesViewController.swift */,
 			);
-			path = ServicesViewController;
+			path = Services;
 			sourceTree = "<group>";
 		};
 		5B2AE6382833ADED0043249E /* ViewModel */ = {
@@ -140,14 +148,14 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
-		5B51EFC127A545F000CB42F5 /* HomeViewController */ = {
+		5B51EFC127A545F000CB42F5 /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				5BF574DE2818342C001F7B4A /* Cells */,
 				5B51EFC427A5464900CB42F5 /* ViewModel */,
 				5B51EFC227A5462200CB42F5 /* HomeViewController.swift */,
 			);
-			path = HomeViewController;
+			path = Home;
 			sourceTree = "<group>";
 		};
 		5B51EFC427A5464900CB42F5 /* ViewModel */ = {
@@ -156,6 +164,31 @@
 				5B51EFC527A5465D00CB42F5 /* HomeViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5B66F8AB2849FE9E009D987D /* BarCodeScanner */ = {
+			isa = PBXGroup;
+			children = (
+				5B66F8AC2849FED2009D987D /* ViewModel */,
+				5B66F8AD2849FEFE009D987D /* BarCodeScannerViewController.swift */,
+			);
+			path = BarCodeScanner;
+			sourceTree = "<group>";
+		};
+		5B66F8AC2849FED2009D987D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5B66F8AF2849FF17009D987D /* BarCodeScannerViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5B66F8B5284A1830009D987D /* AlertManager */ = {
+			isa = PBXGroup;
+			children = (
+				5B66F8B6284A1848009D987D /* AlertManager.swift */,
+			);
+			path = AlertManager;
 			sourceTree = "<group>";
 		};
 		5BBE23CB26EF9FDA00028774 = {
@@ -193,13 +226,15 @@
 		5BBE23EB26EFA43C00028774 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				5B2AE6372833ADD50043249E /* ServicesViewController */,
-				5B51EFC127A545F000CB42F5 /* HomeViewController */,
-				5BDF42D126F88363001CE585 /* AddMileage */,
+				5B51EFC127A545F000CB42F5 /* Home */,
 				5BBE23F026EFA86B00028774 /* Refueling */,
+				5B66F8AB2849FE9E009D987D /* BarCodeScanner */,
+				5B2AE6372833ADD50043249E /* Services */,
+				5BDF42D126F88363001CE585 /* AddMileage */,
 				5BDD225B271DB3E500C8D413 /* CSTabBarController.swift */,
 				5BF574E228183556001F7B4A /* CSNavigationBar.swift */,
 				5BF574E0281834F5001F7B4A /* CSViewController.swift */,
+				5B66F8B1284A065E009D987D /* CSPopUpViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -235,6 +270,7 @@
 		5BBE23F526F0CCA300028774 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				5B66F8B5284A1830009D987D /* AlertManager */,
 				5B2AE645283631F70043249E /* Router */,
 				5BF574FC281AF2AE001F7B4A /* StorageManager */,
 			);
@@ -499,6 +535,8 @@
 				5B2AE63A2833AE010043249E /* ServicesViewController.swift in Sources */,
 				5B2AE63E28343F480043249E /* Images.swift in Sources */,
 				5B2AE63C2833AE0B0043249E /* ServicesViewModel.swift in Sources */,
+				5B66F8B02849FF17009D987D /* BarCodeScannerViewModel.swift in Sources */,
+				5B66F8AE2849FEFE009D987D /* BarCodeScannerViewController.swift in Sources */,
 				5B89FC19282E425800D42378 /* RefuelingCell.swift in Sources */,
 				5BDF42D326F8838C001CE585 /* AddMileageViewController.swift in Sources */,
 				5BDF42DA26F8BBC5001CE585 /* CSInputCell.swift in Sources */,
@@ -514,10 +552,12 @@
 				5BF574EB28183E29001F7B4A /* CSImageCell.swift in Sources */,
 				5B89FC2228323A1E00D42378 /* UIView + Extensions.swift in Sources */,
 				5BD0CA8D26F4702800433D06 /* CSCollectionViewCell.swift in Sources */,
+				5B66F8B2284A065E009D987D /* CSPopUpViewController.swift in Sources */,
 				5BD0CA9126F473F200433D06 /* UICollectionView + Extention.swift in Sources */,
 				5BF574E328183556001F7B4A /* CSNavigationBar.swift in Sources */,
 				5BDF42D626F883BD001CE585 /* AddMileageViewModel.swift in Sources */,
 				5BF574E7281839BE001F7B4A /* UILabel + Extensions.swift in Sources */,
+				5B66F8B7284A1848009D987D /* AlertManager.swift in Sources */,
 				5BDF42CE26F87CF0001CE585 /* Mileage.swift in Sources */,
 				5BDF42D026F87D77001CE585 /* UserMileage.swift in Sources */,
 				5B89FC1B282E4DC800D42378 /* MileageCell.swift in Sources */,

@@ -35,4 +35,11 @@ enum Formatters {
         formatter.dateFormat = "dd MMMM"
         return formatter
     }
+    
+    static var qrDate: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ru_RU")
+        formatter.dateFormat = "yyyyMMdd"
+        return formatter
+    }
 }

@@ -9,6 +9,10 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+protocol PickerController {
+    var result: Observable<PickerResult?> { get }
+}
+
 class CSViewController: UIViewController {
     // MARK: - UI
     private var viewLoader: UIImageView!
@@ -47,7 +51,7 @@ extension CSViewController {
         view.addSubview(containerView)
         containerView.snp.makeConstraints {
             $0.size.equalToSuperview()
-            $0.bottom.equalToSuperview().offset(100)
+            $0.bottom.equalToSuperview().offset(Device.deviceHeight)
         }
         
         // TAP GESTURE RECOGNISER
@@ -75,5 +79,47 @@ extension CSViewController {
         cell.configure(text: text, textColor: color, textAlignment: alignment)
         
         return cell
+    }
+}
+
+extension CSViewController {
+    private func configureBlurView(isHidden: Bool, completion: (() -> Void)? = nil) {
+        var alpha: CGFloat = isHidden ? 0.3 : 0
+        
+        Timer.scheduledTimer(withTimeInterval: 0.02, repeats: true) { timer in
+            self.view.backgroundColor = UIColor.black.withAlphaComponent(alpha)
+            
+            if isHidden {
+                alpha -= 0.02
+                if alpha <= 0 {
+                    timer.invalidate()
+                    completion?()
+                }
+            } else {
+                alpha += 0.02
+                if alpha > 0.3 {
+                    timer.invalidate()
+                    completion?()
+                }
+            }
+        }
+    }
+    
+    func presentWithAnimation() {
+        configureBlurView(isHidden: false)
+        
+        UIView.animate(withDuration: 0.2, delay: 0.1, options: .curveEaseOut) {
+            self.containerView.transform = CGAffineTransform(translationX: 0, y: -Device.deviceHeight)
+        }
+    }
+    
+    func dismissWithAnimaion(completion: (() -> Void)? = nil) {
+        self.view.endEditing(true)
+ 
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn) {
+            self.containerView.transform = CGAffineTransform(translationX: 0, y: Device.deviceHeight)
+        }
+        
+        self.configureBlurView(isHidden: true) { self.dismiss(animated: false, completion: completion) }
     }
 }

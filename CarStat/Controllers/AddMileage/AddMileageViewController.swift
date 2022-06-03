@@ -60,7 +60,8 @@ class AddMileageViewController: CSViewController {
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 
-                print("---- right tapped")
+                Router.barCodeScanner
+                    .presentWithResult(from: self)
             })
             .disposed(by: viewModel.disposeBag)
     }
@@ -220,7 +221,7 @@ extension AddMileageViewController {
         // NAVBAR
         navBar = CSNavigationBar()
         navBar.configure(title: "Добавить", [.rightButton, .backButton])
-        navBar.configureRightButton(image: Images.service)
+        navBar.configureRightButton(image: UIImage(systemName: "camera.circle") ?? UIImage())
         view.addSubview(navBar)
         navBar.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide)
