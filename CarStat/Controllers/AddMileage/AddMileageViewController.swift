@@ -55,6 +55,14 @@ class AddMileageViewController: CSViewController {
                 self.navigationController?.popViewController(animated: true)
             })
             .disposed(by: viewModel.disposeBag)
+        
+        navBar.rightButton.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                
+                print("---- right tapped")
+            })
+            .disposed(by: viewModel.disposeBag)
     }
     
     private func generateDataSource() -> RxCollectionViewSectionedAnimatedDataSource<Section> {
@@ -131,7 +139,6 @@ class AddMileageViewController: CSViewController {
                 case .fuelPrice:
                     self.viewModel.newFuelPrice.accept(Double(value.replacingOccurrences(of: ",", with: ".")))
                 case .fuelCount:
-                    
                     self.viewModel.newLiters.accept(Double(value.replacingOccurrences(of: ",", with: ".")))
                     if let price = self.viewModel.newFuelPrice.value, let liters = self.viewModel.newLiters.value {
                         
@@ -212,8 +219,8 @@ extension AddMileageViewController {
         
         // NAVBAR
         navBar = CSNavigationBar()
-        navBar.configure(title: "Добавить")
-        navBar.configureBackButton(isHidden: false)
+        navBar.configure(title: "Добавить", [.rightButton, .backButton])
+        navBar.configureRightButton(image: Images.service)
         view.addSubview(navBar)
         navBar.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide)

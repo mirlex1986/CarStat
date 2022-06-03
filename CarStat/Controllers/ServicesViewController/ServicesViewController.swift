@@ -16,7 +16,6 @@ class ServicesViewController: CSViewController {
     // MARK: - UI
     private var navBar: CSNavigationBar!
     private var collectionView: UICollectionView!
-    private var label: UILabel!
     private var separator: UIView!
     private var button: UIButton!
     
@@ -88,8 +87,6 @@ class ServicesViewController: CSViewController {
             configureCell: { dataSource, collectionView, indexPath, _ in
                 let item: Item = dataSource[indexPath]
                 switch item {
-                case .button:
-                    return self.buttonCell(indexPath: indexPath)
                 case .text(let text, let alignment):
                     return self.textCell(indexPath: indexPath, text: text, alignment: alignment)
                 }
@@ -99,13 +96,6 @@ class ServicesViewController: CSViewController {
             })
     }
     // MARK: - Cells
-    private func buttonCell(indexPath: IndexPath) -> CSCollectionViewCell {
-        let cell: CSButtonCell = collectionView.cell(indexPath: indexPath)
-        cell.configure(text: "Добавить показания одометра")
-        
-        return cell
-    }
-    
     private func textCell(indexPath: IndexPath, text: String, alignment: NSTextAlignment) -> CSCollectionViewCell {
         let cell: CSTextCell = collectionView.cell(indexPath: indexPath)
         cell.configure(text: text, textAlignment: alignment)
@@ -121,8 +111,6 @@ extension ServicesViewController: UICollectionViewDelegateFlowLayout {
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let item = dataSource[indexPath]
         switch item {
-        case .button:
-            return CSButtonCell.cellSize
         case .text(let text, _):
             return CSTextCell.cellSize(text: text)
         }
@@ -146,16 +134,6 @@ extension ServicesViewController {
         view.addSubview(navBar)
         navBar.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide)
-            $0.left.right.equalToSuperview()
-        }
-        
-        label = UILabel()
-        label.textAlignment = .center
-        label.numberOfLines = 0
-        label.isHidden = true
-        view.addSubview(label)
-        label.snp.makeConstraints {
-            $0.top.equalTo(navBar.snp.bottom).offset(20)
             $0.left.right.equalToSuperview()
         }
         
@@ -185,7 +163,7 @@ extension ServicesViewController {
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints {
             $0.top.equalTo(navBar.snp.bottom)
-            $0.bottom.equalTo(separator)//.offset(-16)
+            $0.bottom.equalTo(separator)
             $0.left.right.equalToSuperview()
         }
     }

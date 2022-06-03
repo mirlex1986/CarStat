@@ -48,8 +48,6 @@
 		5BF574E928183D12001F7B4A /* CSEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF574E828183D12001F7B4A /* CSEmptyCell.swift */; };
 		5BF574EB28183E29001F7B4A /* CSImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF574EA28183E29001F7B4A /* CSImageCell.swift */; };
 		5BF574ED28191D9D001F7B4A /* UITableView + Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF574EC28191D9D001F7B4A /* UITableView + Extention.swift */; };
-		5BF574EF28191E12001F7B4A /* CSTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF574EE28191E12001F7B4A /* CSTableView.swift */; };
-		5BF574F128191E53001F7B4A /* CSTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF574F028191E53001F7B4A /* CSTableViewCell.swift */; };
 		5BF574F3281AB55B001F7B4A /* Date + Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF574F2281AB55B001F7B4A /* Date + Extention.swift */; };
 		5BF574F5281AB606001F7B4A /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF574F4281AB606001F7B4A /* Formatters.swift */; };
 /* End PBXBuildFile section */
@@ -98,8 +96,6 @@
 		5BF574E828183D12001F7B4A /* CSEmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSEmptyCell.swift; sourceTree = "<group>"; };
 		5BF574EA28183E29001F7B4A /* CSImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSImageCell.swift; sourceTree = "<group>"; };
 		5BF574EC28191D9D001F7B4A /* UITableView + Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView + Extention.swift"; sourceTree = "<group>"; };
-		5BF574EE28191E12001F7B4A /* CSTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSTableView.swift; sourceTree = "<group>"; };
-		5BF574F028191E53001F7B4A /* CSTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSTableViewCell.swift; sourceTree = "<group>"; };
 		5BF574F2281AB55B001F7B4A /* Date + Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Extention.swift"; sourceTree = "<group>"; };
 		5BF574F4281AB606001F7B4A /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		EAB9A309A496810F12E07005 /* Pods_CarStat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CarStat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -240,7 +236,6 @@
 			isa = PBXGroup;
 			children = (
 				5B2AE645283631F70043249E /* Router */,
-				5BF574FD281AF2B8001F7B4A /* DataManager */,
 				5BF574FC281AF2AE001F7B4A /* StorageManager */,
 			);
 			path = Services;
@@ -300,7 +295,6 @@
 			children = (
 				5BBE23EC26EFA50900028774 /* CSCollectionView.swift */,
 				5B2AE6D1283CDB2B0043249E /* CSDateSwitcher.swift */,
-				5BF574EE28191E12001F7B4A /* CSTableView.swift */,
 				5BD0CA9326F481D900433D06 /* Cells */,
 			);
 			path = Views;
@@ -310,7 +304,6 @@
 			isa = PBXGroup;
 			children = (
 				5BD0CA8C26F4702800433D06 /* CSCollectionViewCell.swift */,
-				5BF574F028191E53001F7B4A /* CSTableViewCell.swift */,
 				5BD0CA9426F4820100433D06 /* CSButtonCell.swift */,
 				5BDF42D726F8A83C001CE585 /* CSTextCell.swift */,
 				5BDF42D926F8BBC5001CE585 /* CSInputCell.swift */,
@@ -363,13 +356,6 @@
 				5BBE23F626F0CD1600028774 /* StorageManager.swift */,
 			);
 			path = StorageManager;
-			sourceTree = "<group>";
-		};
-		5BF574FD281AF2B8001F7B4A /* DataManager */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = DataManager;
 			sourceTree = "<group>";
 		};
 		673C2CD7F0E5ECA4AD536E04 /* Pods */ = {
@@ -526,12 +512,10 @@
 				5BF574ED28191D9D001F7B4A /* UITableView + Extention.swift in Sources */,
 				5BCB033A28328E810055E9F3 /* String + Extension.swift in Sources */,
 				5BF574EB28183E29001F7B4A /* CSImageCell.swift in Sources */,
-				5BF574EF28191E12001F7B4A /* CSTableView.swift in Sources */,
 				5B89FC2228323A1E00D42378 /* UIView + Extensions.swift in Sources */,
 				5BD0CA8D26F4702800433D06 /* CSCollectionViewCell.swift in Sources */,
 				5BD0CA9126F473F200433D06 /* UICollectionView + Extention.swift in Sources */,
 				5BF574E328183556001F7B4A /* CSNavigationBar.swift in Sources */,
-				5BF574F128191E53001F7B4A /* CSTableViewCell.swift in Sources */,
 				5BDF42D626F883BD001CE585 /* AddMileageViewModel.swift in Sources */,
 				5BF574E7281839BE001F7B4A /* UILabel + Extensions.swift in Sources */,
 				5BDF42CE26F87CF0001CE585 /* Mileage.swift in Sources */,

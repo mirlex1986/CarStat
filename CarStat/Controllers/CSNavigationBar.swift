@@ -18,9 +18,6 @@ class CSNavigationBar: UIView {
     private var contentStackView: UIStackView!
     private var mainView: UIView!
     
-    private var bgContainer: UIView!
-    private var logoImage: UIImageView!
-    
     private var mainStackView: UIStackView!
     private var mainImageView: UIImageView!
     private var textStackView: UIStackView!
@@ -58,11 +55,6 @@ class CSNavigationBar: UIView {
     }
     
     private func commonInit() {
-        bgContainer = UIView()
-        addSubview(bgContainer)
-        bgContainer.frame = self.bounds
-        bgContainer.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
         contentView = UIView()
         addSubview(contentView)
         contentView.frame = self.bounds
@@ -137,14 +129,6 @@ class CSNavigationBar: UIView {
         mainImageView.alpha = 0
     }
     
-    func animatedNavBarAlpha(needDisplay: Bool, needDisplayImage: Bool = false, title: String?) {
-        configure(title: title)
-        UIView.animate(withDuration: 0.3) {
-            self.bgContainer.alpha = needDisplay ? 1 : 0
-            self.mainImageView.alpha = needDisplayImage ? 1 : 0
-        }
-    }
-    
     private func subscribe() {
         separatorIsHiddenTrigger
             .subscribe(onNext: { [unowned self] trigger in
@@ -160,10 +144,6 @@ extension CSNavigationBar {
         backgroundColor = .clear
         clipsToBounds = true
         contentView.backgroundColor = .white
-        
-        // BG for produt navBar
-        bgContainer.backgroundColor = .white
-        bgContainer.alpha = 0
                 
         // NAVBAR
         contentStackView = UIStackView()

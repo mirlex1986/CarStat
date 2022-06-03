@@ -11,6 +11,7 @@ import UIKit
 
 enum Router {
     case addRefueling(lastRefueling: UserMileage?, isEditing: Bool = false)
+    case addService
 }
 
 extension Router {
@@ -22,9 +23,8 @@ extension Router {
             vc.viewModel = AddMileageViewModel(lastMileage: lastRefueling, isEditing: isEditing)
             
             navigationController?.pushViewController(vc, animated: animated)
-        
-//        default:
-//            return
+        case .addService:
+            break
         }
     }
     

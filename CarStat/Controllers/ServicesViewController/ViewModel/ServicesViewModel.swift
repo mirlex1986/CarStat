@@ -70,11 +70,6 @@ extension ServicesViewModel {
             })
             .disposed(by: disposeBag)
     }
-    
-    func calculateMileage() -> String {
-        
-        return "Пробег "
-    }
 }
 
 
@@ -85,13 +80,10 @@ extension ServicesViewModel {
     }
     
     enum ItemModel {
-        case button
         case text(text: String, alignment: NSTextAlignment)
         
         var id: String {
             switch self {
-            case .button:
-                return "button"
             case .text(let text, _):
                 return "text \(text)"
             }
