@@ -79,7 +79,12 @@ class BarCodeScannerViewController: CSPopUpViewController {
                     
                     AlertManager.showAction(on: self,
                                             title: "Полученные данные",
-                                            message: self.viewModel.makeStringFromParsedData())
+                                            message: self.viewModel.makeStringFromParsedData()) { action in
+                        switch action {
+                        case true: self.captureSession.startRunning()
+                        case false: self.dismissWithAnimaion()
+                        }
+                    }
                 case false: break
                 }
             })
