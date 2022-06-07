@@ -82,6 +82,8 @@ class BarCodeScannerViewController: CSPopUpViewController {
                                             message: self.viewModel.makeStringFromParsedData()) { action in
                         switch action {
                         case true: self.captureSession.startRunning()
+                            // TODO: - Add pick data from QR and add ti result
+                        
                         case false: self.dismissWithAnimaion()
                         }
                     }

@@ -40,9 +40,9 @@ final class BarCodeScannerViewModel {
     }
 }
 
-// MARK: - Network
+// MARK: - Methods
 extension BarCodeScannerViewModel {
-    func parseQR(_ scannedString: String) {
+    private func parseQR(_ scannedString: String) {
         if let parsedDate = scannedString.components(separatedBy: "t=").last?.components(separatedBy: "&").first {
             let cutted = String(parsedDate.dropLast(5))
             if let date = Formatters.qrDate.date(from: cutted) {
