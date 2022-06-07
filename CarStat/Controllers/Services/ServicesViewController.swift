@@ -1,11 +1,3 @@
-//
-//  ServicesViewController.swift
-//  CarStat
-//
-//  Created by Aleksey Mironov on 17.05.2022.
-//
-
-
 import UIKit
 import SnapKit
 import RxSwift

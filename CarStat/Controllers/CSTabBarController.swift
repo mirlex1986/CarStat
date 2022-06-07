@@ -1,10 +1,3 @@
-//
-//  CSTabBarController.swift
-//  CarStat
-//
-//  Created by Aleksey Mironov on 18.10.2021.
-//
-
 import UIKit
 import RxSwift
 import RxCocoa

@@ -51,7 +51,6 @@
 		5BF574E7281839BE001F7B4A /* UILabel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF574E6281839BE001F7B4A /* UILabel + Extensions.swift */; };
 		5BF574E928183D12001F7B4A /* CSEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF574E828183D12001F7B4A /* CSEmptyCell.swift */; };
 		5BF574EB28183E29001F7B4A /* CSImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF574EA28183E29001F7B4A /* CSImageCell.swift */; };
-		5BF574ED28191D9D001F7B4A /* UITableView + Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF574EC28191D9D001F7B4A /* UITableView + Extention.swift */; };
 		5BF574F3281AB55B001F7B4A /* Date + Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF574F2281AB55B001F7B4A /* Date + Extention.swift */; };
 		5BF574F5281AB606001F7B4A /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF574F4281AB606001F7B4A /* Formatters.swift */; };
 /* End PBXBuildFile section */
@@ -103,7 +102,6 @@
 		5BF574E6281839BE001F7B4A /* UILabel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + Extensions.swift"; sourceTree = "<group>"; };
 		5BF574E828183D12001F7B4A /* CSEmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSEmptyCell.swift; sourceTree = "<group>"; };
 		5BF574EA28183E29001F7B4A /* CSImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSImageCell.swift; sourceTree = "<group>"; };
-		5BF574EC28191D9D001F7B4A /* UITableView + Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView + Extention.swift"; sourceTree = "<group>"; };
 		5BF574F2281AB55B001F7B4A /* Date + Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Extention.swift"; sourceTree = "<group>"; };
 		5BF574F4281AB606001F7B4A /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		EAB9A309A496810F12E07005 /* Pods_CarStat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CarStat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -317,7 +315,6 @@
 			isa = PBXGroup;
 			children = (
 				5BD0CA9026F473F200433D06 /* UICollectionView + Extention.swift */,
-				5BF574EC28191D9D001F7B4A /* UITableView + Extention.swift */,
 				5BF574E6281839BE001F7B4A /* UILabel + Extensions.swift */,
 				5BF574F2281AB55B001F7B4A /* Date + Extention.swift */,
 				5B89FC2128323A1E00D42378 /* UIView + Extensions.swift */,
@@ -547,7 +544,6 @@
 				5BD0CA8B26F46FE100433D06 /* RefuelingInfoCell.swift in Sources */,
 				5BBE23F726F0CD1600028774 /* StorageManager.swift in Sources */,
 				5BF574E1281834F5001F7B4A /* CSViewController.swift in Sources */,
-				5BF574ED28191D9D001F7B4A /* UITableView + Extention.swift in Sources */,
 				5BCB033A28328E810055E9F3 /* String + Extension.swift in Sources */,
 				5BF574EB28183E29001F7B4A /* CSImageCell.swift in Sources */,
 				5B89FC2228323A1E00D42378 /* UIView + Extensions.swift in Sources */,

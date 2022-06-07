@@ -1,11 +1,3 @@
-//
-//  MainScreenViewModel.swift
-//  CarStat
-//
-//  Created by Aleksey Mironov on 14.09.2021.
-//
-
-import Foundation
 import RxSwift
 import RxCocoa
 import RxDataSources

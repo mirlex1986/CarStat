@@ -1,10 +1,3 @@
-//
-//  RefuelingCell.swift
-//  CarStat
-//
-//  Created by Aleksey Mironov on 13.05.2022.
-//
-
 import Foundation
 import UIKit
 import SnapKit

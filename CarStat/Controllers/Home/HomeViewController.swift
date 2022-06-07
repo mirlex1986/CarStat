@@ -1,10 +1,3 @@
-//
-//  HomeViewController.swift
-//  CarStat
-//
-//  Created by Aleksey Mironov on 29.01.2022.
-//
-
 import UIKit
 import SnapKit
 import RxSwift

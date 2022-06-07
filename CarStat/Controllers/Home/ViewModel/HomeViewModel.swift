@@ -1,10 +1,3 @@
-//
-//  HomeViewModel.swift
-//  CarStat
-//
-//  Created by Aleksey Mironov on 29.01.2022.
-//
-
 import Foundation
 import RxSwift
 import RxCocoa

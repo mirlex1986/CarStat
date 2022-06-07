@@ -1,11 +1,3 @@
-//
-//  CSCollectionView.swift
-//  CarStat
-//
-//  Created by Aleksey Mironov on 13.09.2021.
-//
-
-
 import UIKit
 
 class CSCollectionView: UICollectionView {}

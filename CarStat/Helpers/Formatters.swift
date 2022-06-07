@@ -1,10 +1,3 @@
-//
-//  Formatters.swift
-//  CarStat
-//
-//  Created by Aleksey Mironov on 28.04.2022.
-//
-
 import Foundation
 
 enum Formatters {

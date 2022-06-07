@@ -1,11 +1,3 @@
-//
-//  RefuelingInfoCell.swift
-//  CarStat
-//
-//  Created by Aleksey Mironov on 17.09.2021.
-//
-
-import Foundation
 import UIKit
 import SnapKit
 import RxSwift

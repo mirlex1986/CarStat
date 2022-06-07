@@ -1,10 +1,3 @@
-//
-//  Router.swift
-//  CarStat
-//
-//  Created by Aleksey Mironov on 19.05.2022.
-//
-
 import RxSwift
 import RxCocoa
 import UIKit

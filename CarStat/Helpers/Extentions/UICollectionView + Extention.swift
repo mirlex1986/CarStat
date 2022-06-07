@@ -1,10 +1,3 @@
-//
-//  UICollectionView + Extention.swift
-//  CarStat
-//
-//  Created by Aleksey Mironov on 17.09.2021.
-//
-
 import RxSwift
 import RxCocoa
 

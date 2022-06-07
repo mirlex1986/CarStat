@@ -1,10 +1,3 @@
-//
-//  CSCollectionViewCell.swift
-//  CarStat
-//
-//  Created by Aleksey Mironov on 17.09.2021.
-//
-
 import RxSwift
 
 class CSCollectionViewCell: UICollectionViewCell {

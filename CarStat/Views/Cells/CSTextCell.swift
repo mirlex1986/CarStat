@@ -1,10 +1,3 @@
-//
-//  CSTextCell.swift
-//  CarStat
-//
-//  Created by Aleksey Mironov on 20.09.2021.
-//
-
 import UIKit
 import SnapKit
 import RxSwift

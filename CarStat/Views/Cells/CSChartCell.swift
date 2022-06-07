@@ -1,10 +1,3 @@
-//
-//  CSChartCell.swift
-//  CarStat
-//
-//  Created by Aleksey Mironov on 12.10.2021.
-//
-
 import UIKit
 import SnapKit
 import RxSwift
@@ -30,8 +23,8 @@ class CSChartCell: RxCollectionViewCell {
     }
     
     func configure(mileages: [UserMileage]) {
-        var dataEntries: [ChartDataEntry] = []
-        
+//        var dataEntries: [ChartDataEntry] = []
+        //TODO: - configuretion of data charts, or await iOS 16 and make an SwiftUI ChartsAPI
         
     }
 }

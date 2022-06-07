@@ -1,12 +1,3 @@
-//
-//  ServicesViewModel.swift
-//  CarStat
-//
-//  Created by Aleksey Mironov on 17.05.2022.
-//
-
-
-import Foundation
 import RxSwift
 import RxCocoa
 import RxDataSources
@@ -38,14 +29,6 @@ final class ServicesViewModel {
     
     func configureSections() {
         var items: [ItemModel] = []
-//        var previos = 0
-//        
-//        for (i, mile) in mileage.value.enumerated() {
-//            if i < mileage.value.count - 1 {
-//                previos = mileage.value[i + 1].odometer
-//            }
-//            items.append(.refueling(mileage: mile, previos: previos))
-//        }
         
         sections.accept([.mainSection(items: items)])
     }

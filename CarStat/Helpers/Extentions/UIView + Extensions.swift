@@ -1,10 +1,3 @@
-//
-//  UIView + Extensions.swift
-//  CarStat
-//
-//  Created by Aleksey Mironov on 16.05.2022.
-//
-
 import UIKit
 
 extension UIView {

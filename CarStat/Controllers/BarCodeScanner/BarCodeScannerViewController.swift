@@ -1,10 +1,3 @@
-//
-//  BarCodeScannerViewController.swift
-//  CarStat
-//
-//  Created by Aleksey Mironov on 03.06.2022.
-//
-
 import UIKit
 import RxSwift
 import RxCocoa
@@ -56,16 +49,6 @@ class BarCodeScannerViewController: CSPopUpViewController {
                 guard let self = self else { return }
                 
                 self.toggleFlash()
-            })
-            .disposed(by: viewModel.disposeBag)
-        
-        viewModel.metadata
-            .throttle(.seconds(3), scheduler: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] data in
-                guard let self = self, let data = data else { return }
-                
-                    print("-----", data)
-                
             })
             .disposed(by: viewModel.disposeBag)
         

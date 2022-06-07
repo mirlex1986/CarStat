@@ -1,10 +1,3 @@
-//
-//  BarCodeScannerViewModel.swift
-//  CarStat
-//
-//  Created by Aleksey Mironov on 03.06.2022.
-//
-
 import Foundation
 import RxSwift
 import RxCocoa
