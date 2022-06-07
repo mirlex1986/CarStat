@@ -21,6 +21,8 @@ final class BarCodeScannerViewModel {
     let refuelingDate = BehaviorRelay<String>(value: "")
     let refuelingTotalPrice = BehaviorRelay<Double>(value: 0.0)
     
+    let result = BehaviorRelay<UserMileage?>(value: nil)
+    
     init() {
         
         subscribe()

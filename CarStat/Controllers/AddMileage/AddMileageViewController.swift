@@ -62,6 +62,7 @@ class AddMileageViewController: CSViewController {
                 
                 Router.barCodeScanner
                     .presentWithResult(from: self)
+                
             })
             .disposed(by: viewModel.disposeBag)
     }
