@@ -30,6 +30,9 @@ final class ServicesViewModel {
     func configureSections() {
         var items: [ItemModel] = []
         
+        items.append(.empty(height: Device.deviceHeight / 3, index: items.count))
+        items.append(.text(text: "Еще не готово =("))
+        
         sections.accept([.mainSection(items: items)])
     }
 }
@@ -63,10 +66,13 @@ extension ServicesViewModel {
     }
     
     enum ItemModel {
+        case empty(height: CGFloat, index: Int)
         case text(text: String)
         
         var id: String {
             switch self {
+            case .empty(let height, let index):
+                return "empty \(height) \(index)"
             case .text(let text):
                 return "text \(text)"
             }

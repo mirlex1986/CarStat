@@ -15,7 +15,7 @@ class ServicesViewController: CSViewController {
     typealias Item = ServicesViewModel.ItemModel
     typealias Section = ServicesViewModel.SectionModel
     
-    var viewModel: ServicesViewModel!
+    var viewModel = ServicesViewModel()
     var dataSource: RxCollectionViewSectionedAnimatedDataSource<Section>!
     
     override func viewDidLoad() {
@@ -79,6 +79,8 @@ class ServicesViewController: CSViewController {
             configureCell: { dataSource, collectionView, indexPath, _ in
                 let item: Item = dataSource[indexPath]
                 switch item {
+                case .empty:
+                    return self.emptyCell(self.collectionView, indexPath: indexPath)
                 case .text(let text):
                     return self.textCell(self.collectionView, indexPath: indexPath, text: text)
                 }
@@ -98,6 +100,8 @@ extension ServicesViewController: UICollectionViewDelegateFlowLayout {
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let item = dataSource[indexPath]
         switch item {
+        case .empty(let height, _):
+            return CSEmptyCell.cellSize(height: height)
         case .text(let text):
             return CSTextCell.cellSize(text: text)
         }

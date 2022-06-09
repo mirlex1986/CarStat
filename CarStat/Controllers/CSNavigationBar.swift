@@ -11,7 +11,6 @@ class CSNavigationBar: UIView {
     private var mainView: UIView!
     
     private var mainStackView: UIStackView!
-    private var mainImageView: UIImageView!
     private var textStackView: UIStackView!
     private var titleLabel: UILabel!
     private var subtitleLabel: UILabel!
@@ -115,12 +114,6 @@ class CSNavigationBar: UIView {
         }
     }
     
-    func configureMainImage(_ image: UIImage) {
-        mainImageView.image = image
-        mainImageView.isHidden = false
-        mainImageView.alpha = 0
-    }
-    
     private func subscribe() {
         separatorIsHiddenTrigger
             .subscribe(onNext: { [unowned self] trigger in
@@ -211,15 +204,6 @@ extension CSNavigationBar {
             $0.centerY.equalToSuperview()
             $0.left.equalTo(leftContainer.snp.right).offset(12)
             $0.right.equalTo(rightButton.snp.left).offset(12)
-        }
-        
-        // PRODUCT IMAGE
-        mainImageView = UIImageView()
-        mainImageView.isHidden = true
-        mainStackView.addArrangedSubview(mainImageView)
-        mainImageView.snp.makeConstraints {
-            $0.width.equalTo(27)
-            $0.height.equalTo(36)
         }
         
         // NAVBAR TITLE, SUBTITLE

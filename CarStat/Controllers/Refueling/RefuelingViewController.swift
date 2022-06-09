@@ -15,7 +15,7 @@ class RefuelingViewController: CSViewController {
     typealias Item = RefuelingViewModel.ItemModel
     typealias Section = RefuelingViewModel.SectionModel
     
-    var viewModel: RefuelingViewModel!
+    var viewModel = RefuelingViewModel()
     var dataSource: RxCollectionViewSectionedAnimatedDataSource<Section>!
     
     override func viewDidLoad() {
