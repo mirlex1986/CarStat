@@ -66,10 +66,11 @@ extension CSViewController {
     public func textCell(_ collectionView: CSCollectionView,
                          indexPath: IndexPath,
                          text: String,
+                         font: UIFont = UIFont.systemFont(ofSize: 17),
                          color: UIColor = .darkText,
                          alignment: NSTextAlignment = .left) -> CSCollectionViewCell {
         let cell: CSTextCell = collectionView.cell(indexPath: indexPath)
-        cell.configure(text: text, textColor: color, textAlignment: alignment)
+        cell.configure(text: text, font: font, textColor: color, textAlignment: alignment)
         
         return cell
     }

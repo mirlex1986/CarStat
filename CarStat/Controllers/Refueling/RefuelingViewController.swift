@@ -8,7 +8,6 @@ class RefuelingViewController: CSViewController {
     // MARK: - UI
     private var navBar: CSNavigationBar!
     private var collectionView: UICollectionView!
-    private var label: UILabel!
     private var separator: UIView!
     private var addRecordButton: UIButton!
     
@@ -16,7 +15,7 @@ class RefuelingViewController: CSViewController {
     typealias Item = RefuelingViewModel.ItemModel
     typealias Section = RefuelingViewModel.SectionModel
     
-    var viewModel = RefuelingViewModel()
+    var viewModel: RefuelingViewModel!
     var dataSource: RxCollectionViewSectionedAnimatedDataSource<Section>!
     
     override func viewDidLoad() {
@@ -78,9 +77,6 @@ class RefuelingViewController: CSViewController {
                     let last = self.viewModel.mileage.value[indexPath.row]
                     Router.addRefueling(lastRefueling: last, isEditing: true)
                         .push(from: self.navigationController, animated: true)
-                    
-                default:
-                    break
                 }
             })
             .disposed(by: viewModel.disposeBag)
@@ -104,8 +100,6 @@ class RefuelingViewController: CSViewController {
             configureCell: { dataSource, collectionView, indexPath, _ in
                 let item: Item = dataSource[indexPath]
                 switch item {
-                case .text(let text, let alignment):
-                    return self.textCell(indexPath: indexPath, text: text, alignment: alignment)
                 case .refueling(let mileage, let previos):
                     return self.refuelingCell(indexPath: indexPath, mileage: mileage, previos: previos)
                 }
@@ -115,13 +109,6 @@ class RefuelingViewController: CSViewController {
             })
     }
     // MARK: - Cells
-    private func textCell(indexPath: IndexPath, text: String, alignment: NSTextAlignment) -> CSCollectionViewCell {
-        let cell: CSTextCell = collectionView.cell(indexPath: indexPath)
-        cell.configure(text: text, textAlignment: alignment)
-        
-        return cell
-    }
-    
     private func refuelingCell(indexPath: IndexPath, mileage: UserMileage, previos: Int = 0) -> CSCollectionViewCell {
         let cell: RefuelingInfoCell = collectionView.cell(indexPath: indexPath)
         cell.configure(mileage: mileage, previos: previos)
@@ -139,8 +126,6 @@ extension RefuelingViewController: UICollectionViewDelegateFlowLayout {
         switch item {
         case .refueling:
             return RefuelingInfoCell.cellSize
-        case .text(let text, _):
-            return CSTextCell.cellSize(text: text)
         }
     }
     

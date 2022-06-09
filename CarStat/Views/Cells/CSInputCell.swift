@@ -86,7 +86,7 @@ extension CSInputCell {
 
 extension CSInputCell {
     static func cellSize() -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.width - 32, height: 50)
+        return CGSize(width: Device.deviceWidth - 32, height: 50)
     }
 }
 

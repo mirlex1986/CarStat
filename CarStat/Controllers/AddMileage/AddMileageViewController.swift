@@ -8,7 +8,7 @@ import RealmSwift
 class AddMileageViewController: CSViewController {
     // MARK: - UI
     private var navBar: CSNavigationBar!
-    private var collectionView: UICollectionView!
+    private var collectionView: CSCollectionView!
     private var label: UILabel!
     
     // MARK: - Properties
@@ -232,7 +232,7 @@ extension AddMileageViewController {
         }
     }
     
-    private func makeCollectionView() -> UICollectionView {
+    private func makeCollectionView() -> CSCollectionView {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 10

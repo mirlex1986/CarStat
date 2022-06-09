@@ -109,13 +109,6 @@ class HomeViewController: CSViewController {
         
         return cell
     }
-    
-//    private func textCell(indexPath: IndexPath, text: String, alignment: NSTextAlignment) -> CSCollectionViewCell {
-//        let cell: CSTextCell = collectionView.cell(indexPath: indexPath)
-//        cell.configure(text: text, textAlignment: alignment)
-//
-//        return cell
-//    }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout

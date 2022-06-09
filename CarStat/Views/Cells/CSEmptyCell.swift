@@ -3,7 +3,7 @@ import SnapKit
 
 final class CSEmptyCell: RxCollectionViewCell {
     // MARK: - UI
-    private var colorView: UIView!
+    private var emptyView: UIView!
     
     // MARK: - Lifecycle
     override func initialSetup() {
@@ -13,7 +13,7 @@ final class CSEmptyCell: RxCollectionViewCell {
     }
     
     func configure(color: UIColor = .clear) {
-        colorView.backgroundColor = color
+        emptyView.backgroundColor = color
     }
 }
 
@@ -22,9 +22,9 @@ extension CSEmptyCell {
         backgroundColor = .clear
         
         // COLOR VIEW
-        colorView = UIView()
-        addSubview(colorView)
-        colorView.snp.makeConstraints {
+        emptyView = UIView()
+        addSubview(emptyView)
+        emptyView.snp.makeConstraints {
             $0.left.right.equalToSuperview().inset(-16)
             $0.top.bottom.equalToSuperview()
         }

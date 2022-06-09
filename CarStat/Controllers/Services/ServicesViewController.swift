@@ -7,7 +7,7 @@ import RxDataSources
 class ServicesViewController: CSViewController {
     // MARK: - UI
     private var navBar: CSNavigationBar!
-    private var collectionView: UICollectionView!
+    private var collectionView: CSCollectionView!
     private var separator: UIView!
     private var button: UIButton!
     
@@ -15,7 +15,7 @@ class ServicesViewController: CSViewController {
     typealias Item = ServicesViewModel.ItemModel
     typealias Section = ServicesViewModel.SectionModel
     
-    var viewModel = ServicesViewModel()
+    var viewModel: ServicesViewModel!
     var dataSource: RxCollectionViewSectionedAnimatedDataSource<Section>!
     
     override func viewDidLoad() {
@@ -79,8 +79,8 @@ class ServicesViewController: CSViewController {
             configureCell: { dataSource, collectionView, indexPath, _ in
                 let item: Item = dataSource[indexPath]
                 switch item {
-                case .text(let text, let alignment):
-                    return self.textCell(indexPath: indexPath, text: text, alignment: alignment)
+                case .text(let text):
+                    return self.textCell(self.collectionView, indexPath: indexPath, text: text)
                 }
             },
             configureSupplementaryView: { _, _, _, _ in
@@ -88,12 +88,7 @@ class ServicesViewController: CSViewController {
             })
     }
     // MARK: - Cells
-    private func textCell(indexPath: IndexPath, text: String, alignment: NSTextAlignment) -> CSCollectionViewCell {
-        let cell: CSTextCell = collectionView.cell(indexPath: indexPath)
-        cell.configure(text: text, textAlignment: alignment)
-        
-        return cell
-    }
+//    add custom cells
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
@@ -103,7 +98,7 @@ extension ServicesViewController: UICollectionViewDelegateFlowLayout {
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let item = dataSource[indexPath]
         switch item {
-        case .text(let text, _):
+        case .text(let text):
             return CSTextCell.cellSize(text: text)
         }
     }
@@ -160,7 +155,7 @@ extension ServicesViewController {
         }
     }
     
-    private func makeCollectionView() -> UICollectionView {
+    private func makeCollectionView() -> CSCollectionView {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 0

@@ -19,13 +19,12 @@ final class CSTextCell: RxCollectionViewCell {
         
         disposeBag = DisposeBag()
         title.font = UIFont.systemFont(ofSize: 17)
-        title.textColor = .darkGray
-        title.attributedText = nil
+        title.textColor = .darkText
     }
     
     func configure(text: String,
                    font: UIFont = UIFont.systemFont(ofSize: 17),
-                   textColor: UIColor = .darkGray,
+                   textColor: UIColor = .darkText,
                    textAlignment: NSTextAlignment = .left) {
         
         title.text = text
@@ -53,7 +52,8 @@ extension CSTextCell {
 
 extension CSTextCell {
     static func cellSize(text: String) -> CGSize {
-        let height = UILabel.calculateHeight(for: text, font: UIFont.systemFont(ofSize: 17), width: Device.deviceWidth)
-        return CGSize(width: Device.deviceWidth - 32, height: height)
+        let width: CGFloat = Device.deviceWidth - 32
+        let height = UILabel.calculateHeight(for: text, font: UIFont.systemFont(ofSize: 17), width: width)
+        return CGSize(width: width, height: height)
     }
 }

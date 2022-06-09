@@ -63,11 +63,11 @@ extension ServicesViewModel {
     }
     
     enum ItemModel {
-        case text(text: String, alignment: NSTextAlignment)
+        case text(text: String)
         
         var id: String {
             switch self {
-            case .text(let text, _):
+            case .text(let text):
                 return "text \(text)"
             }
         }
