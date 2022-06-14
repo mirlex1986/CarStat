@@ -55,6 +55,12 @@ class AddMileageViewController: CSViewController {
                 
                 Router.barCodeScanner
                     .presentWithResult(from: self)
+                    .subscribe(onNext: { [weak self] result in
+                        guard let self = self, let result = result as? UserMileage else { return }
+                        
+                        print("-----", result)
+                    })
+                    .disposed(by: self.viewModel.disposeBag)
                 
             })
             .disposed(by: viewModel.disposeBag)
@@ -173,7 +179,7 @@ class AddMileageViewController: CSViewController {
             .subscribe(onNext: { [weak self] value in
                 guard let self = self else { return }
                 
-                self.viewModel.newDate.accept(Formatters.dateApi.string(from: value))
+                self.viewModel.newDate.accept(value.onlyDate)
                 self.dismiss(animated: false)
             })
             .disposed(by: cell.disposeBag)

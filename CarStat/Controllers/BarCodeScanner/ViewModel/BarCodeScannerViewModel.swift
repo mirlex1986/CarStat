@@ -64,4 +64,21 @@ extension BarCodeScannerViewModel {
         
         return string
     }
+    
+    func generateResult() {
+//        let newValue = UserMileage()
+//        newValue.primaryKey = UUID().uuidString
+//        let date = Formatters.dateLongOutput.date(from: refuelingDate.value)
+//        newValue.date = Formatters.dateApi.string(from: date ?? Date()) ?? Date()
+//        
+//        let newRef = LocalRefueling()
+//        
+//        newRef.totalPrice = refuelingTotalPrice.value
+//        newValue.type = newRef.totalPrice > 0 ? RecordType.refueling.rawValue : RecordType.mileage.rawValue
+//        newValue.refueling = newRef
+//        
+//        print("-----", newValue.date)
+//        self.result.accept(newValue)
+        
+    }
 }

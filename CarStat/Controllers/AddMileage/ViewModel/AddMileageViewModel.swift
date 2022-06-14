@@ -11,7 +11,7 @@ final class AddMileageViewModel {
     var isEditing = BehaviorRelay<Bool>(value: false)
     
     var newMileage = PublishRelay<UserMileage?>()
-    var newDate = BehaviorRelay<String?>.init(value: nil)
+    var newDate = BehaviorRelay<Date?>.init(value: nil)
     var newOdometer = BehaviorRelay<Int?>.init(value: nil)
     var newFuelPrice = BehaviorRelay<Double?>.init(value: nil)
     var newLiters = BehaviorRelay<Double?>.init(value: nil)
@@ -48,13 +48,13 @@ final class AddMileageViewModel {
                 
                 switch self.isEditing.value {
                 case true:
-                    self.newDate.accept(value.date)
+                    self.newDate.accept(value.date.onlyDate)
                     self.newOdometer.accept(value.odometer)
                     self.newFuelPrice.accept(value.refueling?.price)
                     self.newLiters.accept(value.refueling?.quantity)
                     self.newTotaalPrice.accept(value.refueling?.totalPrice)
                 case false:
-                    self.newDate.accept(Formatters.dateApi.string(from: Date()))
+                    self.newDate.accept(Date().onlyDate ?? Date())
                 }
             })
             .disposed(by: disposeBag)
@@ -64,7 +64,7 @@ final class AddMileageViewModel {
         var items: [ItemModel] = []
         
         items.append(.input(text: self.newOdometer.value == nil ? nil : "\(self.newOdometer.value ?? 0)", type: .odometer))
-        items.append(.date(date: Formatters.dateApi.date(from: self.newDate.value ?? "") ?? Date()))
+        items.append(.date(date: self.newDate.value ?? Date()))
         items.append(.input(text: self.newFuelPrice.value == nil ? nil : "\(self.newFuelPrice.value ?? 0)", type: .fuelPrice))
         items.append(.input(text: self.newLiters.value == nil ? nil : "\(self.newLiters.value ?? 0)", type: .fuelCount))
         items.append(.input(text: self.newTotaalPrice.value == nil ? nil : "\(self.newTotaalPrice.value ?? 0)", type: .fuelTotalPrice))

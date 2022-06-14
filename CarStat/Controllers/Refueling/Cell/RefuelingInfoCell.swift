@@ -31,7 +31,7 @@ class RefuelingInfoCell: RxCollectionViewCell {
     }
     
     func configure(mileage: UserMileage, previos: Int) {
-        if let date = Formatters.dateApi.date(from: mileage.date) {
+        if let date = mileage.date.onlyDate {
             let dateString = Formatters.dateLongOutput.string(from: date)
             dateLabel.text = "\(dateString)"
         }

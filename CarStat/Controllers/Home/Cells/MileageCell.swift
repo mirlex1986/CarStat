@@ -39,9 +39,8 @@ class MileageCell: RxCollectionViewCell {
         if let firstOd = data.first?.odometer, let lastOd = data.last?.odometer {
             totalDistanceValueLabel.text = "\(firstOd - lastOd) км"
             
-            if let first = data.first?.date, let firstDate = Formatters.dateApi.date(from: first),
-               let last = data.last?.date, let lastDate = Formatters.dateApi.date(from: last) {
-                let diff = Calendar.current.dateComponents([.day], from: lastDate, to: firstDate)
+            if let first = data.first?.date, let last = data.last?.date {
+                let diff = Calendar.current.dateComponents([.day], from: last, to: first)
 
                 totalDaysValueLabel.text = "\(diff.day ?? 1) д"
                 if let days = diff.day, days != 0 {

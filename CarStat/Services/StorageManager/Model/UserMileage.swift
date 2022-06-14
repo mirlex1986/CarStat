@@ -3,14 +3,14 @@ import RealmSwift
 @objcMembers
 class UserMileage: Object {
     public dynamic var primaryKey = ""
-    public dynamic var date = ""
+    public dynamic var date = Date()
     public dynamic var odometer = 0
     public dynamic var type = ""
     public dynamic var refueling: LocalRefueling?
     public dynamic var service: LocalService?
     
     var data: Mileage {
-        let mileage = Mileage(date: Formatters.dateApi.date(from: date) ?? Date(),
+        let mileage = Mileage(date: date.onlyDate ?? Date(),
                               odometer: odometer,
                               type: type,
                               refueling: refueling?.refueling,

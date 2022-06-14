@@ -77,7 +77,7 @@ class HomeViewController: CSViewController {
                     vc.viewModel = AddMileageViewModel(lastMileage: last)
                 } else {
                     let new = UserMileage()
-                    new.date = Formatters.dateApi.string(from: Date())
+                    new.date = Date().onlyDate ?? Date()
                     new.odometer = 0
                     vc.viewModel = AddMileageViewModel(lastMileage: new)
                 }

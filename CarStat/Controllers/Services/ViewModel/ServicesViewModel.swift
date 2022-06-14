@@ -31,7 +31,7 @@ final class ServicesViewModel {
         var items: [ItemModel] = []
         
         items.append(.empty(height: Device.deviceHeight / 3, index: items.count))
-        items.append(.text(text: "Еще не готово =("))
+        items.append(.text(text: "Еще не готово =(", alignment: .center))
         
         sections.accept([.mainSection(items: items)])
     }
@@ -67,7 +67,7 @@ extension ServicesViewModel {
     
     enum ItemModel {
         case empty(height: CGFloat, index: Int)
-        case text(text: String)
+        case text(text: String, alignment: NSTextAlignment)
         
         var id: String {
             switch self {

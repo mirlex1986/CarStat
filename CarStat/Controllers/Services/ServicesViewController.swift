@@ -81,8 +81,8 @@ class ServicesViewController: CSViewController {
                 switch item {
                 case .empty:
                     return self.emptyCell(self.collectionView, indexPath: indexPath)
-                case .text(let text):
-                    return self.textCell(self.collectionView, indexPath: indexPath, text: text)
+                case .text(let text, let alignment):
+                    return self.textCell(self.collectionView, indexPath: indexPath, text: text, alignment: alignment)
                 }
             },
             configureSupplementaryView: { _, _, _, _ in
@@ -102,7 +102,7 @@ extension ServicesViewController: UICollectionViewDelegateFlowLayout {
         switch item {
         case .empty(let height, _):
             return CSEmptyCell.cellSize(height: height)
-        case .text(let text):
+        case .text(let text, _):
             return CSTextCell.cellSize(text: text)
         }
     }
