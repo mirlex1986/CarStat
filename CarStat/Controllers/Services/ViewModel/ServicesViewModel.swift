@@ -39,7 +39,7 @@ final class ServicesViewModel {
     
     func configureLoader() {
         self.rotateMainLoader.accept(true)
-        sections.accept([SectionModel.mainSection(items: [ItemModel.empty(height: 2400, index: 0)])])
+//        sections.accept([SectionModel.mainSection(items: [ItemModel.empty(height: 2400, index: 0)])])
     }
 }
 

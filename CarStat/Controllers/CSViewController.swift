@@ -9,17 +9,6 @@ protocol PickerController {
 class CSViewController: UIViewController {
     // MARK: - UI
     private var viewLoader: UIImageView!
-//    private lazy var viewLoader: UIImageView = {
-//        let viewLoader = UIImageView()
-//        viewLoader.image = Images.loader
-//        viewLoader.isHidden = true
-//        view.addSubview(viewLoader)
-//        viewLoader.snp.makeConstraints {
-//            $0.center.equalToSuperview()
-//            $0.size.equalTo(50)
-//        }
-//        return viewLoader
-//    }()
     var containerView: UIView!
     
     // MARK: - Properties
@@ -125,5 +114,27 @@ extension CSViewController {
         view.bringSubviewToFront(viewLoader)
         viewLoader.isHidden = isHidden
         viewLoader.rotate()
+    }
+    
+    func configureMainLoaderWithBlurEffect(isHidden: Bool) {
+        
+        viewBlurEffect(isHidden: isHidden)
+        view.bringSubviewToFront(viewLoader)
+        viewLoader.isHidden = isHidden
+        viewLoader.rotate()
+    }
+    
+    private func viewBlurEffect(isHidden: Bool) {
+        let blurEffect = UIBlurEffect(style: .regular)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        if isHidden {
+            view.viewWithTag(9)?.removeFromSuperview()
+        } else {
+            blurEffectView.tag = 9
+            view.addSubview(blurEffectView)
+        }
     }
 }

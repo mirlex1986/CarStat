@@ -20,34 +20,21 @@ extension UIView {
         self.layer.shadowRadius = 5
         self.layer.shadowColor = color.cgColor
     }
-    
-//    func rotate(angle: CGFloat) {
-//        let radians = 90 / 180.0 * CGFloat.pi
-//        let rotation = self.transform.rotated(by: radians);
-//        self.transform = rotation
-//    }
 }
 
 // MARK: - Animation
 extension UIView {
-    private static let kRotationAnimationKey = "rotationanimationkey"
-
-    func rotate(duration: Double = 1) {
-        if layer.animation(forKey: UIView.kRotationAnimationKey) == nil {
-            let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation")
-
-            rotationAnimation.fromValue = 0.0
-            rotationAnimation.toValue = Float.pi * 2.0
-            rotationAnimation.duration = duration
-            rotationAnimation.repeatCount = Float.infinity
-
-            layer.add(rotationAnimation, forKey: UIView.kRotationAnimationKey)
-        }
+    static private let rotationAnimationName = "rotationAnimation"
+    
+    func rotate(with duration: Double = 0.7) {
+        let rotation: CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation")
+        rotation.toValue = Double.pi * 2
+        rotation.duration = duration
+        rotation.repeatCount = .infinity
+        layer.add(rotation, forKey: UIView.rotationAnimationName)
     }
 
     func stopRotating() {
-        if layer.animation(forKey: UIView.kRotationAnimationKey) != nil {
-            layer.removeAnimation(forKey: UIView.kRotationAnimationKey)
-        }
+        layer.removeAnimation(forKey: UIView.rotationAnimationName)
     }
 }

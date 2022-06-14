@@ -21,7 +21,7 @@ class ServicesViewController: CSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        makeUI()
+        makeUI()
         prepare()
         subscribe()
     }
@@ -30,6 +30,12 @@ class ServicesViewController: CSViewController {
         super.viewWillAppear(animated)
         
         viewModel.configureLoader()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        self.configureMainLoaderWithBlurEffect(isHidden: true)
     }
     
     // MARK: - Functions
@@ -50,7 +56,7 @@ class ServicesViewController: CSViewController {
             .subscribe(onNext: { [weak self] value in
                 guard let self = self else { return }
                 
-                self.configureMainLoader(isHidden: !value)
+                self.configureMainLoaderWithBlurEffect(isHidden: !value)
                 self.collectionView.isScrollEnabled = !value
             })
             .disposed(by: viewModel.disposeBag)

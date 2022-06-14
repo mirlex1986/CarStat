@@ -21,7 +21,7 @@ class RefuelingViewController: CSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        makeUI()
+        makeUI()
         prepare()
         subscribe()
     }
