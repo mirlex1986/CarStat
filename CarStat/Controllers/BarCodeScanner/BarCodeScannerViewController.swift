@@ -18,8 +18,6 @@ class BarCodeScannerViewController: CSPopUpViewController {
     
     private let supportedCodeTypes = [AVMetadataObject.ObjectType.qr]
     
-    private var timer = Timer()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,7 +37,6 @@ class BarCodeScannerViewController: CSPopUpViewController {
         super.viewDidDisappear(animated)
         
         flashOff()
-        timer.invalidate()
     }
     
     // MARK: - Functions
@@ -56,8 +53,7 @@ class BarCodeScannerViewController: CSPopUpViewController {
             .subscribe(onNext: { [weak self] value in
                 guard let self = self else { return }
                 
-                switch value {
-                case true:
+                if value {
                     self.captureSession.stopRunning()
                     
                     AlertManager.showAction(on: self,
@@ -70,13 +66,12 @@ class BarCodeScannerViewController: CSPopUpViewController {
                         case false: self.dismissWithAnimaion()
                         }
                     }
-                case false: break
                 }
             })
             .disposed(by: viewModel.disposeBag)
     }
     
-    func startScaningSession() {
+    private func startScaningSession() {
         guard let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) else {
             print("Failed to get the camera device")
             return
@@ -222,7 +217,7 @@ extension BarCodeScannerViewController {
         }
     }
     
-    func configureFlashButton(isOn: Bool) {
+    private func configureFlashButton(isOn: Bool) {
         flashButton.tintColor = isOn ? .white : .black
         flashButton.backgroundColor = isOn ? .black : .white
         flashButton.setImage(isOn ? UIImage(systemName: "flashlight.on.fill") : UIImage(systemName: "flashlight.off.fill"), for: .normal)
