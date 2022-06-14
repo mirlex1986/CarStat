@@ -1,6 +1,8 @@
 import UIKit
 
 enum Images {
+    static var loader: UIImage { UIImage(named: "loader") ?? UIImage() }
+    
     static var backButton: UIImage { UIImage(named: "backBtn")?.withRenderingMode(.alwaysTemplate) ?? UIImage() }
     static var close: UIImage { UIImage(named: "close")?.withRenderingMode(.alwaysTemplate) ?? UIImage() }
     

@@ -39,7 +39,7 @@ final class CSTabBarController: UITabBarController {
         viewControllers = items
     }
     
-    private func createNavController(for rootViewController: UIViewController) -> UINavigationController {
+    private func createNavController(for rootViewController: CSViewController) -> UINavigationController {
         let navController = UINavigationController(rootViewController: rootViewController)
         navController.setNavigationBarHidden(true, animated: false)
         

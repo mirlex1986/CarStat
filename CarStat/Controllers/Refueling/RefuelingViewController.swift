@@ -7,7 +7,7 @@ import RxDataSources
 class RefuelingViewController: CSViewController {
     // MARK: - UI
     private var navBar: CSNavigationBar!
-    private var collectionView: UICollectionView!
+    private var collectionView: CSCollectionView!
     private var separator: UIView!
     private var addRecordButton: UIButton!
     
@@ -21,7 +21,7 @@ class RefuelingViewController: CSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        makeUI()
+//        makeUI()
         prepare()
         subscribe()
     }
@@ -139,6 +139,7 @@ extension RefuelingViewController: UICollectionViewDelegateFlowLayout {
 
 extension RefuelingViewController {
     override func makeUI() {
+        super.makeUI()
         view.backgroundColor = .white
         
         // NAVBAR
@@ -181,7 +182,7 @@ extension RefuelingViewController {
         }
     }
     
-    private func makeCollectionView() -> UICollectionView {
+    private func makeCollectionView() -> CSCollectionView {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 0

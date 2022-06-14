@@ -9,21 +9,22 @@ protocol PickerController {
 class CSViewController: UIViewController {
     // MARK: - UI
     private var viewLoader: UIImageView!
+//    private lazy var viewLoader: UIImageView = {
+//        let viewLoader = UIImageView()
+//        viewLoader.image = Images.loader
+//        viewLoader.isHidden = true
+//        view.addSubview(viewLoader)
+//        viewLoader.snp.makeConstraints {
+//            $0.center.equalToSuperview()
+//            $0.size.equalTo(50)
+//        }
+//        return viewLoader
+//    }()
     var containerView: UIView!
-    
-    var viewTapGesture: UITapGestureRecognizer!
     
     // MARK: - Properties
     var disposeBag = DisposeBag()
     var isPresentedModally: Bool = false
-    
-    private var tabBarHeight: CGFloat {
-        if let tabBar = self.tabBarController?.tabBar, !tabBar.isHidden {
-            return tabBar.frame.height
-        } else {
-            return 0
-        }
-    }
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -35,8 +36,6 @@ class CSViewController: UIViewController {
 
 extension CSViewController {
     @objc func makeUI() {
-        self.navigationController?.navigationBar.isHidden = true
-        view.backgroundColor = UIColor.black.withAlphaComponent(0)
         
         // CONTAINER VIEW
         containerView = UIView()
@@ -46,11 +45,16 @@ extension CSViewController {
             $0.size.equalToSuperview()
             $0.bottom.equalToSuperview().offset(Device.deviceHeight)
         }
-        
-        // TAP GESTURE RECOGNISER
-        viewTapGesture = UITapGestureRecognizer()
-        viewTapGesture.cancelsTouchesInView = false
-        view.addGestureRecognizer(viewTapGesture)
+
+        // MAIN LOADER VIEW
+        viewLoader = UIImageView()
+        viewLoader.image = Images.loader
+        viewLoader.isHidden = true
+        view.addSubview(viewLoader)
+        viewLoader.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.size.equalTo(50)
+        }
     }
 }
 
@@ -115,5 +119,11 @@ extension CSViewController {
         }
         
         self.configureBlurView(isHidden: true) { self.dismiss(animated: false, completion: completion) }
+    }
+    
+    func configureMainLoader(isHidden: Bool) {
+        view.bringSubviewToFront(viewLoader)
+        viewLoader.isHidden = isHidden
+        viewLoader.rotate()
     }
 }

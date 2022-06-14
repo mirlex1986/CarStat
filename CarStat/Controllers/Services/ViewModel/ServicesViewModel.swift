@@ -10,9 +10,10 @@ final class ServicesViewModel {
     let disposeBag = DisposeBag()
     let sections = BehaviorRelay<[SectionModel]>.init(value: [])
     
+    let rotateMainLoader = PublishRelay<Bool>()
+    
     init() {
         
-        fetchData()
         subscribe()
     }
     
@@ -22,7 +23,7 @@ final class ServicesViewModel {
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 
-                self.configureSections()
+                
             })
             .disposed(by: disposeBag)
     }
@@ -34,6 +35,11 @@ final class ServicesViewModel {
         items.append(.text(text: "Еще не готово =(", alignment: .center))
         
         sections.accept([.mainSection(items: items)])
+    }
+    
+    func configureLoader() {
+        self.rotateMainLoader.accept(true)
+        sections.accept([SectionModel.mainSection(items: [ItemModel.empty(height: 2400, index: 0)])])
     }
 }
 

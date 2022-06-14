@@ -4,7 +4,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-class HomeViewController: CSViewController {
+final class HomeViewController: CSViewController {
     // MARK: - UI
     private var navBar: CSNavigationBar!
     private var collectionView: CSCollectionView!
@@ -141,6 +141,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 
 extension HomeViewController {
     override func makeUI() {
+        super.makeUI()
         view.backgroundColor = .white
         
         // NAVBAR

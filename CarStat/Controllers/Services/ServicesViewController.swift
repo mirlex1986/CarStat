@@ -21,9 +21,15 @@ class ServicesViewController: CSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        makeUI()
+//        makeUI()
         prepare()
         subscribe()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        viewModel.configureLoader()
     }
     
     // MARK: - Functions
@@ -38,6 +44,15 @@ class ServicesViewController: CSViewController {
     private func subscribe() {
         viewModel.sections.asObservable()
             .bind(to: collectionView.rx.items(dataSource: dataSource))
+            .disposed(by: viewModel.disposeBag)
+        
+        viewModel.rotateMainLoader
+            .subscribe(onNext: { [weak self] value in
+                guard let self = self else { return }
+                
+                self.configureMainLoader(isHidden: !value)
+                self.collectionView.isScrollEnabled = !value
+            })
             .disposed(by: viewModel.disposeBag)
         
         collectionView.rx.contentOffset
@@ -117,6 +132,7 @@ extension ServicesViewController: UICollectionViewDelegateFlowLayout {
 
 extension ServicesViewController {
     override func makeUI() {
+        super.makeUI()
         view.backgroundColor = .white
         
         // NAVBAR
