@@ -30,12 +30,17 @@ class ServicesViewController: CSViewController {
         super.viewWillAppear(animated)
         
         viewModel.configureLoader()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            self.configureMainLoaderWithBlurEffect(isHidden: true)
+            self.viewModel.configureSections()
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
-        self.configureMainLoaderWithBlurEffect(isHidden: true)
+        
     }
     
     // MARK: - Functions

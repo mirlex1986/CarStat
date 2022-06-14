@@ -32,7 +32,7 @@ final class ServicesViewModel {
         var items: [ItemModel] = []
         
         items.append(.empty(height: Device.deviceHeight / 3, index: items.count))
-        items.append(.text(text: "Еще не готово =(", alignment: .center))
+        items.append(.text(text: "Раздел не готов =(", alignment: .center))
         
         sections.accept([.mainSection(items: items)])
     }
