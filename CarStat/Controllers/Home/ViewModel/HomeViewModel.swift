@@ -87,7 +87,7 @@ extension HomeViewModel {
     
     enum ItemModel {
         case empty(height: CGFloat, index: Int)
-        case button
+        
         case text(text: String, alignment: NSTextAlignment = .center)
         case refueling(mileage: [UserMileage])
         case mileage(mileage: [UserMileage])
@@ -96,8 +96,6 @@ extension HomeViewModel {
             switch self {
             case .empty(_, let index):
                 return "empty \(index)"
-            case .button:
-                return "button"
             case .text(let text, _):
                 return "text \(text)"
             case .refueling(let mileage):

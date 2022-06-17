@@ -49,8 +49,6 @@ final class HomeViewController: CSViewController {
                 switch item {
                 case .empty:
                     return self.emptyCell(self.collectionView, indexPath: indexPath)
-                case .button:
-                    return self.buttonCell(indexPath: indexPath)
                 case .text(let text, let alignment):
                     return self.textCell(self.collectionView, indexPath: indexPath, text: text, alignment: alignment)
                 case .refueling(let mileage):
@@ -64,31 +62,6 @@ final class HomeViewController: CSViewController {
             })
     }
     // MARK: - Cells
-    private func buttonCell(indexPath: IndexPath) -> CSCollectionViewCell {
-        let cell: CSButtonCell = collectionView.cell(indexPath: indexPath)
-        cell.configure(text: "Добавить показания одометра")
-        
-        cell.button.rx.tap
-            .subscribe(onNext: { [weak self] _ in
-                guard let self = self else { return }
-                
-                let vc = AddMileageViewController()
-                if let last = self.viewModel.mileage.value.last {
-                    vc.viewModel = AddMileageViewModel(lastMileage: last)
-                } else {
-                    let new = UserMileage()
-                    new.date = Date().onlyDate ?? Date()
-                    new.odometer = 0
-                    vc.viewModel = AddMileageViewModel(lastMileage: new)
-                }
-
-                self.present(vc, animated: true, completion: nil)
-            })
-            .disposed(by: cell.disposeBag)
-        
-        return cell
-    }
-    
     private func refuelingCell(indexPath: IndexPath, refueling: [UserMileage]) -> CSCollectionViewCell {
         let cell: RefuelingCell = collectionView.cell(indexPath: indexPath)
         cell.configure(with: refueling)
@@ -99,13 +72,6 @@ final class HomeViewController: CSViewController {
     private func mileageCell(indexPath: IndexPath, refueling: [UserMileage]) -> CSCollectionViewCell {
         let cell: MileageCell = collectionView.cell(indexPath: indexPath)
         cell.configure(with: refueling)
-        
-        return cell
-    }
-    
-    private func chartCell(indexPath: IndexPath, mileages: [UserMileage]) -> CSCollectionViewCell {
-        let cell: CSChartCell = collectionView.cell(indexPath: indexPath)
-        cell.configure(mileages: mileages)
         
         return cell
     }
@@ -120,8 +86,6 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         switch item {
         case .empty(let height, _):
             return CSEmptyCell.cellSize(height: height)
-        case .button:
-            return CSButtonCell.cellSize
         case .text(let text, _):
             return CSTextCell.cellSize(text: text)
         case .refueling:
