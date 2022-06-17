@@ -9,12 +9,13 @@ enum InputType {
     case fuelCount
     case fuelTotalPrice
     case totalSummLitersDisabled
+    case dateDisabled
 }
 
 final class CSInputCell: RxCollectionViewCell {
     // MARK: - UI
-    var label: UILabel!
-    var input: UITextField!
+    var descriptionLabel: UILabel!
+    var inputTextField: UITextField!
     
     // MARK: - Lifecycle
     override func initialSetup() {
@@ -31,32 +32,53 @@ final class CSInputCell: RxCollectionViewCell {
     
     func configure(text: String?, inputType: InputType) {
         if let text = text, let number = Double(text), !number.isZero {
-            label.textColor = .black
-            input.text = text
+            descriptionLabel.textColor = .black
+            inputTextField.text = text
         }
         
             switch inputType {
             case .odometer:
-                label.text = "Одометр"
-                input.placeholder = "Одометр"
-                input.keyboardType = .numberPad
+                descriptionLabel.text = "Одометр"
+                
+                inputTextField.placeholder = "Одометр"
+                inputTextField.keyboardType = .numberPad
+                
             case .fuelPrice:
-                label.text = "Цена"
-                input.placeholder = "Цена"
-                input.keyboardType = .decimalPad
+                descriptionLabel.text = "Цена"
+                
+                inputTextField.placeholder = "Цена"
+                inputTextField.keyboardType = .decimalPad
+                
             case .fuelCount:
-                label.text = "Количество"
-                input.placeholder = "Количество"
-                input.keyboardType = .decimalPad
+                descriptionLabel.text = "Количество"
+                
+                inputTextField.placeholder = "Количество"
+                inputTextField.keyboardType = .decimalPad
+                
             case .fuelTotalPrice:
-                label.text = "Итоговая стоимость"
-                input.placeholder = "Итоговая стоимость"
-                input.keyboardType = .decimalPad
+                descriptionLabel.text = "Итоговая стоимость"
+                
+                inputTextField.placeholder = "Итоговая стоимость"
+                inputTextField.keyboardType = .decimalPad
+                
             case .totalSummLitersDisabled:
-                label.text = "Топлива залито:"
-                input.text = text
-                input.isEnabled = false
+                descriptionLabel.text = "Топлива залито:"
+                
+                inputTextField.text = text
+                inputTextField.isEnabled = false
+                
+            case .dateDisabled:
+                descriptionLabel.text = "Дата"
+                descriptionLabel.textColor = .black
+                
+                inputTextField.text = text
+                inputTextField.backgroundColor = .white
+                inputTextField.isEnabled = false
             }
+    }
+    
+    private func subscribe() {
+        
     }
 }
 
@@ -64,20 +86,20 @@ extension CSInputCell {
     private func makeUI() {
         backgroundColor = .clear
         
-        label = UILabel()
-        label.textColor = .clear
-        label.font = UIFont.systemFont(ofSize: 12)
-        contentView.addSubview(label)
-        label.snp.makeConstraints {
+        descriptionLabel = UILabel()
+        descriptionLabel.textColor = .clear
+        descriptionLabel.setFontSize(size: 12)
+        contentView.addSubview(descriptionLabel)
+        descriptionLabel.snp.makeConstraints {
             $0.top.left.right.equalToSuperview()
         }
         
-        input = UITextField()
-        input.borderStyle = .roundedRect
-        input.delegate = self
-        contentView.addSubview(input)
-        input.snp.makeConstraints {
-            $0.top.equalTo(label.snp.bottom).offset(4)
+        inputTextField = UITextField()
+        inputTextField.borderStyle = .roundedRect
+        inputTextField.delegate = self
+        contentView.addSubview(inputTextField)
+        inputTextField.snp.makeConstraints {
+            $0.top.equalTo(descriptionLabel.snp.bottom).offset(4)
             $0.left.equalToSuperview()
             $0.right.equalToSuperview()
         }
@@ -92,7 +114,7 @@ extension CSInputCell {
 
 extension CSInputCell: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        label.textColor = .black
+        descriptionLabel.textColor = .black
         return true
     }
 }

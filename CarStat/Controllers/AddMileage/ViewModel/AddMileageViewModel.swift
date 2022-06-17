@@ -63,11 +63,20 @@ final class AddMileageViewModel {
     func configureSections() {
         var items: [ItemModel] = []
         
-        items.append(.input(text: self.newOdometer.value == nil ? nil : "\(self.newOdometer.value ?? 0)", type: .odometer))
-        items.append(.date(date: self.newDate.value ?? Date()))
-        items.append(.input(text: self.newFuelPrice.value == nil ? nil : "\(self.newFuelPrice.value ?? 0)", type: .fuelPrice))
-        items.append(.input(text: self.newLiters.value == nil ? nil : "\(self.newLiters.value ?? 0)", type: .fuelCount))
-        items.append(.input(text: self.newTotaalPrice.value == nil ? nil : "\(self.newTotaalPrice.value ?? 0)", type: .fuelTotalPrice))
+        items.append(.input(text: self.newOdometer.value == nil ? nil : "\(self.newOdometer.value ?? 0)",
+                            type: .odometer))
+        
+        items.append(.input(text: Formatters.dateLongOutput.string(from: self.newDate.value ?? Date()),
+                            type: .dateDisabled))
+
+        items.append(.input(text: self.newFuelPrice.value == nil ? nil : "\(self.newFuelPrice.value ?? 0)",
+                            type: .fuelPrice))
+        items.append(.input(text: self.newLiters.value == nil ? nil : "\(self.newLiters.value ?? 0)",
+                            type: .fuelCount))
+        items.append(.input(text: self.newTotaalPrice.value == nil ? nil : "\(self.newTotaalPrice.value ?? 0)",
+                            type: .fuelTotalPrice))
+        
+        items.append(.empty(height: 8, index: items.count))
         items.append(.button(type: .add))
         
         if self.isEditing.value {
@@ -92,21 +101,21 @@ extension AddMileageViewModel {
     }
     
     enum ItemModel {
+        case empty(height: CGFloat, index: Int)
         case button(type: ButtonType)
         case input(text: String?, type: InputType)
         case label(text: String)
-        case date(date: Date)
         
         var id: String {
             switch self {
+            case .empty(_, let index):
+                return "empty \(index)"
             case .button(let type):
                 return "button \(type)"
             case .input(let text, let type):
                 return "input \(String(describing: text)) \(type)"
             case .label(let text):
                 return "label \(text)"
-            case .date(let date):
-                return "date \(date)"
             }
         }
     }

@@ -82,7 +82,7 @@ extension HomeViewModel {
         var id: String {
             switch self {
             case .empty(_, let index):
-                return "separator \(index)"
+                return "empty \(index)"
             case .button:
                 return "button"
             case .text(let text, _):

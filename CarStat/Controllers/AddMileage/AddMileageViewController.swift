@@ -41,6 +41,24 @@ class AddMileageViewController: CSViewController {
             .bind(to: collectionView.rx.items(dataSource: dataSource))
             .disposed(by: viewModel.disposeBag)
         
+        collectionView.rx.itemSelected
+            .subscribe(onNext: { [weak self] indexPath in
+                guard let self = self else { return }
+                
+                let item: Item = self.dataSource[indexPath]
+                switch item {
+                case .input(_, let type):
+                    switch type {
+                    case .dateDisabled:
+                        self.openDatePicker(with: self.viewModel.newDate.value)
+                        
+                    default: break
+                    }
+                default: break
+                }
+            })
+            .disposed(by: viewModel.disposeBag)
+        
         navBar.leftButton.rx.tap
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
@@ -74,14 +92,14 @@ class AddMileageViewController: CSViewController {
             configureCell: { dataSource, collectionView, indexPath, _ in
                 let item: Item = dataSource[indexPath]
                 switch item {
+                case .empty:
+                    return self.emptyCell(self.collectionView, indexPath: indexPath)
                 case .button(let type):
                     return self.buttonCell(indexPath: indexPath, type: type)
                 case .input(let text, let type):
                     return self.inputCell(indexPath: indexPath, text: text, type: type)
                 case .label(let text):
                     return self.labelCell(indexPath: indexPath, text: text)
-                case .date(let date):
-                    return self.calendarCell(indexPath: indexPath, date: date)
                 }
             },
             configureSupplementaryView: { _, _, _, _ in
@@ -97,7 +115,6 @@ class AddMileageViewController: CSViewController {
         case .delete:
             cell.configure(text: "Удалить")
         }
-        
         
         cell.button.rx.tap
             .subscribe(onNext: { [weak self] _ in
@@ -130,7 +147,7 @@ class AddMileageViewController: CSViewController {
         let cell: CSInputCell = collectionView.cell(indexPath: indexPath)
         cell.configure(text: text, inputType: type)
         
-        cell.input.rx.text.changed
+        cell.inputTextField.rx.text.changed
             .subscribe(onNext: { [weak self] value in
                 guard let self = self, let value = value else { return }
                 
@@ -195,14 +212,14 @@ extension AddMileageViewController: UICollectionViewDelegateFlowLayout {
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let item = dataSource[indexPath]
         switch item {
+        case .empty(let height, _):
+            return CSEmptyCell.cellSize(height: height)
         case .button:
             return CSButtonCell.cellSize
         case .input:
             return CSInputCell.cellSize()
         case .label(let text):
             return CSTextCell.cellSize(text: text)
-        case .date:
-            return CSDateInputCell.cellSize()
         }
     }
     
@@ -249,5 +266,20 @@ extension AddMileageViewController {
         collectionView.showsVerticalScrollIndicator = false
         
         return collectionView
+    }
+}
+
+extension AddMileageViewController {
+    private func openDatePicker(with date: Date?) {
+
+        Router.datePicker(date: date)
+            .presentWithResult(from: self)
+            .subscribe(onNext: { [weak self] result in
+                guard let self = self, let date = result as? Date else { return }
+                
+                self.viewModel.newDate.accept(date)
+                self.viewModel.configureSections()
+            })
+            .disposed(by: self.viewModel.disposeBag)
     }
 }

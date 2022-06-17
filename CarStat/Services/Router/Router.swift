@@ -5,12 +5,14 @@ import UIKit
 protocol PickerResult {}
 
 extension UserMileage: PickerResult {}
+extension Date: PickerResult {}
 
 enum Router {
     case addRefueling(lastRefueling: UserMileage?, isEditing: Bool = false)
     case addService
     
     case barCodeScanner
+    case datePicker(date: Date?)
 }
 
 extension Router {
@@ -72,15 +74,22 @@ extension Router {
             
             presentedViewController = vc
             
+        case .datePicker(let date):
+            let vc = DateChooseViewController()
+            vc.date.accept(date)
+            
+            presentedViewController = vc
+            
         default:
             return .empty()
         }
         
         switch self {
-        case .barCodeScanner:
+        case .barCodeScanner, .datePicker:
             
             animated = false
             modalPresentationStyle = .overFullScreen
+            
         default: break
         }
         
