@@ -20,10 +20,14 @@ final class HomeViewModel {
     // MARK: - Functions
     private func subscribe() {
         mileage
-            .subscribe(onNext: { [weak self] _ in
+            .subscribe(onNext: { [weak self] records in
                 guard let self = self else { return }
                 
-                self.configureSections()
+                if records.isEmpty {
+                    self.configureEmptySections()
+                } else {
+                    self.configureSections()
+                }
             })
             .disposed(by: disposeBag)
     }
@@ -40,6 +44,15 @@ final class HomeViewModel {
             items.append(.empty(height: 40, index: items.count))
             items.append(.mileage(mileage: mileage.value))
         }
+        
+        sections.accept([.mainSection(items: items)])
+    }
+    
+    func configureEmptySections() {
+        var items: [ItemModel] = []
+        
+        items.append(.empty(height: Device.deviceHeight / 2 - 100, index: items.count))
+        items.append(.text(text: "Нет данных о тратах"))
         
         sections.accept([.mainSection(items: items)])
     }
