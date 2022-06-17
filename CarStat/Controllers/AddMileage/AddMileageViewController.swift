@@ -76,7 +76,9 @@ class AddMileageViewController: CSViewController {
                     .subscribe(onNext: { [weak self] result in
                         guard let self = self, let result = result as? UserMileage else { return }
                         
-                        print("-----", result)
+                        self.viewModel.newDate.accept(result.date)
+                        self.viewModel.newTotaalPrice.accept(result.refueling?.totalPrice)
+                        self.viewModel.configureSections()
                     })
                     .disposed(by: self.viewModel.disposeBag)
                 

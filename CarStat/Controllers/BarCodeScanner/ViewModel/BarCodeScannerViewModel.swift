@@ -66,6 +66,19 @@ extension BarCodeScannerViewModel {
     }
     
     func generateResult() {
+        let newValue = UserMileage()
 
+        newValue.date = Formatters.dateLongOutput.date(from: self.refuelingDate.value) ?? Date()
+//        newValue.odometer = 0
+        let newRef = LocalRefueling()
+//        newRef.price = self.newFuelPrice.value ?? 0.0
+//        newRef.quantity = self.newLiters.value ?? 0.0
+        newRef.totalPrice = self.refuelingTotalPrice.value
+        newValue.type = RecordType.refueling.rawValue
+        newValue.refueling = newRef
+        
+        self.result.accept(newValue)
+        
+        print("-----?", newValue.data)
     }
 }

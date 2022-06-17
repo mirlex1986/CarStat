@@ -55,17 +55,22 @@ class BarCodeScannerViewController: CSPopUpViewController {
                 
                 if value {
                     self.captureSession.stopRunning()
+                    self.configureMainLoaderWithBlurEffect(isHidden: false)
                     
-                    AlertManager.showAction(on: self,
-                                            title: "Полученные данные",
-                                            message: self.viewModel.makeStringFromParsedData()) { action in
-                        switch action {
-                        case true: //self.captureSession.startRunning()
-                            self.viewModel.generateResult()
-                            self.dismissWithAnimaion()
-                            // TODO: - Add pick data from QR and add ti result
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                        self.configureMainLoaderWithBlurEffect(isHidden: true)
                         
-                        case false: self.dismissWithAnimaion()
+                        AlertManager.showAction(on: self,
+                                                title: "Полученные данные",
+                                                message: self.viewModel.makeStringFromParsedData()) { action in
+                            switch action {
+                            case true: //self.captureSession.startRunning()
+                                self.viewModel.generateResult()
+                                self.dismissWithAnimaion()
+                                // TODO: - Add pick data from QR and add ti result
+                                
+                            case false: self.dismissWithAnimaion()
+                            }
                         }
                     }
                 }
@@ -154,7 +159,7 @@ extension BarCodeScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
 // MARK: - Picker controller
 extension BarCodeScannerViewController: PickerController {
     var result: Observable<PickerResult?> {
-        self.viewModel.refueling.compactMap { $0 }.asObservable()
+        self.viewModel.result.compactMap { $0 }.asObservable()
     }
 }
 
